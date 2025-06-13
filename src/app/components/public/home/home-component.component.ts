@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
-
+import { Observable } from 'rxjs';
+import { Theme, ThemeService } from '../../core/services/theme.service';
 @Component({
   selector: 'app-home-component',
   standalone: true,
@@ -12,6 +13,20 @@ import { PLATFORM_ID } from '@angular/core';
   styleUrls: ['./home-component.component.scss']
 })
 export class HomeComponentComponent {
+  theme$: Observable<Theme>;
+  constructor(private themeService: ThemeService ,  public translate: TranslateService,
+  @Inject(PLATFORM_ID) private platformId: Object) {
+    this.theme$ = this.themeService.theme$;
+     this.isBrowser = isPlatformBrowser(this.platformId);
+  this.initLanguage();
+  }
+
+  ngOnInit(): void {}
+
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
+  }
+
   activeSection: string = 'home';
   manualScrolling: boolean = false;
   isBrowser: boolean;
@@ -19,14 +34,7 @@ showLangDropdown = false;
 
   currentLang: string = 'en';
 
-constructor(
-  private router: Router,
-  public translate: TranslateService,
-  @Inject(PLATFORM_ID) private platformId: Object
-) {
-  this.isBrowser = isPlatformBrowser(this.platformId);
-  this.initLanguage();
-}
+
 
 initLanguage() {
   let lang = 'en';
