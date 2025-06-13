@@ -1,14 +1,14 @@
 import { Component, HostListener, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Theme, ThemeService } from '../../core/services/theme.service';
 @Component({
   selector: 'app-home-component',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslateModule,CommonModule],
   templateUrl: './home-component.component.html',
   styleUrls: ['./home-component.component.scss']
 })
