@@ -2,7 +2,7 @@
   <header>
     <nav>
       <div class="row d-flex align-items-center">
-        <div class="col-md-3 logo-background">
+        <div class="col-md-3 logo-background" [class.logo-ar]="currentLang === 'ar'">
           <img src="../../../../assets/logo.svg" alt="" srcset="" />
         </div>
         <div class="col-md-9 d-flex justify-content-between px-5 m-auto align-items-center">
@@ -12,24 +12,24 @@
               <a
                 (click)="scrollToSection('home')"
                 [class.active]="activeSection === 'home'"
-                >Home</a
+                > {{ 'HOME' | translate }}</a
               >
             </li>
             <li>
               <a
                 (click)="scrollToSection('about')"
                 [class.active]="activeSection === 'about'"
-                >About Us</a
+                >{{'ABOUT' | translate}}</a
               >
             </li>
             <li>
               <a
                 (click)="scrollToSection('contact')"
                 [class.active]="activeSection === 'contact'"
-                >Contact Us</a
+                >{{'CONTACT' | translate }}</a
               >
             </li>
-            <li>
+            <li (click)="toggleLang()" style="cursor:pointer;">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -44,15 +44,15 @@
                     fill="#201F19"
                   />
                 </svg>
-                English
+                 {{ currentLang === 'en' ? 'En' : 'عربي' }}
               </span>
             </li>
           </ul>
           </div>
           <div >
           <ul>
-            <li><button class="signInBtn">Sign in</button></li>
-            <li><button class="JoinUsBtn">Join us now</button></li>
+            <li><button class="signInBtn">{{'SIGNIN' | translate }}</button></li>
+            <li><button class="JoinUsBtn">{{'JOIN' | translate }}</button></li>
           </ul>
         </div>
         </div>
