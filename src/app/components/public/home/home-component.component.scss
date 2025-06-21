@@ -146,7 +146,7 @@
   // -------------------
   .hero-content {
     position: relative;
-    svg path {
+    .svg-hero path {
       fill: var(--svg-color);
     }
     .child {
@@ -184,29 +184,58 @@
   // -------------------
   .whychooseUsWrapper {
     width: 100%;
-    margin: 80px 0;
 
     .whychooseUsHeader {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 50px;
+      margin-bottom: 60px;
     }
 
     .whychooseUsParent {
       position: relative;
       width: 100%;
       margin: auto;
-
-      .whyChooseUsChild {
+      .cantactUs-first-desc {
+        font-family: "IBM Plex Sans";
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 80px;
+      }
+      .cantactUs-sec-desc {
+        font-family: "IBM Plex Sans";
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 40px;
+        text-align: center;
+      }
+      .contactIcons {
+        width: 157px;
+        height: 157px;
+      }
+      .sharedContact {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
+        width: fit-content;
         z-index: 2;
         pointer-events: none;
+        font-family: "IBM Plex Sans";
+      }
+      .whyChooseUsFirstChild {
+        top: 18%;
+        left: 6%;
+      }
+
+      .whyChooseUsSecChild {
+        top: 29%;
+        left: 29%;
+      }
+      .whyChooseUsThirdChild {
+        top: 18%;
+        left: 53%;
+      }
+      .whyChooseUsFourthChild {
+        top: 29%;
+        left: 78%;
       }
       .whychooseUsBg {
         width: 100%;

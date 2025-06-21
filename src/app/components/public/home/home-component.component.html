@@ -115,7 +115,7 @@
   <!-- Home section -->
   <section id="home">
     <div class="hero-content">
-      <svg
+      <svg class="svg-hero"
         xmlns="http://www.w3.org/2000/svg"
         width="458"
         height="1048"
@@ -232,7 +232,7 @@
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="254"
-              height="250"
+              height="150"
               viewBox="0 0 254 250"
               fill="none"
             >
@@ -283,11 +283,29 @@
             alt=""
             class="whychooseUsBg"
           />
-          <div class="whyChooseUsChild"></div>
+          <div class="whyChooseUsFirstChild text-white sharedContact d-flex flex-column justify-content-center align-items-center">
+            <img src="../../../../assets/media/CalendarAboutUs.svg" class="contactIcons" alt="" srcset="">
+            <p class="cantactUs-first-desc">{{ "smart_organization" | translate }}</p>
+            <p class="cantactUs-sec-desc py-0 my-0"> {{"scheduling_system_helps_you " | translate}}<br> {{"manage_your_time_efficiently" | translate}}</p>
+          </div>
+          <div class="whyChooseUsSecChild text-white sharedContact d-flex flex-column justify-content-center align-items-center">
+            <img src="../../../../assets/media/patient-file-contact.svg" class="contactIcons" alt="" srcset="">
+            <p class="cantactUs-first-desc">{{ "patient_files_here" | translate }}</p>
+            <p class="cantactUs-sec-desc py-0 my-0"> {{"all_your_medical_records,_x-rays" | translate}} ,<br> {{"and_reports_in_one_place" | translate}}</p>
+          </div>
+          <div class="whyChooseUsThirdChild text-white sharedContact d-flex flex-column justify-content-center align-items-center">
+            <img src="../../../../assets/media/inventory-contant.svg" class="contactIcons" alt="" srcset="">
+            <p class="cantactUs-first-desc">{{ "Medical_inventory" | translate }}</p>
+            <p class="cantactUs-sec-desc py-0 my-0"> {{"Track_medical_stock_with_smart" | translate}} ,<br> {{"alerts_when_supplies_run_low" | translate}}</p>
+          </div>
+          <div class="whyChooseUsFourthChild text-white sharedContact d-flex flex-column justify-content-center align-items-center">
+            <img src="../../../../assets/media/analyticContact.svg" class="contactIcons" alt="" srcset="">
+            <p class="cantactUs-first-desc">{{ "Data_Analytics" | translate }}</p>
+            <p class="cantactUs-sec-desc py-0 my-0"> {{"dashboards_with_insights_to_track" | translate}} ,<br> {{"performance_and_clinic_growth" | translate}}</p>
+          </div>
         </div>
       </div>
     </div>
-    <!-- باقي المحتوى -->
   </section>
 
   <section id="about" class="about-section">
