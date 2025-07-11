@@ -1,1 +1,58 @@
-<p>login works!</p>
+<div class="container my-3">
+<div class="row g-0 mt-5 d-flex justify-content-between align-items-end">
+    <div class="col-sm-12 col-md-6 col-lg-5 login">
+        <div class="form-section position-relative">
+            <div class="form-header">
+                <img src="../../../../assets/media/header-sign.svg" class="w-100" alt="">
+            </div>
+            <div class="form-title">{{"SIGNIN" | translate}}</div>
+            <div class="form-subtitle">
+                    {{"DONTHAVEACCOUNT" | translate}} <span class="signup-link">{{"SIGNUP" | translate}}</span>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="email">{{"EMAIL" | translate}}</label>
+                    <input type="email" id="email" class="form-input" placeholder="{{'ENTER_EMAIL_ADDRESS' | translate}}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">{{"PASSWORD" | translate}}</label>
+                    <div class="position-relative">
+                    <input type="password" id="password" class="form-input " placeholder="{{'ENTER_PASSWORD' | translate}}">
+                    <button style="position: absolute;top: 50%;right: 0%;transform: translateX(-50%);transform: translateY(-50%);" mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+                    <mat-icon>{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </button>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">{{"REMMEBERME" | translate}}</label>
+                    </div>
+                    <a href="#" class="forgot-password">{{"FORGET_PASSWORD" | translate}}</a>
+                </div>
+                
+                <button type="submit" class="signin-button">
+                    {{"SIGNIN" | translate}}
+                </button>
+                
+                <div class="divider">
+                    <span>{{"ORWITH" | translate}}</span>
+                </div>
+                
+                <div class="social-login">
+                    <div class="social-button "><i class="fa-brands fa-google"></i></div>
+                    <div class="social-button"><i class="fa-brands fa-facebook"></i></div>
+                    <div class="social-button "><i class="fa-brands fa-apple"></i></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class=" col-lg-7 col-md-6 d-md-flex justify-content-end align-items-center img-container">
+        <img src="../../../../assets/media/login.svg" class="" alt="design">
+    </div>
+</div>
+</div>
+
+

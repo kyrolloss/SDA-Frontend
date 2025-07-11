@@ -1,10 +1,47 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$SDA-primary: mat.define-palette(mat.$indigo-palette);
+$SDA-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$SDA-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$SDA-theme: mat.define-light-theme((
+  color: (
+    primary: $SDA-primary,
+    accent: $SDA-accent,
+    warn: $SDA-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($SDA-theme);
+
 /* src/styles.css - Dental Clinic Theme Colors */
 
 :root {
   /* Light Mode - Based on your design */
   --bg-primary: #faf9f7;          /* Main background - warm white */
   --bg-secondary: #f5f3f0;        /* Card backgrounds - light beige */
-  --bg-tertiary: #edeae6;         /* Section backgrounds */
+  --bg-form-field: #f7f5f2;         /* Section backgrounds */
   --bg-accent: #e8e3dd;           /* Subtle accent background */
   
   /* Brown gradient section backgrounds */
@@ -12,7 +49,8 @@
   --bg-brown-medium: #b19e7f;     /* Medium brown */
   --bg-brown-dark: #9d8a6f;       /* Darker brown */
   --bg-brown-gradient: linear-gradient(135deg, #d4c4a8 0%, #b19e7f 50%, #9d8a6f 100%);
-  
+  --focus-form-field: #d3c8b7;
+  --border-form-field: #b0b0b0;
   /* Text Colors */
   --text-black-biege:#3E372C;
   --text-black-white: #131213;
@@ -23,7 +61,13 @@
   --text-light: #8a7f73;          /* Light text for less important content */
   --text-on-brown: #ffffff;       /* White text on brown backgrounds */
   --text-on-brown-secondary: #f5f3f0; /* Light text on brown */
+<<<<<<< HEAD
   --svg-color:#F7F5F2;
+=======
+  --text-orange: #d5a618;
+  --text-gray: #737373;
+  
+>>>>>>> 422b324b315f1e5877bec0c44b72ff8c07cf415f
   /* Orange accent colors from your design */
   --accent-orange: #e67e22;       /* Primary orange */
   --accent-orange-light: #f39c12; /* Lighter orange */
@@ -65,7 +109,7 @@
 [data-theme="dark"] {
   /* Dark Mode - Inverted with warm tones */
   --bg-primary: #383D36;          /* Dark brown background */
-  --bg-secondary: #252016;        /* Slightly lighter dark brown */
+  --bg-secondary: #e8e3dd;        /* Slightly lighter dark brown */
   --bg-tertiary: #2f281f;         /* Card backgrounds */
   --bg-accent: #3a3127;           /* Accent backgrounds */
   
@@ -261,3 +305,166 @@ body {
     border-color 0.3s ease,
     box-shadow 0.3s ease;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+/////////////////////global styles///////////////////
+//styles of signin and signup
+.container {
+    background-color: var(--bg-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.form-section {
+            border-radius: 10px;
+            padding: 50px;
+            background: #fff;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 1;
+}
+        
+        .form-subtitle {
+            color: var(--text-gray);
+            font-size: 16px;
+            margin:0px 0px 15px 0px;
+        }
+        
+        .signup-link {
+            color: var(--bg-brown-medium);
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: var(--text-gray);
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--border-form-field);
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border: 3px solid var(--focus-form-field);
+            background: var(--bg-form-field);
+        }
+        
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--bg-brown-medium);
+            cursor: pointer;
+        }
+        
+        .remember-me label {
+            color: var(--text-gray);;
+            font-size: 14px;
+            margin: 0;
+            cursor: pointer;
+        }
+        
+        .forgot-password {
+            color: var(--text-gray);;
+            text-decoration: underline;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .signin-button {
+            width: 100%;
+            padding: 16px;
+            background: var(--bg-brown-gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 10px 0;
+            position: relative;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+        
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--text-gray);
+            z-index: 1;
+        }
+        
+        .divider span {
+            background: #fff;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .social-login {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .social-button {
+            color: black;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #e1e1e1;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+        
+        .social-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        

@@ -1,0 +1,136 @@
+// .form-section {
+//     background-color: transparent;
+//     box-shadow: none;
+// }
+.form-subtitle a {
+    color: var(--bg-brown-gradient);
+}
+
+.form-header {
+            position: absolute;
+            top: -5%;
+            left: 51%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+        
+        .form-header-reset {
+            position: absolute;
+            top: -3%;
+            left: 51%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+        
+        .form-title {
+            color: var(--text-orange);
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: absolute;
+            top: -1%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .form-title-reset {
+            color: var(--text-orange);
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: absolute;
+            top: -1%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .code {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--border-form-field);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .code:focus {
+            outline: none;
+            border: 3px solid var(--focus-form-field);
+            background: var(--bg-form-field);
+        }
+.container .img-container img{
+            width: 600px;
+            height: 650px;
+        }
+        .icon-visible {
+            position: absolute;
+            top: 50%;
+            right: 0%;
+            transform: translateX(-50%);
+            transform: translateY(-50%);
+            border: none !important;
+            background-color: transparent !important;
+        }
+        .form-title-reset-success {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 20px 0px;
+        }
+
+@media (min-width:766px) and (max-width: 1200px) {
+            .img-container img{
+            width: 350px;
+            }
+            .form-header {
+                width: 50%;
+            }
+            .form-header-reset {
+                width: 80%;
+            }
+            .form-title-reset {
+                font-size: 0.9rem;
+                position: absolute;
+                top: 1%;
+            }
+            .form-title {
+                font-size: 1.3rem;
+                position: absolute;
+                top: -3%;
+            }
+        }
+
+        
+        @media (max-width: 765px) {
+            .img-container {
+                display: none;
+            }
+            .form-header {
+                width: 50%;
+            }
+            .form-title {
+                font-size: 1.1rem;
+                position: absolute;
+                top: -3%;
+            }
+            .form-header-reset {
+                width: 80%;
+            }
+            .form-title-reset {
+                font-size: 0.9rem;
+                position: absolute;
+                top: 1%;
+            }
+            .arrow-icon {
+                position: absolute;
+                top: 15%;
+                left:20% ;
+            }
+            .login {
+                min-height: 100vh;
+                display: flex;
+                // width: 100%;
+                justify-content: center;
+                align-items: center;
+                background-image: url(../../../../assets/media/login-sm.svg);
+                background-repeat: no-repeat;
+                background-size: 100% 100% ; /* Make it wider - adjust percentage as needed */
+                background-position: right;
+            }
+            
+        }

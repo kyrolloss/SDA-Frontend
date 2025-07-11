@@ -1,0 +1,61 @@
+.form-header {
+            position: absolute;
+            top: -15%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+        
+        .form-title {
+            color: var(--text-orange);
+            font-size: 1.8rem;
+            font-weight: 600;
+            position: absolute;
+            top: -7%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+.container .img-container img{
+            width: 600px;
+            height: 650px;
+        }
+@media (min-width:766px) and (max-width: 993px) {
+            .img-container img{
+            width: 350px;
+            }
+            .form-header {
+                width: 50%;
+            }
+            .form-title {
+                font-size: 1.3rem;
+                position: absolute;
+                top: -8%;
+            }
+        }
+
+        
+        @media (max-width: 765px) {
+            .img-container {
+                display: none;
+            }
+            .form-header {
+                width: 50%;
+            }
+            .form-title {
+                font-size: 1.3rem;
+                position: absolute;
+                top: -8%;
+            }
+            .login {
+                min-height: 100vh;
+                display: flex;
+                // width: 100%;
+                justify-content: center;
+                align-items: center;
+                background-image: url(../../../../assets/media/login-sm.svg);
+                background-repeat: no-repeat;
+                background-size: 100% 100% ; /* Make it wider - adjust percentage as needed */
+                background-position: right;
+            }
+            
+        }

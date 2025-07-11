@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
@@ -18,6 +18,7 @@ import { PricingComponent } from '../pricing/pricing.component';
 export class HomeComponentComponent {
   theme$: Observable<Theme>;
   constructor(private themeService: ThemeService ,  public translate: TranslateService,
+    private router: Router,
   @Inject(PLATFORM_ID) private platformId: Object) {
     this.theme$ = this.themeService.theme$;
      this.isBrowser = isPlatformBrowser(this.platformId);
@@ -104,5 +105,10 @@ switchLang(lang: string) {
         }
       }
     }
+  }
+
+  navigateToLogin(){
+    console.log('safy')
+    this.router.navigate(['/login']);
   }
 }

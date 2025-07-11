@@ -1,1 +1,114 @@
-<p>forget-pass works!</p>
+<div class="container my-3">
+<div class="row g-0 mt-5 d-flex justify-content-between align-items-center">
+    <div class="col-sm-12 col-md-6 col-lg-5 login">
+        <div class=" my-2 arrow-icon">
+        <i class="fa fa-arrow-left" (click)="backToForget()" *ngIf="showVerify"
+        style="cursor: pointer;font-size: 25px;"></i>
+        </div>
+        <div class="form-section position-relative " *ngIf="showForget">
+            <div class="form-header">
+                <img src="../../../../assets/media/forget-header.svg" class="w-100" alt="">
+            </div>
+            <div class="form-title">{{"FORGETPASSWORD" | translate}}</div>
+            <div class="form-subtitle">
+                    {{"ENTER_YOUR_EMAIL" | translate}} {{"TO_RECEIVE_A_RESET_LINK" | translate}}
+            </div>
+            <div class="img-forget-pass mb-3">
+                <img src="../../../../assets/media/forget-pass.svg" class="w-50" alt="">
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="email">{{"EMAIL" | translate}}</label>
+                    <input type="email" id="email" class="form-input" placeholder="{{'ENTER_EMAIL_ADDRESS' | translate}}">
+                </div>
+
+                <div class="form-subtitle">
+                    {{"DONTHAVEACCOUNT" | translate}} <span class="signup-link">{{"SIGNUP" | translate}}</span>
+                </div>
+                
+                <button type="submit" (click)="goToReset()" class="signin-button my-2">
+                    {{"SENDOTP" | translate}}
+                </button>
+                
+            </form>
+        </div>
+        <div class="form-section position-relative" *ngIf="showVerify">
+            <div class="form-header-reset">
+                <img src="../../../../assets/media/verify-header.svg" class="w-100" alt="">
+            </div>
+            <div class="form-title-reset">{{"VERIFYYOURPHONENUMBER" | translate}}</div>
+            <div class="form-subtitle">
+                    <h6>{{"A_6_DIGIT_SENT" | translate}}</h6>
+                    <a href="">patientemail.com</a>
+            </div>
+            <div class="img-forget-reset mb-2">
+                <img src="../../../../assets/media/verify-code.svg" class="w-50" alt="">
+            </div>
+            <form>
+                <div class="my-4 w-75 d-flex align-items-center justify-content-between">
+                    <input class="code" *ngFor="let code of codes">
+                </div>
+                
+                <button type="submit" class="signin-button my-2">
+                    {{"NEXT" | translate}}
+                </button>
+
+                <div class="form-subtitle mt-3">
+                    {{"DONTRECEIVEMSG" | translate}} <span class="signup-link">{{"RESEND" | translate}}</span>
+                </div>
+                
+            </form>
+        </div>
+        <div class="form-section position-relative" *ngIf="showReset">
+            <div class="form-header">
+                <img src="../../../../assets/media/forget-header.svg" class="w-100" alt="">
+            </div>
+            <div class="form-title">{{"RESETPASSWORD" | translate}}</div>
+            <div class="form-subtitle">
+                    {{"RESET_TO_UPDATE" | translate}}
+            </div>
+            <div class="img-forget-reset">
+                <img src="../../../../assets/media/reset-pass.svg" style="width: 40%;" alt="">
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="password">{{"NEW" | translate }} {{"PASSWORD" | translate}}</label>
+                    <div class="position-relative">
+                    <input type="password" id="password" class="form-input" placeholder="{{'ENTER_PASSWORD' | translate}}">
+                    <button class="icon-visible" mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+                    <mat-icon>{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">{{"CONFIRM" | translate }} {{"PASSWORD" | translate}}</label>
+                    <div class="position-relative">
+                    <input type="password" id="password" class="form-input " placeholder="{{'CONFIRM_PASSWORD' | translate}}">
+                    <button class="icon-visible" mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+                    <mat-icon>{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </button>
+                    </div>
+                </div>
+
+                
+                <button type="submit" (click)="goToReset()" class="signin-button my-1">
+                    {{"RESETPASSWORD" | translate}}
+                </button>
+                
+            </form>
+        </div>
+        <div class="form-section text-center" *ngIf="showResetSuccess">
+            <div class="img-forget-reset-success">
+                <img src="../../../../assets/media/reset-successfully.svg" class="w-50" alt="">
+            </div>
+            <div class="form-title-reset-success">{{"Password changed successfully"}}</div>
+            <button type="submit" (click)="goToResetSuccess()" class="signin-button my-1">
+                {{"BACK_TO_SIGN_IN" | translate}}
+            </button>
+        </div>
+    </div>
+    <div class=" col-lg-7 col-md-6 d-md-flex justify-content-end align-items-center img-container">
+        <img src="../../../../assets/media/login.svg" class="" alt="design">
+    </div>
+</div>
+</div>
