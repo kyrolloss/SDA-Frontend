@@ -1,0 +1,198 @@
+/* Stepper Styles */
+.stepper-container {
+  width: 100%;
+}
+
+.stepper-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.stepper-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.step-counter {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid var(--text-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4px;
+  font-weight: bold;
+  color:var(--text-gray);
+  transition: all 0.3s ease;
+}
+
+.stepper-item.active .step-counter {
+  background-color: #fff;
+  border-color: var(--focus-form-field);
+  color: var(--focus-form-field);
+  position: relative;
+}
+
+.stepper-item.active .step-counter::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  background-color: var(--focus-form-field);
+  border-radius: 50%;
+}
+.stepper-item.completed .step-counter {
+  background-color: #fff;
+  border: none !important;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.stepper-item.completed .step-counter img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.step-name {
+  font-size: 14px;
+  text-align: center;
+  color: #666;
+  font-weight: 500;
+}
+
+.stepper-item.active .step-name {
+  color: var(--focus-form-field);
+  font-weight: 500;
+}
+
+.stepper-item.completed .step-name {
+  color: var(--focus-form-field);
+  font-weight: 500;
+}
+
+.stepper-divider {
+  height: 3px;
+  background-color: var(--focus-form-field);
+  flex: 1;
+  margin: 0 10px;
+  margin-bottom: 32px;
+  transition: all 0.3s ease;
+}
+
+.stepper-divider.completed {
+  background-color: var(--focus-form-field);
+}
+
+/* File Upload Styles */
+.file-upload-container {
+  position: relative;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-upload-display {
+  border: 2px dashed var(--border-form-field);
+  border-radius: 8px;
+  padding: 50px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.file-upload-display:hover {
+  cursor: pointer;
+}
+
+.file-upload-display mat-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+  color: var(--focus-form-field);
+}
+
+.file-upload-display span {
+  display: block;
+  font-size: 14px;
+  color: #666;
+}
+
+
+.form-header {
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;  
+        }
+        
+        .form-title {
+            color: var(--text-orange);
+            font-size: 1.8rem;
+            font-weight: 600;
+            position: absolute;
+            top: -5%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+.img-container img{
+            width: 600px;
+            height: 1000px;
+        }
+
+@media (min-width:766px) and (max-width: 993px) {
+            .img-container img{
+            width: 350px;
+            }
+            .form-header {
+                width: 50%;
+                top: -7%;
+            }
+            .form-title {
+                font-size: 1.3rem;
+                position: absolute;
+                top: -3%;
+            }
+        }
+
+        
+        @media (max-width: 765px) {
+            .img-container {
+                display: none;
+            }
+            .form-header {
+                top: -8%;
+                width: 50%;
+            }
+            .form-title {
+                font-size: 1.3rem;
+                position: absolute;
+                top: -4%;
+            }
+            .login {
+                min-height: 150vh;
+                display: flex;
+                // width: 100%;
+                justify-content: center;
+                align-items: center;
+                background-image: url(../../../../assets/media/login-sm.svg);
+                background-repeat: no-repeat;
+                background-size: 100% 100% ; /* Make it wider - adjust percentage as needed */
+                background-position: right;
+            }
+            
+        }
