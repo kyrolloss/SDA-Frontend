@@ -413,6 +413,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
             transition: all 0.3s ease;
         }
 
+        .signin-button:disabled {
+  background: var(--bg-brown-gradient); /* muted gradient */
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.7;
+  filter: grayscale(0.3);
+}
+
+
         .divider {
             text-align: center;
             margin: 10px 0;

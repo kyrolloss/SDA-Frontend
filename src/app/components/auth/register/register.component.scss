@@ -113,6 +113,12 @@
   cursor: pointer;
   transition: all 0.3s ease;
   background-color: #fff;
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+    color: #666;
+  }
 }
 
 .file-upload-display:hover {
@@ -149,10 +155,25 @@
             left: 50%;
             transform: translateX(-50%);
         }
-.img-container img{
-            width: 600px;
-            height: 1000px;
-        }
+// .img-container img{
+//             width: 600px;
+//             height: 1050px;
+//         }
+.img-container {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.img-container img {
+  // width: 100%;
+  width: 600px;
+  height: 100%;
+  object-fit: contain;
+}
+.row.g-0 {
+  align-items: stretch; // very important
+}
 
 @media (min-width:766px) and (max-width: 993px) {
             .img-container img{

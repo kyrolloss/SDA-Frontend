@@ -1,76 +1,5 @@
-<!-- <div class="container my-3">
-<div class="row g-0 mt-5 d-flex justify-content-between align-items-end">
-    <div class="col-sm-12 col-md-6 col-lg-5 login">
-        <div class="form-section position-relative">
-            <div class="form-header">
-                <img src="../../../../assets/media/header-sign.svg" class="w-100" alt="">
-            </div>
-            <div class="form-title">{{"SIGNUP" | translate}}</div>
-            <div class="form-subtitle">
-                    {{"HAVEACCOUNT" | translate}} <span class="signup-link">{{"SIGNIN" | translate}}</span>
-            </div>
-            <form>
-                <div class="form-group">
-                    <label for="name">{{"NAME" | translate}}</label>
-                    <input type="name" id="name" class="form-input" placeholder="{{'ENTER_YOUR_NAME' | translate}}">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">{{"EMAIL" | translate}}</label>
-                    <input type="email" id="email" class="form-input" placeholder="{{'ENTER_EMAIL_ADDRESS' | translate}}">
-                </div>
-
-                <div class="form-group">
-                    <label for="phone-number">{{"PHONENUMBER" | translate}}</label>
-                    <input type="phone-number" id="phone-number" class="form-input" placeholder="{{'ENTER_YOUR_PHONENUMBER' | translate}}">
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">{{"PASSWORD" | translate}}</label>
-                    <div class="position-relative">
-                    <input type="password" id="password" class="form-input " placeholder="{{'ENTER_PASSWORD' | translate}}">
-                    <button style="position: absolute;top: 50%;right: 0%;transform: translateX(-50%);transform: translateY(-50%);" mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
-                    <mat-icon>{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
-                    </button>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="location">{{"LOCATION" | translate}}</label>
-                    <div class="position-relative">
-                    <input type="location" id="location" class="form-input " placeholder="{{'ENTER_YOUR_LOCATION' | translate}}">
-                    <button style="position: absolute;top: 50%;right: 0%;transform: translateX(-50%);transform: translateY(-50%);" 
-                    mat-icon-button matSuffix 
-                    (click)="getCurrentLocation()" type="button">
-                    <mat-icon>location_on</mat-icon>
-                    </button>
-                    </div>
-                </div>       
-
-                <button type="submit" class="signin-button">
-                    {{"SIGNUP" | translate}}
-                </button>
-                
-                <div class="divider">
-                    <span>{{"ORWITH" | translate}}</span>
-                </div>
-                
-                <div class="social-login">
-                    <div class="social-button "><i class="fa-brands fa-google"></i></div>
-                    <div class="social-button"><i class="fa-brands fa-facebook"></i></div>
-                    <div class="social-button "><i class="fa-brands fa-apple"></i></div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class=" col-lg-7 col-md-6 d-md-flex justify-content-end align-items-center img-container">
-        <img src="../../../../assets/media/register.svg" class="" alt="design">
-    </div>
-</div>
-</div> -->
-
 <div class="container my-3">
-    <div class="row g-0 mt-5 d-flex justify-content-between align-items-end">
+    <div class="row g-0 mt-5 d-flex justify-content-between align-items-center">
         <div class="col-sm-12 col-md-6 col-lg-5 login">
 
             <div class="form-section position-relative">
@@ -90,7 +19,7 @@
                             <span *ngIf="currentStep <= 1"></span>
                             <img *ngIf="currentStep > 1" src="../../../../assets/media/stepper.svg" alt="completed">
                         </div>
-                        <div class="step-name">{{"BASIC_INFO" | translate}}</div>
+                        <div class="step-name">{{"DOCTOR_DATA" | translate}}</div>
                     </div>
                     
                     <div class="stepper-divider" [class.completed]="currentStep > 1"></div>
@@ -100,33 +29,50 @@
                             <span *ngIf="currentStep <= 2"></span>
                             <img *ngIf="currentStep > 2" src="../../../../assets/media/stepper.svg" alt="completed">
                         </div>
-                        <div class="step-name">{{"PROFESSIONAL_DATA" | translate}}</div>
+                        <div class="step-name">{{"CLINIC_DATA" | translate}}</div>
                     </div>
                 </div>
             </div>
 
-                <form>
+                <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
                     <!-- Step 1: Basic Information -->
-                    <div *ngIf="currentStep === 1">
+                    <div *ngIf="currentStep === 1" formGroupName="doctor">
                         <div class="form-group">
-                            <label for="name">{{"NAME" | translate}}</label>
-                            <input type="text" id="name" class="form-input" placeholder="{{'ENTER_YOUR_NAME' | translate}}" [(ngModel)]="formData.name">
+                            <label for="fullName">{{"NAME" | translate}}</label>
+                            <input type="text"
+                            formControlName="fullName" 
+                            id="fullName" type="text" 
+                            class="form-input" 
+                            placeholder="{{'ENTER_YOUR_NAME' | translate}}" >
                         </div>
 
                         <div class="form-group">
                             <label for="email">{{"EMAIL" | translate}}</label>
-                            <input type="email" id="email" class="form-input" placeholder="{{'ENTER_EMAIL_ADDRESS' | translate}}" [(ngModel)]="formData.email">
+                            <input type="email" 
+                            id="email" 
+                            formControlName="email"
+                            class="form-input" 
+                            placeholder="{{'ENTER_EMAIL_ADDRESS' | translate}}" >
                         </div>
 
                         <div class="form-group">
-                            <label for="phone-number">{{"PHONENUMBER" | translate}}</label>
-                            <input type="tel" id="phone-number" class="form-input" placeholder="{{'ENTER_YOUR_PHONENUMBER' | translate}}" [(ngModel)]="formData.phoneNumber">
+                            <label for="phoneNumber">{{"PHONENUMBER" | translate}}</label>
+                            <input type="tel" 
+                            id="phoneNumber" 
+                            formControlName="phoneNumber" 
+                            class="form-input" 
+                            placeholder="{{'ENTER_YOUR_PHONENUMBER' | translate}}" >
                         </div>
 
                         <div class="form-group">
                             <label for="password">{{"PASSWORD" | translate}}</label>
                             <div class="position-relative">
-                                <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-input" placeholder="{{'ENTER_PASSWORD' | translate}}" [(ngModel)]="formData.password">
+                                <input 
+                                [type]="showPassword ? 'text' : 'password'" 
+                                id="password" 
+                                formControlName="password"
+                                class="form-input" 
+                                placeholder="{{'ENTER_PASSWORD' | translate}}" >
                                 <button style="position: absolute;top: 50%;right: 0%;transform: translateX(-50%);transform: translateY(-50%);" mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
                                     <mat-icon>{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
                                 </button>
@@ -134,36 +80,77 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="specialization">{{"SPECIALIZATION" | translate}}</label>
+                            <input 
+                            type="text" 
+                            formControlName="specialization" 
+                            id="specialization" 
+                            class="form-input" 
+                            placeholder="{{'ENTER_YOUR_SPECIALIZATION' | translate}}">
+                        </div>
+
+
+                        <button type="button" 
+                        class="signin-button" 
+                        (click)="nextStep()"
+                        [disabled]="registerForm.get('doctor')?.invalid">
+                            {{"NEXT" | translate}}
+                        </button>
+                        
+                    </div>
+
+                    <!-- Step 2: Professional Data -->
+                    <div *ngIf="currentStep === 2" formGroupName="clinic">
+
+                        <div class="form-group">
+                            <label for="name">{{"CLINIC_NAME" | translate}}</label>
+                            <input type="text" 
+                            id="name"  
+                            class="form-input" 
+                            formControlName="name" 
+                            placeholder="{{'ENTER_YOUR_CLINIC_NAME' | translate}}" >
+                        </div>
+
+                        <div class="form-group">
                             <label for="location">{{"LOCATION" | translate}}</label>
                             <div class="position-relative">
-                                <input type="text" id="location" class="form-input" placeholder="{{'ENTER_YOUR_LOCATION' | translate}}" [(ngModel)]="formData.location">
+                                <input type="text" 
+                                id="location" 
+                                class="form-input"
+                                formControlName="location" 
+                                placeholder="{{'ENTER_YOUR_LOCATION' | translate}}" >
                                 <button style="position: absolute;top: 50%;right: 0%;transform: translateX(-50%);transform: translateY(-50%);" mat-icon-button matSuffix (click)="getCurrentLocation()" type="button">
                                     <mat-icon>location_on</mat-icon>
                                 </button>
                             </div>
                         </div>
 
-                        <!-- <button type="button" class="signin-button" (click)="nextStep()">
-                            {{"NEXT" | translate}}
-                        </button> -->
-                    </div>
-
-                    <!-- Step 2: Professional Data -->
-                    <div *ngIf="currentStep === 2">
                         <div class="form-group">
                             <label for="specialization">{{"SPECIALIZATION" | translate}}</label>
-                            <input type="text" id="specialization" class="form-input" 
+                            <input type="text" 
+                            id="specialization" 
+                            formControlName="specialization"
+                            class="form-input" 
                             placeholder="{{'ENTER_YOUR_SPECIALIZATION' | translate}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="branchesCount">{{"BRANCHESCOUNT" | translate}}</label>
+                            <input type="number" 
+                            id="branchesCount" 
+                            formControlName="branchesCount"
+                            class="form-input" 
+                            placeholder="{{'ENTER_YOUR_BRANCHESCOUNT' | translate}}">
                         </div>
 
                         <div class="form-group">
                             <label for="medical-license">{{"MEDICAL_LICENSE" | translate}}</label>
                             <div class="file-upload-container">
-                                <input type="file" id="medical-license" class="file-input" (change)="onFileSelected($event, 'medicalLicense')" accept=".pdf,.jpg,.jpeg,.png">
+                                <input id="medical-license" hidden type="file" (change)="onFileSelected($event, 'medicalLicense')" />
                                 <div class="file-upload-display" (click)="triggerFileInput('medical-license')">
                                     <mat-icon>image_upload</mat-icon>
-                                    <span *ngIf="!formData.medicalLicense">{{"UPLOAD_MEDICAL_LICENSE" | translate}}</span>
-                                    <span *ngIf="formData.medicalLicense">{{formData.medicalLicense.name}}</span>
+                                    <span *ngIf="!medicalLicense">{{"UPLOAD_MEDICAL_LICENSE" | translate}}</span>
+                                    <span *ngIf="medicalLicense">{{medicalLicense.name}}</span>
                                 </div>
                             </div>
                         </div>
@@ -171,28 +158,24 @@
                         <div class="form-group">
                             <label for="certificate">{{"CERTIFICATE" | translate}}</label>
                             <div class="file-upload-container">
-                                <input type="file" id="certificate" class="file-input" (change)="onFileSelected($event, 'certificate')" accept=".pdf,.jpg,.jpeg,.png">
+                                <input id="certificate" multiple hidden type="file" (change)="onFileSelected($event, 'certificate')" />
                                 <div class="file-upload-display" (click)="triggerFileInput('certificate')">
                                     <mat-icon>image_upload</mat-icon>
-                                    <span *ngIf="!formData.certificate">{{"UPLOAD_CERTIFICATE" | translate}}</span>
-                                    <span *ngIf="formData.certificate">{{formData.certificate.name}}</span>
+                                    <span *ngIf="certificate.length === 0">{{"UPLOAD_CERTIFICATE" | translate}}</span>
+                                    <ul *ngIf="certificate.length > 0">
+                                        <li *ngFor="let file of certificate">{{ file.name }}</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- <div class="step-buttons">
-                            <button type="button" class="back-button" (click)="previousStep()">
-                                {{"BACK" | translate}}
-                            </button>
-                            <button type="submit" class="signin-button" (click)="submitForm()">
-                                {{"SIGNUP" | translate}}
-                            </button>
-                        </div> -->
-                    </div>
-
-                    <button type="submit" class="signin-button" >
+                       
+                        <button type="submit" 
+                        class="signin-button" 
+                        [disabled]="registerForm.get('clinic')?.invalid">
                         {{"SIGNUP" | translate}}
-                    </button>
+                        </button>
+                    
+                    </div>
 
                     <div class="divider">
                         <span>{{"ORWITH" | translate}}</span>
