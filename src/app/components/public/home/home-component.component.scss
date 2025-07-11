@@ -158,8 +158,8 @@
         text-align: center;
       }
       .contactIcons {
-        width: 157px;
-        height: 157px;
+       width: 80px;
+    height: 70px;
       }
       .sharedContact {
         position: absolute;
@@ -169,20 +169,20 @@
         font-family: "IBM Plex Sans";
       }
       .whyChooseUsFirstChild {
-        top: 18%;
+        top: 20%;
         left: 6%;
       }
 
       .whyChooseUsSecChild {
-        top: 29%;
+        top: 20%;
         left: 29%;
       }
       .whyChooseUsThirdChild {
-        top: 18%;
+        top: 20%;
         left: 53%;
       }
       .whyChooseUsFourthChild {
-        top: 29%;
+        top: 20%;
         left: 78%;
       }
       .whychooseUsBg {
@@ -318,7 +318,6 @@
         .left-side-lab-child {
           position: absolute;
           top: -70px;
-          left: 40%;
           .text-inside-icon {
             position: relative;
           }
@@ -339,6 +338,7 @@
             line-height: 56px;
           }
         }
+      
       }
     }
   }
@@ -478,10 +478,10 @@
       left: 8%;
       .fa-facebook-f {
         background: white;
-            padding: 9px 15px;
-    border-radius: 50%;
-    color: #85775f !important;
-    font-size: 25px !important;
+        padding: 9px 15px;
+        border-radius: 50%;
+        color: #85775f !important;
+        font-size: 25px !important;
       }
       .fa-linkedin-in {
         background: #b19e7f;
@@ -506,17 +506,16 @@
         font-weight: 400;
         line-height: 40px;
       }
-      
     }
-    .footer-icon-top-right{
+    .footer-icon-top-right {
       position: absolute;
-    right: 0%;
-    top: 6%;
+      right: 0%;
+      top: 6%;
     }
-    .footer-icon-bottom-left{
-      position:absolute;
-      left:0%;
-      bottom:0%;
+    .footer-icon-bottom-left {
+      position: absolute;
+      left: 0%;
+      bottom: 0%;
     }
   }
 }
@@ -836,10 +835,43 @@
       }
     }
     .footer-section {
-      flex-direction: column;
-      svg {
-        width: 100vw;
+      background: #85775f;
+      padding: 20px;
+      border-radius: 20px;
+      .bg-footer {
+        display: none;
       }
+      .footer-content-left,
+      .footer-content-sec,
+      .footer-content-third,
+      hr,
+      .socialMedia {
+        position: unset;
+      }
+      .footer-content-left {
+        .logo-footer {
+          width: 250px !important;
+        }
+        .footer-first-content {
+          font-size: 13px;
+          br {
+            display: none;
+          }
+        }
+        .download {
+          font-size: 12px !important;
+        }
+        .sec-btn {
+          margin-left: 10px !important;
+        }
+        
+      }
+      .footer-content-sec , .footer-content-third{
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px;
+        }
     }
   }
 }

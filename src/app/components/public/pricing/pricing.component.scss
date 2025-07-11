@@ -190,44 +190,70 @@
     }
   }
 }
-@media (max-width: 992px) {
-  // .hideFromeResponsive{
-  //   display: none;
-  // }
-  // .pricing-parent {
-  //   overflow-x: auto;              // تخلي الكروت ممكن تتحرك يمين وشمال
-  //   white-space: nowrap;           // تخليهم جمب بعض
-  //   min-height: 450px;             // علشان ميضيقوش فوق الخلفية
-  //   padding-bottom: 24px;          // مساحة تحت للسحب باللمس
-  //   // position: relative;            // لازم دي للـ scrolling
-  // }
+.desktop-only {
+  display: block;
+}
+.mobile-only {
+  display: none;
+}
 
-  // .pricing-shared {
-  //   // position: static !important;   
-  //   display: inline-block !important;
-  //   min-width: 85vw;               // كل كارت يشغل معظم الشاشة
-  //   max-width: 95vw;
-  //   margin-right: 20px;
-  //   margin-bottom: 16px;
-  //   left: unset !important;
-  //   top: unset !important;
-  //   transform: none !important;
-  //   vertical-align: top;
-  //   z-index: 1;
-  // }
-
-  // // لو عندك عناصر جوا الكارت محتاجة تتظبط للموبايل ممكن تظبطيها هنا
-  // // .first-package-price,
-  // // .second-package-price,
-  // // .third-package-price,
-  // // .fourth-package-price,
-  // // .first-package-content,
-  // // .second-package-content,
-  // // .third-package-content,
-  // // .fourth-package-content {
-  // //   position: static !important;  // خلي كل حاجة جوا الكارت static للموبايل
-  // //   left: unset !important;
-  // //   top: unset !important;
-  // //   margin: 0 auto;
-  // // }
+@media (max-width: 600px) {
+  .desktop-only {
+    display: none !important;
+  }
+  .mobile-only {
+    display: block !important;
+    background-color: #e7e1d7;
+            padding: 15px;
+  }
+  .carousel {
+    width: 100%;
+    margin: auto;
+  }
+  .svg-bg {
+    position: relative;
+    width: fit-content;
+    margin: auto;
+    .svg-price {
+      position: absolute;
+      top: 25%;
+      left: 14%;
+      color: white;
+      p {
+        text-align: center;
+        font-family: "IBM Plex Sans";
+        font-size: 20px;
+        margin: 0px !important;
+        font-weight: 600;
+      }
+    }
+  }
+  .first-package-content {
+    background: white;
+    width: 80%;
+    margin: auto;
+    margin-top: -15px;
+    border-radius: 15px;
+    padding: 10px;
+    .basic-details {
+      margin: 0px !important;
+      vertical-align: middle;
+      text-align: center;
+      font-size: 22px;
+      color: #3e372c;
+    }
+    hr {
+      margin: 0.5rem 0 !important;
+    }
+    .subscribe-btn {
+        background-color: white;
+        color: #b19e7f;
+        width: fit-content;
+        border: 2px solid #b19e7f;
+        border-radius: 7px;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 600;
+      }
+  }
 }
