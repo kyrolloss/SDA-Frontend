@@ -24,6 +24,12 @@ export const routes: Routes = [
   },
 
   {
+    path: 'forget-password',
+    loadComponent: () => import('./components/auth/forget-pass/forget-pass.component').then(m => m.ForgetPassComponent),
+    canActivate: [guestGuard]
+  },
+
+  {
     path: 'dashboard',
     loadComponent: () => import('./components/layouts/user-layout/user-layout.component').then(m => m.UserLayoutComponent),
     canActivate: [authGuard],

@@ -348,6 +348,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
             margin-bottom: 8px;
             font-size: 14px;
         }
+
+        label.required::after {
+  content: " *";
+  color: red;
+}
         
         .form-input {
             width: 100%;

@@ -7,7 +7,7 @@
                     <img src="../../../../assets/media/header-sign.svg" class="w-100" alt="">
                 </div>
                 <div class="form-title">{{"SIGNUP" | translate}}</div>
-                <div class="form-subtitle">
+                <div class="form-subtitle" [routerLink]="['/login']" >
                     {{"HAVEACCOUNT" | translate}} <span class="signup-link">{{"SIGNIN" | translate}}</span>
                 </div>
 
@@ -38,34 +38,56 @@
                     <!-- Step 1: Basic Information -->
                     <div *ngIf="currentStep === 1" formGroupName="doctor">
                         <div class="form-group">
-                            <label for="fullName">{{"NAME" | translate}}</label>
+                            <label class="required" for="fullName">{{"NAME" | translate}}</label>
                             <input type="text"
                             formControlName="fullName" 
                             id="fullName" type="text" 
                             class="form-input" 
                             placeholder="{{'ENTER_YOUR_NAME' | translate}}" >
+                            <small class="text-danger" 
+                            *ngIf="registerForm.get('doctor.fullName')?.touched 
+                            && registerForm.get('doctor.fullName')?.errors?.['required']">
+                                {{ 'FIELD_REQUIRED' | translate }}
+                            </small>
+                            <small class="text-danger" 
+                            *ngIf="registerForm.get('doctor.fullName')?.errors?.['minlength']">
+                                {{ 'MIN_LENGTH_2' | translate }}
+                            </small>
+                            <small class="text-danger" 
+                            *ngIf="registerForm.get('doctor.fullName')?.errors?.['maxlength']">
+                                {{ 'MAX_LENGTH_50' | translate }}
+                            </small>
                         </div>
 
                         <div class="form-group">
-                            <label for="email">{{"EMAIL" | translate}}</label>
+                            <label class="required" for="email">{{"EMAIL" | translate}}</label>
                             <input type="email" 
                             id="email" 
                             formControlName="email"
                             class="form-input" 
                             placeholder="{{'ENTER_EMAIL_ADDRESS' | translate}}" >
+                            <small class="text-danger" 
+                            *ngIf="registerForm.get('doctor.email')?.touched && registerForm.get('doctor.email')?.errors?.['required']">
+                                {{ 'FIELD_REQUIRED' | translate }}
+                            </small>
+                            <small class="text-danger" 
+                            *ngIf="registerForm.get('doctor.email')?.errors?.['email']">
+                                {{ 'EMAIL_INVALID' | translate }}
+                            </small>
                         </div>
 
                         <div class="form-group">
-                            <label for="phoneNumber">{{"PHONENUMBER" | translate}}</label>
+                            <label class="required" for="phoneNumber">{{"PHONENUMBER" | translate}}</label>
                             <input type="tel" 
                             id="phoneNumber" 
                             formControlName="phoneNumber" 
                             class="form-input" 
                             placeholder="{{'ENTER_YOUR_PHONENUMBER' | translate}}" >
+                            
                         </div>
 
                         <div class="form-group">
-                            <label for="password">{{"PASSWORD" | translate}}</label>
+                            <label class="required" for="password">{{"PASSWORD" | translate}}</label>
                             <div class="position-relative">
                                 <input 
                                 [type]="showPassword ? 'text' : 'password'" 
@@ -76,17 +98,35 @@
                                 <button style="position: absolute;top: 50%;right: 0%;transform: translateX(-50%);transform: translateY(-50%);" mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
                                     <mat-icon>{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
                                 </button>
+                                <small class="text-danger" 
+                                *ngIf="registerForm.get('doctor.password')?.touched 
+                                && registerForm.get('doctor.password')?.errors?.['required']">
+                                    {{ 'FIELD_REQUIRED' | translate }}
+                                </small>
+                                <small class="text-danger" 
+                                *ngIf="registerForm.get('doctor.password')?.errors?.['minlength']">
+                                    {{ 'MIN_LENGTH_8' | translate }}
+                                </small>
+                                <small class="text-danger" 
+                                *ngIf="registerForm.get('doctor.password')?.errors?.['pattern']">
+                                    {{ 'PASSWORD_PATTERN' | translate }}
+                                </small>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="specialization">{{"SPECIALIZATION" | translate}}</label>
+                            <label class="required" for="specialization">{{"SPECIALIZATION" | translate}}</label>
                             <input 
                             type="text" 
                             formControlName="specialization" 
                             id="specialization" 
                             class="form-input" 
                             placeholder="{{'ENTER_YOUR_SPECIALIZATION' | translate}}">
+                            <small class="text-danger" 
+                            *ngIf="registerForm.get('doctor.specialization')?.touched 
+                            && registerForm.get('doctor.specialization')?.errors?.['required']">
+                                {{ 'FIELD_REQUIRED' | translate }}
+                            </small>
                         </div>
 
 
@@ -103,16 +143,21 @@
                     <div *ngIf="currentStep === 2" formGroupName="clinic">
 
                         <div class="form-group">
-                            <label for="name">{{"CLINIC_NAME" | translate}}</label>
+                            <label class="required" for="name">{{"CLINIC_NAME" | translate}}</label>
                             <input type="text" 
                             id="name"  
                             class="form-input" 
                             formControlName="name" 
                             placeholder="{{'ENTER_YOUR_CLINIC_NAME' | translate}}" >
+                            <small class="text-danger" 
+                            *ngIf="registerForm.get('clinic.name')?.touched 
+                            && registerForm.get('clinic.name')?.errors?.['required']">
+                                {{ 'FIELD_REQUIRED' | translate }}
+                            </small>
                         </div>
 
                         <div class="form-group">
-                            <label for="location">{{"LOCATION" | translate}}</label>
+                            <label class="required" for="location">{{"LOCATION" | translate}}</label>
                             <div class="position-relative">
                                 <input type="text" 
                                 id="location" 
@@ -122,25 +167,40 @@
                                 <button style="position: absolute;top: 50%;right: 0%;transform: translateX(-50%);transform: translateY(-50%);" mat-icon-button matSuffix (click)="getCurrentLocation()" type="button">
                                     <mat-icon>location_on</mat-icon>
                                 </button>
+                                <small class="text-danger" 
+                                *ngIf="registerForm.get('clinic.location')?.touched 
+                                && registerForm.get('clinic.location')?.errors?.['required']">
+                                    {{ 'FIELD_REQUIRED' | translate }}
+                                </small>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="specialization">{{"SPECIALIZATION" | translate}}</label>
+                            <label class="required" for="specialization">{{"SPECIALIZATION" | translate}}</label>
                             <input type="text" 
                             id="specialization" 
                             formControlName="specialization"
                             class="form-input" 
                             placeholder="{{'ENTER_YOUR_SPECIALIZATION' | translate}}">
+                            <small class="text-danger" 
+                            *ngIf="registerForm.get('clinic.specialization')?.touched 
+                            && registerForm.get('clinic.specialization')?.errors?.['required']">
+                                {{ 'FIELD_REQUIRED' | translate }}
+                            </small>
                         </div>
 
                         <div class="form-group">
-                            <label for="branchesCount">{{"BRANCHESCOUNT" | translate}}</label>
+                            <label class="required" for="branchesCount">{{"BRANCHESCOUNT" | translate}}</label>
                             <input type="number" 
                             id="branchesCount" 
                             formControlName="branchesCount"
                             class="form-input" 
                             placeholder="{{'ENTER_YOUR_BRANCHESCOUNT' | translate}}">
+                            <small class="text-danger" 
+                            *ngIf="registerForm.get('clinic.branchesCount')?.touched 
+                            && registerForm.get('clinic.branchesCount')?.errors?.['required']">
+                                {{ 'FIELD_REQUIRED' | translate }}
+                            </small>
                         </div>
 
                         <div class="form-group">

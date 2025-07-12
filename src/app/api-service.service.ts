@@ -31,6 +31,13 @@ export class ApiServiceService {
     );
   }
 
+  put<T>(endpoint: string, data: any): Observable<T> {
+  this._LoaderService.show();
+  return this.http.put<T>(`${this.baseUrl}/${endpoint}`, data).pipe(
+    finalize(() => this._LoaderService.hide())
+  );
+  }
+
 //   private getHeaders(): HttpHeaders {
 //   let headers = new HttpHeaders({
 //     'Content-Type': 'application/json',
