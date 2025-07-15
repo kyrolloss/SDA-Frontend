@@ -43,22 +43,39 @@ export class RegisterComponent implements OnInit{
               private fb: FormBuilder,
               private _MatSnackBar:MatSnackBar) { }
   ngOnInit(): void {
-    this.registerForm = this.fb.group({
-      doctor: this.fb.group({
-        fullName: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        phoneNumber: ['', Validators.required],
-        password: ['', Validators.required],
-        specialization: ['', Validators.required]
-      }),
-      clinic: this.fb.group({
-        name: ['', Validators.required],
-        location: ['', Validators.required],
-        specialization: ['', Validators.required],
-        branchesCount: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]]
-      })
-    });
-  }
+  this.registerForm = this.fb.group({
+    doctor: this.fb.group({
+      fullName: [
+        '',
+        [Validators.required, Validators.minLength(2), Validators.maxLength(50)]
+      ],
+      email: [
+        '',
+        [Validators.required, Validators.email]
+      ],
+      phoneNumber: [
+        '',
+        [Validators.required]
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(/^(?=.*[A-Z])(?=.*\d).+$/) // At least 1 uppercase & 1 number
+        ]
+      ],
+      specialization: ['', Validators.required]
+    }),
+    clinic: this.fb.group({
+      name: ['', Validators.required],
+      location: ['', Validators.required],
+      specialization: ['', Validators.required],
+      branchesCount: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]]
+    })
+  });
+}
+
 
   nextStep() {
     if (this.currentStep === 1 && this.registerForm.get('doctor')?.invalid) return;
@@ -110,35 +127,35 @@ export class RegisterComponent implements OnInit{
 }
 
 
-
   submitForm() {
-    if (this.registerForm.invalid || !this.medicalLicense || this.certificate.length === 0) {
-      return;
-    }
+  if (this.registerForm.invalid) return;
 
-    const formData = new FormData();
+  const formData = new FormData();
+
+  if (this.medicalLicense) {
     formData.append('medicalLicense', this.medicalLicense);
+  }
 
-    // Append each certificate file under the same key
-    this.certificate.forEach(file => {
-      formData.append('academicCertificates', file);
-    });
-    console.log('res')
-    formData.append('doctor', JSON.stringify(this.registerForm.value.doctor));
-    formData.append('clinic', JSON.stringify(this.registerForm.value.clinic));
+  this.certificate.forEach(file => {
+    formData.append('academicCertificates', file);
+  });
 
-    this._AuthService.signUpDoctor(formData).subscribe({
-      next:(response:any) => {
-        console.log('res', response)
-      },
-      error:(err:any) => {
-        this._MatSnackBar.open(err.error.message , 'Close', {
+  formData.append('doctor', JSON.stringify(this.registerForm.value.doctor));
+  formData.append('clinic', JSON.stringify(this.registerForm.value.clinic));
+
+  this._AuthService.signUpDoctor(formData).subscribe({
+    next: (response: any) => {
+      console.log('res', response);
+    },
+    error: (err: any) => {
+      this._MatSnackBar.open(err.error.message, 'Close', {
         duration: 3000,
         panelClass: ['snackbar-error']
       });
-      }
-    });
-  }
+    }
+  });
+}
+
 
 
 }

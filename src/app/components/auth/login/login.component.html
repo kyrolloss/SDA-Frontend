@@ -9,19 +9,48 @@
             <div class="form-subtitle">
                     {{"DONTHAVEACCOUNT" | translate}} <span class="signup-link" [routerLink]="['/register']">{{"SIGNUP" | translate}}</span>
             </div>
-            <form>
+            <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
                 <div class="form-group">
-                    <label for="email">{{"EMAIL" | translate}}</label>
-                    <input type="email" id="email" class="form-input" placeholder="{{'ENTER_EMAIL_ADDRESS' | translate}}">
+                    <label class="required" for="email">{{"EMAIL" | translate}}</label>
+                    <input type="email" 
+                    id="email" 
+                    class="form-input"
+                    formControlName="email" 
+                    placeholder="{{'ENTER_EMAIL_ADDRESS' | translate}}">
+                    <small class="text-danger" 
+                    *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']">
+                        {{ 'FIELD_REQUIRED' | translate }}
+                    </small>
+                    <small class="text-danger" 
+                    *ngIf="loginForm.get('email')?.errors?.['email']">
+                        {{ 'EMAIL_INVALID' | translate }}
+                    </small>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">{{"PASSWORD" | translate}}</label>
+                    <label class="required" for="password">{{"PASSWORD" | translate}}</label>
                     <div class="position-relative">
-                    <input type="password" id="password" class="form-input " placeholder="{{'ENTER_PASSWORD' | translate}}">
+                    <input [type]="showPassword ? 'text' : 'password'"  
+                    id="password" 
+                    class="form-input " 
+                    formControlName="password"
+                    placeholder="{{'ENTER_PASSWORD' | translate}}">
                     <button style="position: absolute;top: 50%;right: 0%;transform: translateX(-50%);transform: translateY(-50%);" mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
                     <mat-icon>{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
                     </button>
+                    <small class="text-danger" 
+                    *ngIf="loginForm.get('password')?.touched 
+                    && loginForm.get('password')?.errors?.['required']">
+                        {{ 'FIELD_REQUIRED' | translate }}
+                    </small>
+                    <small class="text-danger" 
+                    *ngIf="loginForm.get('password')?.errors?.['minlength']">
+                        {{ 'MIN_LENGTH_8' | translate }}
+                    </small>
+                    <small class="text-danger" 
+                    *ngIf="loginForm.get('password')?.errors?.['pattern']">
+                        {{ 'PASSWORD_PATTERN' | translate }}
+                    </small>
                     </div>
                 </div>
                 
@@ -30,10 +59,10 @@
                         <input type="checkbox" id="remember">
                         <label for="remember">{{"REMMEBERME" | translate}}</label>
                     </div>
-                    <a href="#" class="forgot-password">{{"FORGET_PASSWORD" | translate}}</a>
+                    <a [routerLink]="['/forget-password']" href="#" class="forgot-password">{{"FORGET_PASSWORD" | translate}}</a>
                 </div>
                 
-                <button type="submit" class="signin-button">
+                <button [disabled]="loginForm.invalid" type="submit" class="signin-button">
                     {{"SIGNIN" | translate}}
                 </button>
                 

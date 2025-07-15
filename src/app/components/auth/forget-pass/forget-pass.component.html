@@ -1,5 +1,5 @@
-<div class="container my-3">
-<div class="row g-0 mt-5 d-flex justify-content-between align-items-center">
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+<div class="row g-0 d-flex justify-content-between align-items-center w-100">
     <div class="col-sm-12 col-md-6 col-lg-5 login">
         <div class=" my-2 arrow-icon">
         <i class="fa fa-arrow-left" (click)="backToForget()" *ngIf="showVerify"
@@ -16,17 +16,29 @@
             <div class="img-forget-pass mb-3">
                 <img src="../../../../assets/media/forget-pass.svg" class="w-50" alt="">
             </div>
-            <form>
+            <form [formGroup]="requestOTP" (ngSubmit)="sendEmailToReset()">
                 <div class="form-group">
-                    <label for="email">{{"EMAIL" | translate}}</label>
-                    <input type="email" id="email" class="form-input" placeholder="{{'ENTER_EMAIL_ADDRESS' | translate}}">
+                    <label class="required" for="email">{{"EMAIL" | translate}}</label>
+                    <input type="email" 
+                    id="email" 
+                    class="form-input" 
+                    formControlName="email"
+                    placeholder="{{'ENTER_EMAIL_ADDRESS' | translate}}">
+                    <small class="text-danger" 
+                    *ngIf="requestOTP.get('email')?.touched && requestOTP.get('email')?.errors?.['required']">
+                        {{ 'FIELD_REQUIRED' | translate }}
+                    </small>
+                    <small class="text-danger" 
+                    *ngIf="requestOTP.get('email')?.errors?.['email']">
+                        {{ 'EMAIL_INVALID' | translate }}
+                    </small>
                 </div>
 
-                <div class="form-subtitle">
+                <div class="form-subtitle" [routerLink]="['/register']">
                     {{"DONTHAVEACCOUNT" | translate}} <span class="signup-link">{{"SIGNUP" | translate}}</span>
                 </div>
                 
-                <button type="submit" (click)="goToReset()" class="signin-button my-2">
+                <button type="submit" [disabled]="requestOTP.invalid" class="signin-button my-2">
                     {{"SENDOTP" | translate}}
                 </button>
                 
@@ -44,12 +56,21 @@
             <div class="img-forget-reset mb-2">
                 <img src="../../../../assets/media/verify-code.svg" class="w-50" alt="">
             </div>
-            <form>
+            <form [formGroup]="verifyOTP" (ngSubmit)="sendOTP()">
                 <div class="my-4 w-75 d-flex align-items-center justify-content-between">
-                    <input class="code" *ngFor="let code of codes">
+                    <input class="code text-center"
+                    maxlength="1"
+                    type="text"
+                    pattern="[0-9]*"
+                    inputmode="numeric"
+                    *ngFor="let field of ['d0', 'd1', 'd2', 'd3', 'd4', 'd5']; let i = index"
+                    [formControlName]="field"
+                    (input)="autoFocusNext(i, $event)"
+                    (keydown.backspace)="autoFocusPrev(i, $event)">
                 </div>
+
                 
-                <button type="submit" class="signin-button my-2">
+                <button type="submit" [disabled]="verifyOTP.invalid" class="signin-button my-2">
                     {{"NEXT" | translate}}
                 </button>
 
@@ -70,28 +91,59 @@
             <div class="img-forget-reset">
                 <img src="../../../../assets/media/reset-pass.svg" style="width: 40%;" alt="">
             </div>
-            <form>
+            <form [formGroup]="resetPass" (ngSubmit)="resetPassword()">
                 <div class="form-group">
-                    <label for="password">{{"NEW" | translate }} {{"PASSWORD" | translate}}</label>
+                    <label class="required" for="password">{{"NEW" | translate }} {{"PASSWORD" | translate}}</label>
                     <div class="position-relative">
-                    <input type="password" id="password" class="form-input" placeholder="{{'ENTER_PASSWORD' | translate}}">
+                    <input 
+                    [type]="showPassword ? 'text' : 'password'" 
+                    id="newPassword" 
+                    class="form-input"
+                    formControlName="newPassword" 
+                    placeholder="{{'ENTER_PASSWORD' | translate}}">
                     <button class="icon-visible" mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
                     <mat-icon>{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
                     </button>
+                    <small class="text-danger" 
+                    *ngIf="resetPass.get('newPassword')?.touched 
+                    && resetPass.get('newPassword')?.errors?.['required']">
+                        {{ 'FIELD_REQUIRED' | translate }}
+                    </small>
+                    <small class="text-danger" 
+                    *ngIf="resetPass.get('newPassword')?.errors?.['minlength']">
+                        {{ 'MIN_LENGTH_8' | translate }}
+                    </small>
+                    <small class="text-danger" 
+                    *ngIf="resetPass.get('newPassword')?.errors?.['pattern']">
+                        {{ 'PASSWORD_PATTERN' | translate }}
+                    </small>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password">{{"CONFIRM" | translate }} {{"PASSWORD" | translate}}</label>
+                    <label class="required" for="confirmPassword">{{"CONFIRM" | translate }} {{"PASSWORD" | translate}}</label>
                     <div class="position-relative">
-                    <input type="password" id="password" class="form-input " placeholder="{{'CONFIRM_PASSWORD' | translate}}">
+                    <input [type]="showPassword ? 'text' : 'password'" 
+                    id="confirmPassword" 
+                    class="form-input" 
+                    formControlName="confirmPassword"
+                    placeholder="{{'CONFIRM_PASSWORD' | translate}}">
                     <button class="icon-visible" mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
                     <mat-icon>{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
                     </button>
+                    <small class="text-danger" 
+                    *ngIf="resetPass.get('confirmPassword')?.touched && resetPass.get('confirmPassword')?.errors?.['required']">
+                        {{ 'FIELD_REQUIRED' | translate }}
+                    </small>
+                    <small class="text-danger"
+                    *ngIf="resetPass.hasError('passwordsMismatch') 
+                    && resetPass.get('confirmPassword')?.touched">
+                        {{ 'PASSWORDS_DO_NOT_MATCH' | translate }}
+                    </small>
                     </div>
                 </div>
 
                 
-                <button type="submit" (click)="goToReset()" class="signin-button my-1">
+                <button type="submit" [disabled]="resetPass.invalid" class="signin-button my-1">
                     {{"RESETPASSWORD" | translate}}
                 </button>
                 
@@ -101,8 +153,8 @@
             <div class="img-forget-reset-success">
                 <img src="../../../../assets/media/reset-successfully.svg" class="w-50" alt="">
             </div>
-            <div class="form-title-reset-success">{{"Password changed successfully"}}</div>
-            <button type="submit" (click)="goToResetSuccess()" class="signin-button my-1">
+            <div class="form-title-reset-success">{{"Password_changed_successfully" | translate}}</div>
+            <button type="submit" [routerLink]="['/login']" class="signin-button my-1">
                 {{"BACK_TO_SIGN_IN" | translate}}
             </button>
         </div>

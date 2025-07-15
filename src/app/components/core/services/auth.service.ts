@@ -13,15 +13,28 @@ export class AuthService {
     return this._ApiServiceService.post(`auth/signup/doctor`, formData)
   }
 
-  login(data: any): Observable<any> {
-    return this._ApiServiceService.post('auth/signin', data).pipe(
+  login(formData:FormData): Observable<any> {
+    return this._ApiServiceService.post('auth/signin', formData).pipe(
       map((res:any) => {
         if (res?.token) {
         localStorage.setItem('token', res.token);
+        console.log('token',localStorage.getItem('token'))
       }
       return res;
       })
     );
+  }
+  
+  requestOTP(formData:FormData): Observable<any>{
+    return this._ApiServiceService.put(`auth/request-otp`, formData)
+  }
+
+  verifyOTP(data: { email: string; otp: string }) {
+  return this._ApiServiceService.put('auth/verify-otp', data);
+  }
+
+  resetPassword(data: { newPassword: string; }){
+    return this._ApiServiceService.put('auth/reset-password', data);
   }
 
   // login(data: any): Observable<any> {
