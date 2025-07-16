@@ -98,9 +98,6 @@ export class ForgetPassComponent {
     this.showVerify = true;
   }
 
-  goToResetSuccess(){
-  }
-
   sendEmailToReset(){
     const formData = this.requestOTP.value;
     this.storedEmail = formData.email;
@@ -115,8 +112,6 @@ export class ForgetPassComponent {
         duration: 3000,
         panelClass: ['snackbar-error']
       });
-      this.showForget = false;
-      this.showVerify = true;
     }
     })
   }
@@ -164,9 +159,6 @@ export class ForgetPassComponent {
         duration: 3000,
         panelClass: ['snackbar-error']
       });
-    this.showForget = false;
-    this.showVerify = false;
-    this.showReset = true;
     }
     })
   }
@@ -187,10 +179,6 @@ export class ForgetPassComponent {
         duration: 3000,
         panelClass: ['snackbar-error']
       });
-    this.showForget = false;
-    this.showVerify = false;
-    this.showReset = false;
-    this.showResetSuccess = true;
     }
     })
   }
