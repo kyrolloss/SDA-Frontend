@@ -1,0 +1,58 @@
+import { CommonModule } from '@angular/common';
+import { Component, HostListener, Inject } from '@angular/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
+@Component({
+  selector: 'app-main-navbar',
+  standalone: true,
+  imports: [TranslateModule, CommonModule ],
+  templateUrl: './main-navbar.component.html',
+  styleUrl: './main-navbar.component.scss'
+})
+export class MainNavbarComponent {
+constructor(public translate: TranslateService ,  @Inject(PLATFORM_ID) private platformId: Object) {
+  this.isBrowser = isPlatformBrowser(this.platformId);
+    this.initLanguage();
+ }
+  isBrowser: boolean;
+showLangDropdown = false;
+
+  currentLang: string = 'en';
+initLanguage() {
+  let lang = 'en';
+
+  if (this.isBrowser) {
+    lang = localStorage.getItem('app_lang') || 'en';
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  }
+
+  this.currentLang = lang;
+  this.translate.addLangs(['en', 'ar']);
+  this.translate.setDefaultLang('en');
+  this.translate.use(lang);
+}
+@HostListener('document:click', ['$event'])
+closeDropdown(event: any) {
+  if (!event.target.closest('.lang-dropdown-trigger')) {
+    this.showLangDropdown = false;
+  }
+}
+
+toggleLang() {
+  const newLang = this.currentLang === 'en' ? 'ar' : 'en';
+  this.switchLang(newLang);
+}
+
+switchLang(lang: string) {
+  this.translate.use(lang);
+  this.currentLang = lang;
+
+  if (this.isBrowser) {
+    localStorage.setItem('app_lang', lang);
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  }
+}
+
+}

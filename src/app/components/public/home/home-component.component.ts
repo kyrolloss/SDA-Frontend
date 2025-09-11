@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
@@ -9,7 +9,7 @@ import { PricingComponent } from '../pricing/pricing.component';
 @Component({
   selector: 'app-home-component',
   standalone: true,
-  imports: [TranslateModule, CommonModule , PricingComponent , RouterLink, RouterOutlet],
+  imports: [TranslateModule, CommonModule , PricingComponent , RouterLink],
   templateUrl: './home-component.component.html',
   styleUrls: ['./home-component.component.scss']
 })
