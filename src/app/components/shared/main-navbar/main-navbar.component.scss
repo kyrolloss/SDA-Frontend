@@ -1,0 +1,80 @@
+  .bg-body-tertiary {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: var(--bg-primary);
+    box-shadow: var(--shadow-md);
+    border-bottom: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+    padding: 10px 45px;
+    font-family: "IBM Plex Sans";
+    .itemsLinks {
+      padding: 0px 30px;
+    }
+    li a {
+      font-size: 24px;
+      cursor: pointer;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 48px;
+    }
+    .active {
+      font-weight: bold;
+      color: var(--bg-brown-medium);
+      border-bottom: 3px solid var(--bg-brown-medium);
+    }
+    .nav-link svg , .lang-color{
+      color: #B19E7F;
+    }
+    // .right-section-nav {
+    //   padding: 0px 10px;
+    // }
+    .sun-icon,
+    .moon-icon {
+      width: 24px;
+      height: 24px;
+      position: relative;
+    }
+    .sun-icon {
+      animation: rotate 20s linear infinite;
+      color: var(--bg-brown-medium);
+    }
+    .moon-icon {
+      animation: pulse 2s ease-in-out infinite;
+      color: var(--bg-brown-medium);
+    }
+    .signInBtn {
+      background: var(--bg-primary);
+      padding: 0px 43px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: -4px;
+        right: -4px;
+        bottom: -4px;
+        border-radius: 6px;
+        background: var(--bg-brown-gradient);
+        z-index: -1;
+        transition: background 0.3s ease;
+      }
+    }
+
+    .JoinUsBtn {
+      padding: 2px 20px;
+      color: var(--text-on-brown);
+      border-radius: 8px;
+      background: var(--bg-brown-gradient);
+      border: 1px solid transparent;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+  }

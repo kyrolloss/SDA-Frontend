@@ -5,7 +5,7 @@ import { RouterOutlet } from "../../../../../node_modules/@angular/router/index"
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ProfileComponent, RouterOutlet],
+  imports: [],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

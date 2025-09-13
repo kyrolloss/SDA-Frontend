@@ -21,7 +21,8 @@ export const routes: Routes = [
   // User layout
   {
     path: 'dashboard',
-    loadComponent: () => import('./components/layouts/user-layout/user-layout.component').then(m => m.UserLayoutComponent),
+    loadComponent: () => import('./components/layouts/user-layout/user-layout.component')
+      .then(m => m.UserLayoutComponent),
     canActivate: [authGuard],
     children: [
       { path: '', redirectTo: 'clinics', pathMatch: 'full' },

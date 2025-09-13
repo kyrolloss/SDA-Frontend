@@ -1,0 +1,166 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand"
+      ><img src="../../../../assets/media/logo.svg" alt="" srcset=""
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item itemsLinks">
+          <a class="nav-link active" aria-current="page">{{
+            "HOME" | translate
+          }}</a>
+        </li>
+        <li class="nav-item itemsLinks">
+          <a class="nav-link">{{ "Appointments" | translate }}</a>
+        </li>
+        <!-- <li class="nav-item itemsLinks">
+            <a
+              class="nav-link"
+              >{{ "Patients" | translate }}</a
+            >
+          </li> -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ "Patients" | translate }}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item">Action</a></li>
+            <li><a class="dropdown-item">Another action</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item itemsLinks">
+          <a class="nav-link">{{ "Clinics" | translate }}</a>
+        </li>
+        <li class="nav-item itemsLinks">
+          <a class="nav-link">{{ "Laboratory" | translate }}</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ "Pages" | translate }}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item">Action</a></li>
+            <li><a class="dropdown-item">Another action</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+      <span class="navbar-text">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item right-section-nav">
+            <a
+              class="nav-link"
+              (click)="toggleLang()"
+              style="cursor: pointer; margin-top: 2px"
+              ><span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  class="mb-1"
+                  viewBox="0 0 28 27"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M27.3338 13.6186C27.3357 16.2399 26.5649 18.8037 25.1178 20.9893C23.6707 23.175 21.6114 24.8857 19.1974 25.9075C16.7835 26.9292 14.1219 27.2168 11.5453 26.7343C8.9688 26.2517 6.59166 25.0204 4.71105 23.1943C2.83044 21.3682 1.52981 19.0283 0.97172 16.4671C0.413633 13.9059 0.622856 11.2369 1.57324 8.79397C2.52362 6.35099 4.17299 4.24233 6.31518 2.73158C8.45737 1.22083 10.9973 0.37501 13.6176 0.29985C13.8697 0.267238 14.125 0.267238 14.3772 0.29985C17.8454 0.396311 21.1393 1.84151 23.5587 4.32828C25.9782 6.81505 27.3325 10.149 27.3338 13.6186ZM9.53675 24.1752C9.82195 24.2954 10.1111 24.4037 10.4041 24.5003C8.65727 21.4686 7.74382 18.0287 7.75654 14.5297L2.56917 14.5297C2.73841 16.6207 3.47735 18.6252 4.70572 20.3257C5.93409 22.0262 7.60493 23.3575 9.53675 24.1752ZM3.43317 9.1588C2.9607 10.2741 2.67013 11.458 2.57254 12.6653L7.75654 12.6653C7.74602 9.18749 8.64602 5.76748 10.3671 2.74532C10.0875 2.83852 9.81072 2.94294 9.53675 3.05859C6.78811 4.22351 4.59961 6.4108 3.43317 9.1588ZM18.3721 12.6653C18.3306 11.3588 18.1836 10.0577 17.9325 8.7748C17.687 7.46231 17.2838 6.18429 16.7317 4.96848C15.9789 3.36511 15.0323 2.31922 14.2104 2.1609C14.0684 2.15878 13.9264 2.15878 13.7843 2.1609C12.9624 2.31922 12.0159 3.36511 11.2631 4.97017C10.7116 6.18604 10.309 7.46407 10.0639 8.77648C9.81289 10.0588 9.66589 11.3593 9.62433 12.6653L18.3721 12.6653ZM16.7317 22.2249C17.2838 21.0091 17.687 19.7311 17.9325 18.4186C18.1829 17.1362 18.3294 15.8357 18.3704 14.5297L9.62602 14.5297C9.66754 15.8363 9.81454 17.1374 10.0656 18.4203C10.3107 19.7321 10.7134 21.0096 11.2648 22.2249C12.085 23.9697 13.1325 25.0544 13.9999 25.0544C14.8673 25.0544 15.9149 23.9697 16.7334 22.2249L16.7317 22.2249ZM24.5666 18.0784C25.0444 16.9499 25.3362 15.7515 25.4306 14.5297L20.2399 14.5297C20.2534 18.0298 19.3399 21.471 17.5923 24.5036C17.8854 24.4071 18.1756 24.2982 18.4631 24.1769C21.2114 23.0124 23.3999 20.8257 24.5666 18.0784ZM18.4631 3.05859C18.1888 2.94282 17.9101 2.83776 17.6277 2.74364C19.3489 5.76574 20.2489 9.18579 20.2382 12.6636L25.4273 12.6636C25.2514 10.5802 24.5098 8.58429 23.2824 6.89153C22.0551 5.19877 20.3887 3.87342 18.4631 3.05859Z"
+                    fill="currentColor"
+                  />
+                </svg>
+                <span class="lang-color ms-2">{{
+                  currentLang === "en" ? "En" : "عربي"
+                }}</span>
+              </span></a
+            >
+          </li>
+          <li class="nav-item right-section-nav">
+            <a
+              class="nav-link"
+              (click)="toggleTheme()"
+              [attr.aria-label]="
+                (theme$ | async) === 'light'
+                  ? 'Switch to dark mode'
+                  : 'Switch to light mode'
+              "
+              ><svg
+                style="width: fit-content !important; cursor: pointer"
+                *ngIf="(theme$ | async) === 'light'"
+                class="sun-icon"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 7a5 5 0 100 10 5 5 0 000-10zM2 13h2a1 1 0 100-2H2a1 1 0 100 2zm18 0h2a1 1 0 100-2h-2a1 1 0 100 2zM11 2v2a1 1 0 102 0V2a1 1 0 10-2 0zm0 18v2a1 1 0 102 0v-2a1 1 0 10-2 0zM5.99 4.58a1 1 0 10-1.41 1.41l1.06 1.06a1 1 0 101.41-1.41L5.99 4.58zm12.37 12.37a1 1 0 10-1.41 1.41l1.06 1.06a1 1 0 101.41-1.41l-1.06-1.06zm1.06-10.96a1 1 0 10-1.41-1.41l-1.06 1.06a1 1 0 101.41 1.41l1.06-1.06zM7.05 18.36a1 1 0 10-1.41-1.41l-1.06 1.06a1 1 0 101.41 1.41l1.06-1.06z"
+                />
+              </svg>
+
+              <svg
+                style="width: fit-content !important; cursor: pointer"
+                *ngIf="(theme$ | async) === 'dark'"
+                class="moon-icon"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M21.64 13a1 1 0 00-1.05-.14 8.05 8.05 0 01-3.37.73 8.15 8.15 0 01-8.14-8.1 8.59 8.59 0 01.25-2A1 1 0 008 2.36a10.14 10.14 0 1014 11.69 1 1 0 00-.36-1.05z"
+                /></svg
+            ></a>
+          </li>
+          <li class="nav-item right-section-nav">
+            <a class="nav-link" style="cursor: pointer; margin-top: 2px"
+              ><span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="36"
+                  viewBox="0 0 35 36"
+                  fill="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M9.78906 29.1555C10.4794 29.1555 11.0391 29.715 11.0391 30.4055C11.0391 30.6942 11.1122 30.9924 11.2705 31.2869C11.4299 31.5832 11.6766 31.8762 12.0161 32.1377C12.3558 32.3992 12.7749 32.6185 13.2551 32.7717C13.7349 32.9249 14.2568 33.0057 14.7884 33.0057C15.3199 33.0057 15.8418 32.9249 16.3216 32.7717C16.8018 32.6185 17.2209 32.3992 17.5606 32.1377C17.9001 31.8762 18.1468 31.5832 18.3063 31.2869C18.4646 30.9924 18.5376 30.6942 18.5376 30.4055C18.5376 29.715 19.0973 29.1555 19.7876 29.1555C20.4779 29.1555 21.0376 29.715 21.0376 30.4055C21.0376 31.128 20.8521 31.831 20.5079 32.471C20.1649 33.1087 19.6751 33.6647 19.0861 34.1184C18.4973 34.5717 17.8143 34.9197 17.0814 35.1535C16.3483 35.3874 15.5698 35.5057 14.7884 35.5057C14.0069 35.5057 13.2284 35.3874 12.4953 35.1535C11.7624 34.9197 11.0794 34.5717 10.4906 34.1184C9.90158 33.6647 9.41175 33.1087 9.06873 32.471C8.72458 31.831 8.53906 31.128 8.53906 30.4055C8.53906 29.715 9.09871 29.1555 9.78906 29.1555Z"
+                    fill="#B19E7F"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M8.8161 1.9498C12.5793 0.0771005 16.989 0.0134006 20.8047 1.7766L21.1457 1.93418C25.144 3.78173 27.7038 7.78463 27.7038 12.1891V14.3735C27.7038 16.1294 28.0865 17.8641 28.8252 19.4569L29.2663 20.4082C31.2923 24.7771 28.6538 29.8838 23.9182 30.7591L23.6512 30.8084C17.7927 31.8914 11.7852 31.8914 5.92657 30.8084C1.12717 29.9214 -1.41191 24.6116 0.910522 20.3189L1.28787 19.6214C2.21934 17.8997 2.7071 15.9731 2.7071 14.0156V11.8135C2.7071 7.63283 5.07329 3.81235 8.8161 1.9498ZM19.756 4.04602C16.6287 2.60087 13.0143 2.65308 9.9299 4.18798C7.03637 5.6279 5.20711 8.58147 5.20711 11.8135V14.0156C5.20711 16.3886 4.61582 18.7241 3.48669 20.8111L3.10936 21.5086C1.59459 24.3083 3.25065 27.7716 6.38095 28.3501C11.9392 29.3774 17.6387 29.3774 23.1968 28.3501L23.4638 28.3008C26.5935 27.7223 28.3373 24.3472 26.9983 21.4599L26.5572 20.5087C25.6657 18.5862 25.2038 16.4926 25.2038 14.3735V12.1891C25.2038 8.75935 23.2105 5.6423 20.097 4.2036L19.756 4.04602Z"
+                    fill="#B19E7F"
+                  />
+                </svg> </span
+            ></a>
+          </li>
+          <li class="nav-item right-section-nav">
+              <a class="nav-link" style="width: 70px; height: 70px; cursor: pointer; border-radius: 50%;"
+                ><img class="w-100" src="../../../../assets/media/pic-not-found.png" alt="">
+              </a>
+            </li>
+        </ul>
+      </span>
+    </div>
+  </div>
+</nav>

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { MainNavbarComponent } from '../../shared/main-navbar/main-navbar.component';
 import { RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-layout',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [MainNavbarComponent , RouterOutlet],
   templateUrl: './user-layout.component.html',
   styleUrl: './user-layout.component.scss'
 })
