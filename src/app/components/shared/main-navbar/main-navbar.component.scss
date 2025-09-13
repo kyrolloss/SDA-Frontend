@@ -24,9 +24,12 @@
       color: var(--bg-brown-medium);
       border-bottom: 3px solid var(--bg-brown-medium);
     }
-    .right-section-nav {
-      padding: 0px 10px;
+    .nav-link svg , .lang-color{
+      color: #B19E7F;
     }
+    // .right-section-nav {
+    //   padding: 0px 10px;
+    // }
     .sun-icon,
     .moon-icon {
       width: 24px;

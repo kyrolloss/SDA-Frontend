@@ -3,6 +3,8 @@ import { Component, HostListener, Inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { Observable } from 'rxjs';
+import {Theme, ThemeService } from '../../core/services/theme.service';
 
 @Component({
   selector: 'app-main-navbar',
@@ -12,7 +14,10 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrl: './main-navbar.component.scss'
 })
 export class MainNavbarComponent {
-constructor(public translate: TranslateService ,  @Inject(PLATFORM_ID) private platformId: Object) {
+    theme$: Observable<Theme>;
+  
+constructor(public translate: TranslateService ,private themeService: ThemeService,   @Inject(PLATFORM_ID) private platformId: Object) {
+  this.theme$ = this.themeService.theme$;
   this.isBrowser = isPlatformBrowser(this.platformId);
     this.initLanguage();
  }
@@ -44,7 +49,9 @@ toggleLang() {
   const newLang = this.currentLang === 'en' ? 'ar' : 'en';
   this.switchLang(newLang);
 }
-
+ toggleTheme(): void {
+    this.themeService.toggleTheme();
+  }
 switchLang(lang: string) {
   this.translate.use(lang);
   this.currentLang = lang;
