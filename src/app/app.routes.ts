@@ -36,6 +36,7 @@ export const routes: Routes = [
     { path: 'operatorPackage', loadComponent: () => import('./components/user/clinics/operator-packages/operator-packages.component').then(m => m.OperatorPackagesComponent) },
     { path: 'clinicPackage', loadComponent: () => import('./components/user/clinics/clinic-packages/clinic-packages.component').then(m => m.ClinicPackagesComponent) },
     { path: 'clinicHome', loadComponent: () => import('./components/user/clinics/clinic-home/clinic-home.component').then(m => m.ClinicHomeComponent) },
+    { path: 'appointments', loadComponent: () => import('./components/user/appointments/appointments.component').then(m => m.AppointmentsComponent) },
   ]
 }
     ]
