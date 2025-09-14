@@ -134,6 +134,9 @@
   "PASSWORD_PATTERN": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل ورقم واحد",
   "EMAIL_INVALID": "يرجى إدخال عنوان بريد إلكتروني صالح",
   "Password_changed_successfully":"تم تغيير كلمة المرور بنجاح",
-  "PASSWORDS_DO_NOT_MATCH": "كلمات المرور غير متطابقة"
-
+  "PASSWORDS_DO_NOT_MATCH": "كلمات المرور غير متطابقة",
+  "appointments":"المواعيد",
+  "packages":"الباقات",
+  "inventory":"المخزون",
+  "exit":"خروج"
 }
