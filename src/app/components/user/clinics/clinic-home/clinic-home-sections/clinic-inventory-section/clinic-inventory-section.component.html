@@ -3,17 +3,19 @@
     <div class="col-lg-6">
       <h3>{{ "Clinics" | translate }}</h3>
     </div>
+    
     <div
       class="col-lg-4 col-md-12 d-flex justify-content-end align-items-center"
     >
       <button
         class="signin-button w-auto d-flex align-items-center justify-content-center"
+        [routerLink]="['add']"     
       >
         <mat-icon>add</mat-icon>
         {{ "add_material" | translate }}
-      </button>
-    </div>
-  </div>
+      </button> 
+    </div>      
+  </div>  
 
   <div class="row d-flex align-items-center justify-content-ceter mb-3 mx-2">
     <!-- Search -->

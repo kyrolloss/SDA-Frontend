@@ -199,6 +199,11 @@
 "end_date": "تاريخ الانتهاء",
 "status": "الحالة",
 "cancel":"الغاء",
-"details":"تفاصيل"
+"details":"تفاصيل",
+"add_material": "إضافة مادة",
+"search_material": "بحث عن مادة",
+"total_used": "إجمالي المستخدم",
+"remaining": "المتبقي",
+"error_rate": "معدل الخطأ"
 
 }
