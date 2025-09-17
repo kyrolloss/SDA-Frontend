@@ -35,11 +35,6 @@ export const routes: Routes = [
     { path: 'join', loadComponent: () => import('./components/user/clinics/join-clinic/join-clinic.component').then(m => m.JoinClinicComponent) },
     { path: 'operatorPackage', loadComponent: () => import('./components/user/clinics/operator-packages/operator-packages.component').then(m => m.OperatorPackagesComponent) },
     { path: 'clinicPackage', loadComponent: () => import('./components/user/clinics/clinic-packages/clinic-packages.component').then(m => m.ClinicPackagesComponent) },
-    // { 
-    //   path: ':id', 
-    //   loadComponent: () => import('./components/user/clinics/clinic-home/clinic-home.component')
-    //     .then(m => m.ClinicHomeComponent) 
-    // }
     {
       path: ':id',
       loadComponent: () => import('./components/user/clinics/clinic-home/clinic-home.component')
@@ -49,7 +44,22 @@ export const routes: Routes = [
         { path: 'home', loadComponent: () => import('./components/user/clinics/clinic-home/clinic-home-sections/clinic-home-section/clinic-home-section.component').then(m => m.ClinicHomeSectionComponent) },
         { path: 'appointments', loadComponent: () => import('./components/user/clinics/clinic-home/clinic-home-sections/clinic-appiontments-section/clinic-appiontments-section.component').then(m => m.ClinicAppiontmentsSectionComponent) },
         { path: 'packages', loadComponent: () => import('./components/user/clinics/clinic-home/clinic-home-sections/clinic-packages-section/clinic-packages-section.component').then(m => m.ClinicPackagesSectionComponent) },
-        { path: 'inventory', loadComponent: () => import('./components/user/clinics/clinic-home/clinic-home-sections/clinic-inventory-section/clinic-inventory-section.component').then(m => m.ClinicInventorySectionComponent) }
+        {
+  path: 'inventory',
+  children: [
+    { 
+      path: '', 
+      loadComponent: () => import('./components/user/clinics/clinic-home/clinic-home-sections/clinic-inventory-section/clinic-inventory-section.component')
+        .then(m => m.ClinicInventorySectionComponent) 
+    },
+    { 
+      path: 'add', 
+      loadComponent: () => import('./components/user/clinics/clinic-home/clinic-home-sections/add-material/add-material.component')
+        .then(m => m.AddMaterialComponent) 
+    }
+  ]
+}
+
       ]
     }
   ]

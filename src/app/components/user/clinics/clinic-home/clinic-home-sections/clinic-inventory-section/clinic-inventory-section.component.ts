@@ -5,6 +5,8 @@ import { TranslateCompiler, TranslateModule } from '@ngx-translate/core';
 import { PaginationComponent } from '../../../../../shared/pagination/pagination.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from 'express';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-clinic-inventory-section',
@@ -15,7 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
     PaginationComponent, 
     MatIconModule,
     MatMenuModule,
-    MatButtonModule,],
+    MatButtonModule,
+    RouterLink], 
   templateUrl: './clinic-inventory-section.component.html',
   styleUrl: './clinic-inventory-section.component.scss'
 })
