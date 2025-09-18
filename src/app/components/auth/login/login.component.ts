@@ -65,7 +65,6 @@ export class LoginComponent implements OnInit {
   const loginData = {
     email: this.loginForm.get('email')?.value,
     password: this.loginForm.get('password')?.value,
-    rememberMe: this.loginForm.get('rememberMe')?.value   
   };
 
   this._AuthService.login(loginData).subscribe({
@@ -74,12 +73,6 @@ export class LoginComponent implements OnInit {
         duration: 3000,
         panelClass: ['snackbar-success']
       });
-      if (loginData.rememberMe) {
-        localStorage.setItem('rememberMe', 'true');
-      } else {
-        sessionStorage.setItem('rememberMe', 'true');
-      }
-
       this._Router.navigate(['/dashboard']);
     },
     error: (err: any) => {
@@ -90,5 +83,6 @@ export class LoginComponent implements OnInit {
     }
   });
 }
+
 
 }
