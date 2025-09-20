@@ -85,6 +85,47 @@ h3 {
   color: #e6a400; // أصفر غامق
 }
 
+.signin-button {
+  &.close{
+  background: var(--text-light-gray) !important;}
+}
+.signin-button.cancel {
+  background: transparent !important;
+  border: 2px solid var(--bg-brown-medium) !important;
+  color: var(--bg-brown-medium) !important;
+}
+
+.modal-body {
+  padding: 15px;
+  border-radius: 8px;
+  background-color: var(--bg-white-secondary);
+  h4 {
+    color: var(--text-light-gray);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  span ,p{
+    font-size: 1rem;
+    color: var(--text-gray);
+  }
+  .mini-table {
+    padding: 10px;
+  }
+  .header {
+    color: var(--bg-white);
+    background-color: var(--bg-brown-medium) !important;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+  .body {
+    color: #000;
+    background-color: var(--bg-brown-light) !important;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+}
+
 
 @media (max-width: 600px) {
   .table thead th , .table tbody td {

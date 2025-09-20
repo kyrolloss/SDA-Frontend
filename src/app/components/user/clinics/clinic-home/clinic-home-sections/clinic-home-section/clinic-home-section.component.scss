@@ -135,6 +135,42 @@ h3 {
   color: var(--text-black-white);
 }
 
+.signin-button {
+  &.close{
+  background: var(--text-light-gray) !important;}
+}
+
+.modal-body {
+  padding: 15px;
+  border-radius: 8px;
+  background-color: var(--bg-white-secondary);
+  h4 {
+    color: var(--text-light-gray);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  span {
+    font-size: 1rem;
+    color: var(--text-gray);
+  }
+  .mini-table {
+    padding: 10px;
+  }
+  .header {
+    color: #fff;
+    background-color: var(--bg-brown-medium) !important;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+  .body {
+    color: #000;
+    background-color: var(--bg-brown-light) !important;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+}
+
 @media (max-width: 600px) {
   .table thead th , .table tbody td {
   font-size: 13px;
