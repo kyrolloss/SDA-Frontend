@@ -2,6 +2,10 @@ h3 {
   font-size: 1.5rem;
   font-weight: 500;
   color: var(--text-gray-home-about);
+  span mat-icon {
+    cursor: pointer;
+    font-size: 30px;
+  }
 }
 
 .search-form-control {
@@ -32,6 +36,7 @@ h3 {
 
 .dropdown {
     background-color: var(--bg-light-gray) !important;
+    border-radius: 7px;
 }
 
 

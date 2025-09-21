@@ -2,6 +2,10 @@ h3 {
     font-size: 1.5rem;
     font-weight: 500;
     color: var(--text-gray-home-about);
+  span mat-icon {
+    cursor: pointer;
+    font-size: 30px;
+  }
 }
 
 h2 {
@@ -41,17 +45,46 @@ h2 {
     animation: cardFadeUp 0.9s ease forwards;
 }
 
+// .type-package-card {
+//     width: fit-content;
+//     min-width: 150px;
+//     display: flex;
+//     justify-content: center;
+//     padding: 8px 10px ;
+//     margin-bottom: 10px;
+//     background-color: var(--bg-accent);
+//     color: var(--bg-brown-medium);
+//     border-bottom: 6px solid var(--bg-brown-dark);
+// }
 .type-package-card {
-    width: fit-content;
-    min-width: 150px;
-    display: flex;
-    justify-content: center;
-    padding: 8px 10px ;
-    margin-bottom: 10px;
-    background-color: var(--bg-accent);
-    color: var(--bg-brown-medium);
-    border-bottom: 6px solid var(--bg-brown-dark);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  margin-bottom: 10px;
+  min-width: 150px;
+
+  background: url('../../../../../../../assets/media/ButtonClip.svg') no-repeat center center;
+  background-size: cover;
+
+  color: var(--bg-brown-medium);
+  font-size: 17px;
+  font-weight: 400;
 }
+.type-package-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;  
+  height: 6px;
+  background-color: var(--bg-brown-medium);
+}
+
+
+
 
 .active {
   width: 12px;
@@ -126,7 +159,7 @@ h2 {
     }
     .btn-upgrade {
       background: #fff;
-      color: #4d3a2d;
+      color: var(--bg-brown-medium);
       border-radius: 6px;
       font-weight: 600;
     }
@@ -173,8 +206,8 @@ h2 {
     padding: 8px 10px ;
     margin-right: 5px;
     &.dtls {
-        background: var(--bg-brown-gradient);
-        color: white;
+        background: var(--bg-brown-medium);
+        color: var(--bg-white);
         border: none;
         border-radius: 12px;
     }

@@ -3,6 +3,10 @@
     <div class="col-lg-6">
       <h3>
         {{ "Clinics" | translate }}
+        <span>
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </span>
+        {{"inventory" | translate}}
         <span [routerLink]="['../']">
           <mat-icon>keyboard_arrow_left</mat-icon>
         </span>
@@ -40,7 +44,7 @@
       <div class="material-body my-3">
         <h5 class="title">{{ "scientificName" }}</h5>
         <p class="trade">{{ "tradeName" }}</p>
-
+        <hr>
         <div class="d-flex align-items-center justify-content-between">
           <button class="circle-btn">-</button>
           <span class="count">0</span>
