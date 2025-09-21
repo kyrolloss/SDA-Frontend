@@ -70,20 +70,80 @@ closeViewDoctorsModal() {
 
   ///chart
   // النوع لازم يبقى ChartType مش ثابت "line"
+  // public lineChartType: ChartType = 'line';
+
+  // // البيانات
+  // public lineChartData: ChartConfiguration['data'] = {
+  //   labels: [
+  //   'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  //   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  // ],
+  //   datasets: [
+  //     {
+  //       data: [1000, 10, 1420, 100, 1750, 1900, 200, 2100, 180, 1000, 10, 1500],
+  //       label: 'Revenue',
+  //       borderColor: this.getCssVariableValue('--bg-brown-medium'),
+  //       backgroundColor: (context:any) => {
+  //       const chart = context.chart;
+  //       const { ctx, chartArea } = chart;
+
+  //       if (!chartArea) {
+  //         return '#7d6e59'; // fallback لو chartArea مش متاح لسه
+  //       }
+
+  //       // نعمل Gradient عمودي
+  //       const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+
+  //       gradient.addColorStop(0, 'rgba(125, 110, 89, 0.35)'); // لون بني غامق عند الخط
+  //       gradient.addColorStop(1, 'rgba(125, 110, 89, 0)');    // شفاف تحت
+
+  //       return gradient;
+  //       },
+  //       fill: true,
+  //       tension: 0.4,
+  //       pointBackgroundColor: this.getCssVariableValue('--bg-brown-medium'),
+  //       pointBorderWidth: 0,
+  //       pointRadius: 0
+  //     }
+  //   ]
+  // };
+
+  // // الإعدادات
+  // public lineChartOptions: ChartOptions = {
+  //   responsive: true,
+  // maintainAspectRatio: false, // يخلي الرسم ياخد 100% width & height
+  // plugins: {
+  //   legend: { display: false }
+  // },
+  // scales: {
+  //   x: {
+  //     grid: { display: false },
+  //     ticks: {
+  //       autoSkip: false,     // يخلي كل label يظهر
+  //       maxRotation: 0,      // يمنع لف النصوص
+  //       minRotation: 0
+  //     }
+  //   },
+  //   y: {
+  //     beginAtZero: true
+  //   }
+  // }
+  // };
+
   public lineChartType: ChartType = 'line';
 
-  // البيانات
-  public lineChartData: ChartConfiguration['data'] = {
-    labels: [
+// البيانات
+public lineChartData: ChartConfiguration['data'] = {
+  labels: [
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
   ],
-    datasets: [
-      {
-        data: [500, 50, 1420, 100, 1750, 1900, 200, 2100, 180, 1000, 10, 1500],
-        label: 'Revenue',
-        borderColor: this.getCssVariableValue('--bg-brown-medium'),
-        backgroundColor: (context:any) => {
+  datasets: [
+    {
+      data: [1000, 10, 1420, 100, 1750, 1900, 200, 2100, 180, 1000, 10, 1500],
+      label: 'Revenue',
+      borderColor: this.getCssVariableValue('--bg-brown-medium'),
+      backgroundColor: (context:any) => {
         const chart = context.chart;
         const { ctx, chartArea } = chart;
 
@@ -91,44 +151,45 @@ closeViewDoctorsModal() {
           return '#7d6e59'; // fallback لو chartArea مش متاح لسه
         }
 
-        // نعمل Gradient عمودي
+        // Gradient عمودي تحت الخط
         const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-
-        gradient.addColorStop(0, 'rgba(125, 110, 89, 0.35)'); // لون بني غامق عند الخط
-        gradient.addColorStop(1, 'rgba(125, 110, 89, 0)');    // شفاف تحت
-
+        gradient.addColorStop(0, 'rgba(125, 110, 89, 0.35)'); // بني شفاف عند الخط
+        gradient.addColorStop(1, 'rgba(125, 110, 89, 0)');    // يختفي تحت
         return gradient;
-        },
-        fill: true,
-        tension: 0.4,
-        pointBackgroundColor: this.getCssVariableValue('--bg-brown-medium'),
-        pointBorderWidth: 3,
-        pointRadius: 5
-      }
-    ]
-  };
+      },
+      fill: true,
+      tension: 0.4, // يخلي الخط منحني Smooth
+      pointBackgroundColor: this.getCssVariableValue('--bg-brown-medium'),
+      pointBorderWidth: 0,
+      pointRadius: 0
+    }
+  ]
+};
 
-  // الإعدادات
-  public lineChartOptions: ChartOptions = {
-    responsive: true,
-  maintainAspectRatio: false, // يخلي الرسم ياخد 100% width & height
+// الإعدادات
+public lineChartOptions: ChartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
   plugins: {
-    legend: { display: false }
+    legend: { display: false } // نخفي التسمية "Revenue" فوق
   },
   scales: {
     x: {
-      grid: { display: false },
+      grid: { display: false, }, // نخفي خطوط X
       ticks: {
-        autoSkip: false,     // يخلي كل label يظهر
-        maxRotation: 0,      // يمنع لف النصوص
+        autoSkip: false,
+        maxRotation: 0,
         minRotation: 0
       }
     },
     y: {
-      beginAtZero: true
+      beginAtZero: true,
+      grid: { display: false, }, // نخفي خطوط Y
+      ticks: { display: false } // ممكن تخفي الأرقام كمان لو مش عايزاها
     }
   }
-  };
+};
+
 
   getCssVariableValue(varName: string): string {
   return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();

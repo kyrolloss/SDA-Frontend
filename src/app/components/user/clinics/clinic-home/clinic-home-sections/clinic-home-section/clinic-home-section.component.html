@@ -1,7 +1,12 @@
 <div class="section">
   <div class="row d-flex align-items-center justify-content-between mb-3 mx-3">
     <div class="col-lg-6">
-      <h3>{{ "Clinics" | translate }}</h3>
+      <h3>{{ "Clinics" | translate }}
+        <span>
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </span>
+        {{"home" | translate}}
+      </h3>
     </div>
     <div
       class="col-lg-4 col-md-12 d-flex justify-content-end align-items-center"
@@ -179,7 +184,7 @@
       <div class="d-flex row justify-content-between">
         <div class="col-lg-6">
           <h3>{{ "clinic_revenue" | translate }}</h3>
-          <h3 style="color: var(--bg-brown-medium)">1600 EGP</h3>
+          <h3 style="color: var(--bg-brown-medium)">1600 <span style="color: var(--text-gray);">EGP</span></h3>
         </div>
         <div class="form-field col-md-3 col-sm-12 text-end">
           <div class="d-flex align-items-center">
