@@ -12,7 +12,7 @@
 }
 
 .new-appointment-btn {
-  background-color: #8b7a5e;
+  background: var(--bg-brown-gradient);
   color: #fff;
   border-radius: 6px;
   padding: 8px 16px;
@@ -199,7 +199,7 @@
 
 .search-btn {
   background-color: #b19e7f;
-  color: #fff;
+  color: var(--bg-white);
   border: none;
   border-radius: 20px;
   padding: 7px 20px;

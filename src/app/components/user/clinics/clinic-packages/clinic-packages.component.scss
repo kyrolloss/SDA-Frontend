@@ -118,3 +118,19 @@
     color: var(--text-black-white) !important;
   }
 }
+.package-card {
+  position: relative;
+
+  .icon-bg {
+    position: absolute;
+    right: 15px;   
+    top: 65%;     
+    transform: translateY(-50%);
+    pointer-events: none;
+
+    svg {
+      width: 100px;
+      height: auto;
+    }
+  }
+}

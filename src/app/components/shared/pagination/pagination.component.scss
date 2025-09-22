@@ -1,5 +1,5 @@
 .page-link {
-  color: #b19e7f;
+  color: var(--number-pagination);
   border-radius: 50% !important;
   width: 35px;
   height: 35px;
@@ -10,10 +10,12 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
+  background-color: transparent;
+  border: none !important;
 }
 
 .page-item.active .page-link {
-  background: linear-gradient(180deg, #B19E7F 0%, #4B4336 100%);
+  background: var(--bg-brown-gradient);
   color: #fff;
   border: none;
 }
@@ -21,4 +23,15 @@
 .page-item.disabled .page-link {
   color: #ccc;
   cursor: default;
+}
+.page-link.prev-btn,
+.page-link.next-btn {
+  border-radius: 50% !important;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid #b19e7f !important;
 }
