@@ -76,6 +76,7 @@ $SDA-theme: mat.define-light-theme((
   --text-black-white: #131213;
   --text-gray-home-about: #565656;
   --text-gray-head-table: #434343;
+  --background-gray-head-table: #F9F9F9;
   --border-white-gray: #eee;
   --text-primary: #2d2a26;        /* Main text - dark brown */
   --text-secondary: #4a453f;      /* Secondary text */
@@ -151,6 +152,7 @@ $SDA-theme: mat.define-light-theme((
   /* Text Colors for dark mode */
     --text-black-biege:#D1B894;
    --text-black-white: #ffff;
+   --background-gray-head-table: #2D312B;
    --text-gray-home-about: #C4C4C4;
    --text-gray-head-table: #F9F9F9;
    --border-white-gray: #434343;
