@@ -321,6 +321,16 @@ body {
   box-shadow: var(--shadow-md);
 }
 
+.main-title h3 {
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--text-gray-home-about);
+    span mat-icon {
+    cursor: pointer;
+    font-size: 30px; 
+  }
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .dental-card {

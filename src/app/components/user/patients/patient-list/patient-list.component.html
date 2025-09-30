@@ -1,0 +1,54 @@
+<div class="container py-3">
+  <div class="row d-flex align-items-center justify-content-between mb-3">
+    <div class="col-lg-6 main-title">
+      <h3 class="main-title">{{ "Patients" | translate }}
+      </h3>
+    </div>
+    <div
+      class="col-lg-6 col-md-12 d-flex justify-content-end align-items-center"
+    >
+      <button class="signin-button w-50 w-auto d-flex align-items-center justify-content-center">
+        <mat-icon>add</mat-icon>
+        {{ "add_patient" | translate }}
+      </button>
+    </div>
+  </div>
+  <app-search
+  [placeholder]="'search_patient_name_phone' | translate"
+  (search)="onSearch()">
+  </app-search>
+  <div class="row d-flex align-items-center justify-content-between mb-3">
+    <div
+      class="col-lg-4 col-md-6 col-sm-6 mb-3"
+      *ngFor="let material of [1, 2, 3, 4, 5, 6]"
+    >
+      <div class="material-card">
+        <div class="material-img">
+          <img
+            src="../../../../../../../assets/media/material.jpg"
+            alt="material"
+          />
+        </div>
+
+        <div class="material-body my-3">
+          <div class="title">
+            
+          </div>
+          <p class="detail">{{ "+201150093207" }}</p>
+          <p class="detail">{{ "female, 24" }}</p>
+          <hr />
+          <div class="view-details d-flex align-items-center justify-content-end">
+            <h3>{{"view_details" | translate}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-pagination
+      [totalItems]="50"
+      [pageSize]="11"
+      [currentPage]="CurrentPage"
+      (pageChange)="onPageChange($event)"
+    >
+    </app-pagination>
+  </div>
+</div>

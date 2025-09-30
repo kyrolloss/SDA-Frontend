@@ -40,6 +40,8 @@ export const routes: Routes = [
       { path: '', redirectTo: 'homeDashboard', pathMatch: 'full' },
       { path: 'homeDashboard', loadComponent: () => import('./components/user/dashboard/dashboard.component').then(m => m.DashboardComponent) },
       { path: 'profile', loadComponent: () => import('./components/user/profile/profile.component').then(m => m.ProfileComponent) },
+      { path: 'patient-list', loadComponent: () => import('./components/user/patients/patient-list/patient-list.component').then(m => m.PatientListComponent) },
+      { path: 'assigned-cases', loadComponent: () => import('./components/user/patients/assigned-cases/assigned-cases.component').then(m => m.AssignedCasesComponent) },
       {
         path: 'clinics',
         children: [
