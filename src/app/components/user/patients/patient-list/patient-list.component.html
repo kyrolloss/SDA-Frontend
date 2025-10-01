@@ -17,28 +17,23 @@
   [placeholder]="'search_patient_name_phone' | translate"
   (search)="onSearch()">
   </app-search>
-  <div class="row d-flex align-items-center justify-content-between mb-3">
+  <div class="row d-flex align-items-center justify-content-between my-3">
     <div
-      class="col-lg-4 col-md-6 col-sm-6 mb-3"
-      *ngFor="let material of [1, 2, 3, 4, 5, 6]"
+      class="col-lg-4 col-md-6 col-sm-6 my-3"
+      *ngFor="let patient of [1, 2, 3, 4, 5, 6]"
     >
-      <div class="material-card">
-        <div class="material-img">
-          <img
-            src="../../../../../../../assets/media/material.jpg"
-            alt="material"
-          />
-        </div>
-
-        <div class="material-body my-3">
-          <div class="title">
-            
+      <div class="patient-card">
+        <div class="patient-details my-3">
+          <div class="title d-flex justify-content-between align-items-center">
+            <h5>Safynaz Ibrahim</h5>
+            <h5>ID: <span>#444</span></h5>
           </div>
           <p class="detail">{{ "+201150093207" }}</p>
           <p class="detail">{{ "female, 24" }}</p>
           <hr />
-          <div class="view-details d-flex align-items-center justify-content-end">
+          <div (click)="goToDetails(444)" class="view-details d-flex align-items-center justify-content-end">
             <h3>{{"view_details" | translate}}</h3>
+            <mat-icon>arrow_forward</mat-icon>
           </div>
         </div>
       </div>
