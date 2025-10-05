@@ -237,17 +237,17 @@
 
   <!-- Body -->
   <div modal-body class="modal-body">
-    <p>{{"msg_delete_material"}}</p>
+    <p>{{"msg_delete_material" | translate}}</p>
   </div>
 
   <!-- Footer -->
   <div modal-footer class="d-flex justify-content-between w-100">
     <div class="w-50 m-1">
-      <button class="signin-button">{{"delete" | translate}}</button>
+      <button class="signin-button delete">{{"yes" | translate}}</button>
     </div>
     <div class="w-50 m-1">
-      <button class="signin-button cancel" (click)="closeDeleteModal()">
-        {{"cancel" | translate}}
+      <button class="signin-button" (click)="closeDeleteModal()">
+        {{"no" | translate}}
       </button>
     </div>
   </div>
