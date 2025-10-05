@@ -5,11 +5,17 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SearchComponent } from '../../../shared/search/search.component';
 import { PaginationComponent } from '../../../shared/pagination/pagination.component';
 import { Router } from '@angular/router';
+import { ModalComponent } from '../../../shared/modal/modal.component';
 
 @Component({
   selector: 'app-patient-list',
   standalone: true,
-  imports: [CommonModule, TranslateModule, MatIconModule, SearchComponent,PaginationComponent],
+  imports: [CommonModule, 
+    TranslateModule, 
+    MatIconModule, 
+    SearchComponent,
+    PaginationComponent,
+    ModalComponent],
   templateUrl: './patient-list.component.html',
   styleUrl: './patient-list.component.scss'
 })
@@ -18,6 +24,9 @@ export class PatientListComponent {
   constructor(private _Router:Router){}
 
   CurrentPage =1;
+  isAddPatientModalOpen = false;
+  showPassword = false;
+
   onSearch(){
     console.log("search work")
   }
@@ -26,6 +35,14 @@ export class PatientListComponent {
   }
   goToDetails(patientId: number) {
   this._Router.navigate([`/dashboard/patients/${patientId}`]);
+  }
+
+  openAddPatient(){
+    this.isAddPatientModalOpen = true;
+  }
+
+  closeAddPatient(){
+    this.isAddPatientModalOpen = false;
   }
 
 }

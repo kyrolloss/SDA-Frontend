@@ -134,6 +134,12 @@ h3 {
 
 }
 
+.signin-button.delete{
+  background: transparent !important;
+  border: 2px solid red !important;
+  color: red !important;
+}
+
 
 @media (max-width: 600px) {
   .table thead th , .table tbody td {

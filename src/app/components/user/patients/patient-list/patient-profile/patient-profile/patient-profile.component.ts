@@ -5,12 +5,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
+import { ModalComponent } from '../../../../../shared/modal/modal.component';
 
 @Component({
   selector: 'app-patient-profile',
   standalone: true,
   imports: [TranslateModule, MatIconModule, RouterLink, RouterOutlet, MatTabsModule,
-    CommonModule, RouterModule
+    CommonModule, RouterModule, ModalComponent
   ],
   templateUrl: './patient-profile.component.html',
   styleUrl: './patient-profile.component.scss'
@@ -18,6 +19,9 @@ import { filter } from 'rxjs';
 export class PatientProfileComponent {
   selectedIndex = 0;
   currentTitle: string = 'appointment_history';
+  isEditPatientModalOpen:boolean = false;
+  isDeletePatientModalOpen:boolean = false;
+  showPassword = false;
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.router.events
@@ -40,6 +44,23 @@ export class PatientProfileComponent {
     { label: 'dental_chart',        link: 'dental-chart' },
     { label: 'medical_history',     link: 'medical-history' }
   ];
+
+
+  openEditPatient(){
+    this.isEditPatientModalOpen = true;
+  }
+
+  closeAddPatient(){
+    this.isEditPatientModalOpen = false;
+  }
+
+  openDeletePatient(){
+    this.isDeletePatientModalOpen = true;
+  }
+
+  closeDeletePatient(){
+    this.isDeletePatientModalOpen = false;
+  }
 
   
 }

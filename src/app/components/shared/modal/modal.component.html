@@ -2,8 +2,8 @@
   <div class="modal-window" [ngClass]="size" (click)="$event.stopPropagation()">
     <!-- Header -->
     <div class="modal-header">
-      <h3>{{ title }}</h3>
       <button class="close-btn" (click)="onClose()">✖</button>
+      <h4 class="m-0">{{ title }}</h4>
     </div>
 
     <!-- Body -->
