@@ -761,9 +761,55 @@
       </div>
     </div>
   </div>
-  <div class="page-footer-btns">
-  <button class="ai-btn">Generate AI</button>
-  <button class="manual-btn">Manual Diagnosis</button>
+  <div class="process-strip">
+  <div class="lang-selector d-flex align-items-center gap-2">
+    <label class="me-2">Record Language</label>
+    <select [(ngModel)]="selectedLang" class="form-select" style="width:auto">
+      <option value="en">English</option>
+      <option value="ar">Arabic</option>
+    </select>
+  </div>
+
+</div>
+  <div class="record-wrap">
+  <button class="mic-btn" [class.recording]="isRecording" (click)="toggleRecording()"
+          [disabled]="permissionDenied">
+    <span class="pulse" *ngIf="isRecording"></span>
+    <mat-icon>{{ isRecording ? 'stop' : 'mic' }}</mat-icon>
+  </button>
+  <div class="record-status">
+  <p class="status-text" *ngIf="!isRecording && !audioUrl">
+    {{ permissionDenied ? 'Microphone permission denied' : 'Tap to record' }}
+  </p>
+
+  <p class="status-text recording-text" *ngIf="isRecording">
+    Recording...
+  </p>
+
+  <p class="status-text done-text" *ngIf="!isRecording && audioUrl">
+    Recording completed
+  </p>
+
+  <p class="timer" *ngIf="isRecording || audioUrl">{{ formattedTime }}</p>
 </div>
 
 </div>
+<div class="record-preview" *ngIf="audioUrl">
+  <audio [src]="audioUrl" controls></audio>
+</div>
+<div class="transcription-output mt-3 d-flex align-items-center" *ngIf="isRecording || transcriptionResult">
+  <h6 class="my-0">📝 Transcription Result:</h6>
+  <p class="fs-5 ms-2 my-0">
+    {{ transcriptionResult || 'No text fetch...' }}
+  </p>
+</div>
+
+
+  <div class="page-footer-btns">
+  <button class="ai-btn">Generate AI</button>
+  <button class="manual-btn" [routerLink]="['/dashboard/appointments/start-case/manual-diagnosis']">Manual Diagnosis</button>
+</div>
+
+</div> 
+
+

@@ -236,10 +236,22 @@ export const routes: Routes = [
           },
           {
             path: 'start-case',
-            loadComponent: () =>
-              import(
-                './components/user/appointments/start-case/start-case.component'
-              ).then((m) => m.StartCaseComponent),
+            children: [
+              {
+                path: '',
+                loadComponent: () =>
+                  import(
+                    './components/user/appointments/start-case/start-case.component'
+                  ).then((m) => m.StartCaseComponent),
+              },
+              {
+                path: 'manual-diagnosis',
+                loadComponent: () =>
+                  import(
+                    './components/user/appointments/manual-diagnosis/manual-diagnosis.component'
+                  ).then((m) => m.ManualDiagnosisComponent),
+              }
+            ]
           },
         ],
       },
