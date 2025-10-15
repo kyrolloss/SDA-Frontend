@@ -32,7 +32,7 @@ export const routes: Routes = [
           import('./components/auth/login/login.component').then(
             (m) => m.LoginComponent
           ),
-        canActivate: [guestGuard],
+        // canActivate: [guestGuard],
       },
       {
         path: 'register',
@@ -40,7 +40,7 @@ export const routes: Routes = [
           import('./components/auth/register/register.component').then(
             (m) => m.RegisterComponent
           ),
-        canActivate: [guestGuard],
+        // canActivate: [guestGuard],
       },
       {
         path: 'forget-password',
@@ -48,7 +48,7 @@ export const routes: Routes = [
           import('./components/auth/forget-pass/forget-pass.component').then(
             (m) => m.ForgetPassComponent
           ),
-        canActivate: [guestGuard],
+        // canActivate: [guestGuard],
       },
     ],
   },
@@ -58,7 +58,7 @@ export const routes: Routes = [
       import('./components/layouts/user-layout/user-layout.component').then(
         (m) => m.UserLayoutComponent
       ),
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       { path: '', redirectTo: 'homeDashboard', pathMatch: 'full' },
       {
@@ -250,6 +250,13 @@ export const routes: Routes = [
                   import(
                     './components/user/appointments/manual-diagnosis/manual-diagnosis.component'
                   ).then((m) => m.ManualDiagnosisComponent),
+              },
+              {
+                path: 'generate-ai',
+                loadComponent: () =>
+                  import(
+                    './components/user/appointments/generate-ai/generate-ai.component'
+                  ).then((m) => m.GenerateAIComponent),
               }
             ]
           },
