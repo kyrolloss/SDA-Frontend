@@ -13,13 +13,13 @@ export const credentialsInterceptor: HttpInterceptorFn = (req, next) => {
   });
 
   // تجاهل نفس طلبات الـ refresh و signin لتجنب الـ loop
-  if ( req.url.includes('/api/auth/refresh') || req.url.includes('/api/auth/signin')) {
+  if (req.url.includes('auth/refresh') || req.url.includes('auth/signin')) {
     return next(clonedReq);
   }
 
   return next(clonedReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      // في حالة 401 (token expired) 
+      // في حالة 401 (token expired)
       if (error.status === 401 && !isRefreshing) {
         isRefreshing = true;
         console.log('🔄 Access token expired — trying refresh...');
@@ -30,7 +30,7 @@ export const credentialsInterceptor: HttpInterceptorFn = (req, next) => {
             console.log('✅ Token refreshed, retrying original request...');
             return next(req.clone({ withCredentials: true }));
           }),
-          catchError((refreshErr) => {
+          catchError(refreshErr => {
             isRefreshing = false;
             console.error('❌ Refresh failed — logging out');
             authService.logout();
