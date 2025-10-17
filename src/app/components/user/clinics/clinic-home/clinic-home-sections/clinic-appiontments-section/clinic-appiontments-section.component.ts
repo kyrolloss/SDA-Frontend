@@ -77,7 +77,7 @@ export class ClinicAppiontmentsSectionComponent implements OnInit {
         time: `${a.startTime} - ${a.endTime}`,
         patient: a?.patient,
         clinic: a?.clinic,
-        isAssigned: a?.isAssigned || false, // ✅ هنستخدمها لتحديد الـ view
+        isAssigned: a?.caseId!=null,
         startMinutes: start.totalMinutes,
         endMinutes: end.totalMinutes,
         durationMinutes: end.totalMinutes - start.totalMinutes,
@@ -89,7 +89,6 @@ export class ClinicAppiontmentsSectionComponent implements OnInit {
     });
   }
 
-  // ✅ يقبل 03:30 أو 3:30
   parseTime(time: string) {
     const [h, m] = time.split(':').map(Number);
     const hour = h;
@@ -159,4 +158,12 @@ export class ClinicAppiontmentsSectionComponent implements OnInit {
   onSearch() {
     console.log('Searching...');
   }
+  maskPatientId(id: string | number | null): string {
+  if (!id) return '-';
+  const idStr = String(id);
+  const last3 = idStr.slice(-3); 
+  const masked = '*'.repeat(Math.max(idStr.length - 3, 0)) + last3;
+  return masked;
+}
+
 }
