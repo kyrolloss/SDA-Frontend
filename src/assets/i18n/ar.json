@@ -262,5 +262,6 @@
   "complete": "مكتمل",
   "download": "تحميل",
   "case_details": "تفاصيل الحالة",
-  "medications": "الأدوية"
+  "medications": "الأدوية",
+  "diseases":"الأمراض"
 }
