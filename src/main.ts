@@ -1,7 +1,7 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { routes } from './app/app.routes';
 
 import { importProvidersFrom } from '@angular/core';
@@ -16,7 +16,7 @@ import {
 } from '@tanstack/angular-query-experimental'
 import { persistQueryClient } from '@tanstack/query-persist-client-core';
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
-
+import { credentialsInterceptor } from './app/components/core/interceptors/credentials.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -45,7 +45,8 @@ persistQueryClient({
 bootstrapApplication(AppComponent, {
   providers: [
   provideRouter(routes),
-  provideHttpClient(withFetch()),
+  provideHttpClient(withFetch(), withInterceptors([credentialsInterceptor])),
+  // provideHttpClient(withFetch()),
   importProvidersFrom(
     TranslateModule.forRoot({
       loader: {
