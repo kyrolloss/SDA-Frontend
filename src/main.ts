@@ -10,10 +10,37 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import {
+  provideTanStackQuery,
+  QueryClient,
+} from '@tanstack/angular-query-experimental'
+import { persistQueryClient } from '@tanstack/query-persist-client-core';
+import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 min
+      gcTime: 1000 * 60 * 30,   // keep 30 min
+      retry: 1,
+    },
+  },
+});
+
+const localStoragePersister = createSyncStoragePersister({
+  storage: window.localStorage,
+});
+
+persistQueryClient({
+  queryClient,
+  persister: localStoragePersister,
+  maxAge: 1000 * 60 * 60, // 1 hour before cache auto-clears
+});
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -29,6 +56,7 @@ bootstrapApplication(AppComponent, {
       defaultLanguage: 'en'
     })
   ), provideAnimationsAsync(),
-  provideCharts(withDefaultRegisterables())
+  provideCharts(withDefaultRegisterables()),
+  provideTanStackQuery(queryClient), // ✅ ONE shared cache
 ]
 }).catch(err => console.error(err));
