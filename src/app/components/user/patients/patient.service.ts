@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiServiceService } from '../../../api-service.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,10 +33,10 @@ export class PatientService {
 
   constructor(private _ApiServiceService:ApiServiceService) { }
 
-  getPatients(params:any): Observable<any> {
-    return this._ApiServiceService.get<any>('users/me/patients', params);
+  getPatients(params:any): Promise<any> {
+    return firstValueFrom(this._ApiServiceService.get('users/me/patients', params));
   }
-
+ 
   getPatientAppointmentHistory(patientId:any,params?:any): Observable<any> {
     return this._ApiServiceService.get<any>(`patients/${patientId}/appointments/history`, params);
   }

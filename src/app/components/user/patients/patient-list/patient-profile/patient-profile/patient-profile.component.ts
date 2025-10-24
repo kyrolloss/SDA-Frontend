@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { QueryClient } from '@tanstack/angular-query-experimental';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -25,6 +26,7 @@ export class PatientProfileComponent implements OnInit{
   isEditPatientModalOpen:boolean = false;
   isDeletePatientModalOpen:boolean = false;
   showPassword = false;
+  private queryClient = inject(QueryClient);
 
   constructor(private router: Router, 
     private route: ActivatedRoute,
@@ -44,17 +46,16 @@ export class PatientProfileComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    // 1️⃣ Get ID from route
-    this.route.paramMap.subscribe(params => {
-      this.patientId = params.get('id')!;
-      console.log('clinicId in parent', this.patientId);
-    });
+    this.patientId = this.route.snapshot.paramMap.get('id')!;
+    const cached = this.queryClient.getQueryData<any>(['patients']);
+    console.log('🧩 Cached:', cached);
 
-    // 2️⃣ Get patient data from service
-    this.patientData = this._PatientService.getSelectedPatient();
-    console.log('patient data', this.patientData)
-
-    
+    if (cached?.data) {
+      this.patientData = cached.data.find((p: any) => p.id === this.patientId);
+      console.log('✅ Loaded from cache:', this.patientData);
+    } else {
+      console.warn('⚠️ No cache found');
+    }
   }
 
   tabs = [

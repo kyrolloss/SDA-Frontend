@@ -16,7 +16,7 @@
     </div>
   </div>
   <app-search
-    [(model)]="searchName"
+    [(model)]="searchNameValue"
     [placeholder]="'search_patient_name_phone' | translate"
     (search)="onSearch()"
   >
@@ -24,7 +24,7 @@
   <div class="row d-flex align-items-center justify-content-between my-3">
     <div
       class="col-lg-4 col-md-6 col-sm-6 my-3"
-      *ngFor="let patient of patientData"
+      *ngFor="let patient of patients"
     >
       <div class="patient-card">
         <div class="patient-details my-3">
@@ -46,9 +46,9 @@
       </div>
     </div>
     <app-pagination
-      [totalItems]="totalData"
-      [pageSize]="limit"
-      [currentPage]="CurrentPage"
+      [totalItems]="total"
+      [pageSize]="limit()"
+      [currentPage]="CurrentPage()"
       (pageChange)="onPageChange($event)"
     >
     </app-pagination>
@@ -63,6 +63,7 @@
 >
   <!-- Body -->
   <div modal-body class="modal-body">
+    <form [formGroup]="addPatientForm">
     <div class="form-group">
       <label for="name">{{ "full_name" | translate }}</label>
       <input
@@ -134,6 +135,7 @@
         </div>
       </div>
     </div>
+    </form>
   </div>
 
   <!-- Footer -->

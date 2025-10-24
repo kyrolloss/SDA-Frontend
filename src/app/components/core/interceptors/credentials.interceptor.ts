@@ -1,49 +1,54 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { catchError, switchMap, throwError, of } from 'rxjs';
+import { catchError, switchMap, throwError, delay, filter, take, Subject } from 'rxjs';
 import { inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 let isRefreshing = false;
+const refreshCompleted$ = new Subject<void>();
 
 export const credentialsInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
 
-  const clonedReq = req.clone({
-    withCredentials: true,
-  });
+  const clonedReq = req.clone({ withCredentials: true });
 
-  // تجاهل نفس طلبات الـ refresh و signin لتجنب الـ loop
-  if (req.url.includes('auth/refresh') || req.url.includes('auth/signin')) {
+  // avoid loops on auth endpoints
+  if (req.url.includes('auth/refresh') || req.url.includes('auth/signin') || req.url.includes('auth/logout')) {
     return next(clonedReq);
   }
 
   return next(clonedReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      // في حالة 401 (token expired)
-      if (error.status === 401 && !isRefreshing) {
-        isRefreshing = true;
-        console.log('🔄 Access token expired — trying refresh...');
+      if (error.status !== 401) {
+        return throwError(() => error);
+      }
 
+      // first 401 triggers refresh
+      if (!isRefreshing) {
+        isRefreshing = true;
         return authService.refreshToken().pipe(
+          // tiny wait so the browser applies the new cookies
+          delay(150),
           switchMap(() => {
             isRefreshing = false;
-            console.log('✅ Token refreshed, retrying original request...');
+            refreshCompleted$.next(); // wake up queued requests
+            // retry original request with fresh cookies
             return next(req.clone({ withCredentials: true }));
           }),
-          catchError(refreshErr => {
+          catchError((refreshErr) => {
             isRefreshing = false;
-            console.error('❌ Refresh failed — logging out');
-            authService.logout();
+            refreshCompleted$.next(); // unblock queued requests
+            authService.logout();     // refresh expired → force logout
             return throwError(() => refreshErr);
           })
         );
-      } else if (error.status === 401 && isRefreshing) {
-        // لو refresh شغال بالفعل، تجاهل الطلب مؤقتًا
-        console.log('⚠️ Refresh already in progress, skipping...');
-        return of(error as any);
       }
 
-      return throwError(() => error);
+      // if a refresh is already running, queue this request until it finishes
+      return refreshCompleted$.pipe(
+        filter(() => !isRefreshing),
+        take(1),
+        switchMap(() => next(req.clone({ withCredentials: true })))
+      );
     })
   );
 };
