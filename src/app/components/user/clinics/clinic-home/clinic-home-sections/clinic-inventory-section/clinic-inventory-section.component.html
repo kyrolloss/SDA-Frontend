@@ -13,12 +13,21 @@
       class="col-lg-4 col-md-12 d-flex justify-content-end align-items-center"
     >
       <button
-        class="signin-button w-auto d-flex align-items-center justify-content-center"
-        [routerLink]="['add']"     
-      >
-        <mat-icon>add</mat-icon>
-        {{ "add_material" | translate }}
-      </button> 
+  class="signin-button w-auto d-flex align-items-center justify-content-center"
+  [routerLink]="['add']"
+  [disabled]="!featureService.hasFeature('add_material')"
+>
+  <mat-icon>add</mat-icon>
+  {{ "add_material" | translate }}
+  <span *ngIf="featureService.getRemaining('add_material') !== null"
+        class="badge bg-warning mx-2">
+    {{ featureService.getRemaining('add_material') }} left
+  </span>
+  <span *ngIf="!featureService.hasFeature('add_material')" class="badge bg-secondary mx-2">
+    PRO
+  </span>
+</button>
+
     </div>      
   </div>  
 

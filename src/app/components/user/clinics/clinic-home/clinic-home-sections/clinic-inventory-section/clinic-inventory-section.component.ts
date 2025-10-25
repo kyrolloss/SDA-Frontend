@@ -9,6 +9,7 @@ import { Router } from 'express';
 import { RouterLink } from '@angular/router';
 import { ModalComponent } from '../../../../../shared/modal/modal.component';
 import { SearchComponent } from '../../../../../shared/search/search.component';
+import { ClinicFeaturesService } from '../../../../../core/services/clinic-features.service';
 
 @Component({
   selector: 'app-clinic-inventory-section',
@@ -31,6 +32,8 @@ export class ClinicInventorySectionComponent {
   isViewModalOpen = false;
   isEditModalOpen = false;
   isDeleteModalOpen = false;
+
+  constructor(public featureService: ClinicFeaturesService){}
 
 openEditModal() {
   this.isEditModalOpen = true;

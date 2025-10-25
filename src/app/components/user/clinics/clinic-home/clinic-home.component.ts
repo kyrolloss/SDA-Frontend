@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { ClinicFeaturesService } from '../../../core/services/clinic-features.service';
 
 @Component({
   selector: 'app-clinic-home',
@@ -15,7 +16,9 @@ export class ClinicHomeComponent implements OnInit{
   clinicId!: string;
   isClosed = false;
 
-  constructor(private route: ActivatedRoute,private router: Router){}
+  constructor(private route: ActivatedRoute,private router: Router,
+    public featureService: ClinicFeaturesService
+  ){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {

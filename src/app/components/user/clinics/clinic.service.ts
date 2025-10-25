@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiServiceService } from '../../../api-service.service';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,8 @@ export class ClinicService {
 
  constructor(private api: ApiServiceService) {}
 
-  getClinics(params: any): Observable<any> {
-  return this.api.get<any>('users/me/clinics', params);
+  getClinics(params: any){
+  return firstValueFrom(this.api.get('users/me/clinics', params));
 }
 getAppointmentForClinic(id: string, date?: string): Observable<any> {
   const params: any = {};
@@ -32,7 +32,7 @@ getAllAppointments(date?: string): Observable<any> {
 }
   
 
-  getAssignedCasesForEachClinic(clinicId:any,params: any): Observable<any> {
-    return this.api.get<any>(`clinics/${clinicId}/assigned-cases`, params);
+  getAssignedCasesForEachClinic(clinicId:any,params: any) {
+    return firstValueFrom(this.api.get<any>(`clinics/${clinicId}/assigned-cases`, params));
   }
 }
