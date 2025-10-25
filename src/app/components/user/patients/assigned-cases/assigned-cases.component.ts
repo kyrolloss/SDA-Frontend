@@ -1,114 +1,105 @@
-import { Component, OnInit } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
-import { SearchComponent } from '../../../shared/search/search.component';
 import { CommonModule } from '@angular/common';
-import { MatMenuModule } from '@angular/material/menu';
-import { PaginationComponent } from '../../../shared/pagination/pagination.component';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ClinicService } from '../../clinics/clinic.service';
+import { Component, computed, OnInit, signal } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { PaginationComponent } from '../../../shared/pagination/pagination.component';
+import { SearchComponent } from '../../../shared/search/search.component';
+import { ClinicService } from '../../clinics/clinic.service';
+import { PatientService } from '../patient.service';
+import {
+  injectQuery,
+  QueryClient
+} from '@tanstack/angular-query-experimental';
 
 @Component({
   selector: 'app-assigned-cases',
   standalone: true,
-  imports: [TranslateModule, MatIcon, RouterLink, SearchComponent,CommonModule,
-    MatMenuModule,PaginationComponent
-  ],
+  imports: [CommonModule, TranslateModule, MatIconModule, PaginationComponent, SearchComponent,RouterLink],
   templateUrl: './assigned-cases.component.html',
   styleUrl: './assigned-cases.component.scss'
 })
-export class AssignedCasesComponent implements OnInit{
+export class AssignedCasesComponent implements OnInit {
 
-  clinicId?: any;
-  CurrentPage=1;
-  limit=10;
-  searchName = '';
-  assignedCasesData:any[] = [];
-  totalData = 0 ;
+  clinicId?: string | null;
+  CurrentPage = signal(1);
+  limit = signal(10);
+  searchNameValue = '';
+  searchName = signal('');
 
   constructor(
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer,
-    private _ClinicService:ClinicService,
-    private _MatSnackBar:MatSnackBar,
     private _ActivatedRoute: ActivatedRoute,
-  ) {
-    this.matIconRegistry.addSvgIcon(
-      'custom_edit', // 👈 the name you’ll use in the template
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/media/edit-3-svgrepo-com (3) 1.svg')
-    );
-    this.matIconRegistry.addSvgIcon(
-      'custom_view', // 👈 the name you’ll use in the template
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/media/eye-svgrepo-com (4) 1.svg')
-    );
-  }
+    private _ClinicService: ClinicService,
+    private _PatientService: PatientService,
+    private _MatSnackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.clinicId = this._ActivatedRoute.parent?.snapshot.paramMap.get('id');
-    if(this.clinicId){
-      this.getAssignedCasesForClinic();
-    }
-    else {
-      console.log('Assigned cases in nav bar')
-    }
   }
 
-  getAssignedCasesForClinic(){
-    const params: any = {
-    page: this.CurrentPage,
-    limit: this.limit,
-  };
+  // ⚙️ computed params for reactive fetching
+  params = computed(() => ({
+    page: this.CurrentPage(),
+    limit: this.limit(),
+    ...(this.searchName().trim() && { search: this.searchName().trim() }),
+  }));
 
-  // ✅ Only add search if it's not empty
-  if (this.searchName && this.searchName.trim() !== '') {
-    params.search = this.searchName.trim();
-  }
-
-  this._ClinicService.getAssignedCasesForEachClinic(this.clinicId,params).subscribe({
-    next: (response) => {
-      console.log('assigned cases response', response);
-      this.assignedCasesData = response.data || [];
-      this.totalData = response.total || 0;
-    },
-    error: (err) => {
-      this._MatSnackBar.open(err.error.message || 'Failed to fetch', 'Close', {
-      duration: 3000,
-      panelClass: ['snackbar-error']
+  // 🧠 dynamic query based on whether we are in a clinic or not
+  assignedCasesQuery = injectQuery(() => ({
+    queryKey: this.clinicId
+      ? ['assignedCases', 'clinic', this.clinicId, this.params()]
+      : ['assignedCases', 'all', this.params()],
+    queryFn: () =>
+      this.clinicId
+        ? this._ClinicService.getAssignedCasesForEachClinic(this.clinicId, this.params())
+        : this._PatientService.getAllAssignedCases(this.params()),
+    throwError: (err:any) => {
+    this._MatSnackBar.open(err.error.message, 'Close', {
+      duration:3000,
+      panelClass:['snackbar-error']
     });
-    }
-  });
+  },
+  }));
+
+  // ✅ Getters for template
+  get isLoading() {
+    return this.assignedCasesQuery.isLoading();
   }
 
-  onPageChange(page:number){
-    this.CurrentPage = page;
-    this.getAssignedCasesForClinic();
+  get isError() {
+    return this.assignedCasesQuery.isError();
   }
 
-  onSearch(){
-    this.CurrentPage = 1;
-    this.getAssignedCasesForClinic();
+  get assignedCasesData() {
+    return this.assignedCasesQuery.data()?.data || [];
   }
+
+  get totalData() {
+    return this.assignedCasesQuery.data()?.total || 0;
+  }
+
+  // 🔄 Pagination + Search actions
+  onSearch() {
+    this.CurrentPage.set(1);
+    this.searchName.set(this.searchNameValue);
+    this.assignedCasesQuery.refetch();
+  }
+
+  onPageChange(page: number) {
+    this.CurrentPage.set(page);
+    this.assignedCasesQuery.refetch();
+  }
+
   getStatusClass(status: string): string {
-  switch (status?.toLowerCase()) {
-    case 'new':
-      return 'new';
-    case 'inprogress':
-      return 'in-progress';
-    case 'completed':
-      return 'completed';
-    default:
-      return '';
+    switch (status?.toLowerCase()) {
+      case 'new': return 'new';
+      case 'inprogress': return 'in-progress';
+      case 'completed': return 'completed';
+      default: return '';
+    }
   }
-}
-
-  openViewModal(){
-
-  }
-  openEditModal(){
-
-  }
-
+  openViewModal(){ } 
+  openEditModal(){ }
 }
