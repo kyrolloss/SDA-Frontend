@@ -1,3 +1,4 @@
+import { loaderInterceptor } from './app/components/core/interceptors/loader';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { provideRouter } from '@angular/router';
@@ -45,6 +46,7 @@ persistQueryClient({
 bootstrapApplication(AppComponent, {
   providers: [
   provideRouter(routes),
+   provideHttpClient(withInterceptors([loaderInterceptor])),
   provideHttpClient(withFetch(), withInterceptors([credentialsInterceptor])),
   // provideHttpClient(withFetch()),
   importProvidersFrom(
