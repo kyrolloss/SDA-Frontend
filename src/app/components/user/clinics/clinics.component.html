@@ -8,13 +8,13 @@
 
   <!-- Search -->
   <app-search
-  [(model)]="searchName"
+  [(model)]="searchNameValue"
   [placeholder]="'Search clinic name' | translate"
   (search)="onSearch()">
   </app-search> 
 
   <!-- Owner Clinics -->
-  @if(ownerClinicsData.length > 0){
+  @if(ownerClinics.length > 0){
     <div class="d-flex justify-content-between align-items-center mb-3">
     <h5 class="fw-bold title-table">{{ 'Owner Clinics' | translate }}</h5>
     <a
@@ -36,7 +36,7 @@
         </tr>
       </thead>
       <tbody>
-  <tr *ngFor="let clinic of ownerClinicsData" (click)="goToClinicDetails(clinic.id)" style="cursor: pointer;">
+  <tr *ngFor="let clinic of ownerClinics" (click)="goToClinicDetails(clinic)" style="cursor: pointer;">
     <td>{{ clinic.name }}</td>
     <td>{{ clinic.location }}</td>
     <td>{{ clinic.createdAt | date: 'dd-MM-yyyy' }}</td>
@@ -47,15 +47,15 @@
   </div>
   <app-pagination
     [totalItems]="ownerTotal"
-    [pageSize]="limit"
-    [currentPage]="ownerCurrentPage"
+    [pageSize]="limit()"
+    [currentPage]="ownerCurrentPage()"
     (pageChange)="onOwnerPageChange($event)"
   >
   </app-pagination>
   }
 
   <!-- Operator Clinics -->
-     @if(operatorClinicsData.length > 0){
+     @if(operatorClinics.length > 0){
 
   <div class="d-flex justify-content-between align-items-center my-3">
     <h5 class="fw-bold title-table">{{ 'Operator Clinics' | translate }}</h5>
@@ -77,7 +77,7 @@
         </tr>
       </thead>
       <tbody>
-  <tr *ngFor="let clinic of operatorClinicsData" (click)="goToClinicDetails(clinic.id)" style="cursor: pointer;">
+  <tr *ngFor="let clinic of operatorClinics" (click)="goToClinicDetails(clinic)" style="cursor: pointer;">
     <td>{{ clinic.name }}</td>
     <td>{{ clinic.location }}</td>
     <td>{{ clinic.ownerName }}</td>
@@ -87,14 +87,14 @@
   </div>
   <app-pagination
     [totalItems]="operatorTotal"
-    [pageSize]="limit"
-    [currentPage]="operatorCurrentPage"
+    [pageSize]="limit()"
+    [currentPage]="operatorCurrentPage()"
     (pageChange)="onOperatorPageChange($event)"
   >
   </app-pagination>
      }
   <!-- Sub-owner Clinics -->
-     @if(subOwnerClinicsData.length > 0){
+     @if(subOwnerClinics.length > 0){
 
   <div class="d-flex justify-content-between align-items-center my-3">
     <h5 class="fw-bold title-table">{{ 'Sub-owner Clinics' | translate }}</h5>
@@ -110,7 +110,7 @@
         </tr>
       </thead>
       <tbody>
-  <tr *ngFor="let clinic of subOwnerClinicsData" (click)="goToClinicDetails(clinic.id)" style="cursor: pointer;">
+  <tr *ngFor="let clinic of subOwnerClinics" (click)="goToClinicDetails(clinic)" style="cursor: pointer;">
     <td>{{ clinic.name }}</td>
     <td>{{ clinic.ownerName }}</td>
     <td>{{ clinic.location }}</td>
@@ -121,8 +121,8 @@
   </div>
   <app-pagination
     [totalItems]="subOwnerTotal"
-    [pageSize]="limit"
-    [currentPage]="subOwnerCurrentPage"
+    [pageSize]="limit()"
+    [currentPage]="subOwnerCurrentPage()"
     (pageChange)="onSubOwnerPageChange($event)"
   >
   </app-pagination>

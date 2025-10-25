@@ -31,6 +31,7 @@
   ul {
     list-style: none;
     padding: 0;
+    position: relative;
 
     li {
       color: var(--text-gray-home-about);
@@ -41,6 +42,7 @@
       cursor: pointer;
       font-size: 1.2rem;
       font-weight: 500;
+      position: relative;
     }
   }
 
@@ -53,6 +55,35 @@
       color: #fff !important;
     }
   }
+
+  .pro-badge {
+      position: absolute;
+      top: 3px;      /* فوق الزاوية */
+      right: 8px;    /* على اليمين */
+      background: #ffcc00;
+      color: #000;
+      font-size: 9px;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 1px 4px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      text-transform: uppercase;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+
+      mat-icon {
+        font-size: 11px;
+        height: 12px;
+        width: 12px;
+      }
+    }
+
+    &.disabled-feature {
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
 }
 
 img {

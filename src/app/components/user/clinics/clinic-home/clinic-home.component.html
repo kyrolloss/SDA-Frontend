@@ -7,27 +7,42 @@
       </li>
       <li routerLink="home" routerLinkActive="active">
         <mat-icon>home</mat-icon>
-        <span *ngIf="!isClosed">{{"HOME" | translate}}</span>
+        <span *ngIf="!isClosed">{{ "HOME" | translate }}</span>
       </li>
       <li routerLink="appointments" routerLinkActive="active">
         <mat-icon>event</mat-icon>
-        <span *ngIf="!isClosed">{{"appointments" | translate}}</span>
+        <span *ngIf="!isClosed">{{ "appointments" | translate }}</span>
       </li>
       <li routerLink="packages" routerLinkActive="active">
         <mat-icon>category</mat-icon>
-        <span *ngIf="!isClosed">{{"packages" | translate}}</span>
+        <span *ngIf="!isClosed">{{ "packages" | translate }}</span>
       </li>
       <li routerLink="inventory" routerLinkActive="active">
         <mat-icon>inventory</mat-icon>
-        <span *ngIf="!isClosed">{{"inventory" | translate}}</span>
+        <span *ngIf="!isClosed">{{ "inventory" | translate }}</span>
       </li>
-      <li routerLink="assigned-cases" routerLinkActive="active">
-        <mat-icon>person</mat-icon>
-        <span *ngIf="!isClosed">{{"assigned_cases" | translate}}</span>
-      </li>
-      <li  (click)="backToClinics()">
+
+      <li
+  routerLink="assigned-cases"
+  routerLinkActive="active"
+  [class.disabled-feature]="!featureService.hasFeature('assigned_cases')"
+>
+  <mat-icon>person</mat-icon>
+  <span *ngIf="!isClosed">{{ "assigned_cases" | translate }}</span>
+
+  <!-- ✅ Badge PRO في الزاوية -->
+  <span
+    *ngIf="!featureService.hasFeature('assigned_cases')"
+    class="pro-badge"
+  >
+    <mat-icon>lock</mat-icon> pro
+  </span>
+</li>
+
+
+      <li (click)="backToClinics()">
         <mat-icon>logout</mat-icon>
-        <span *ngIf="!isClosed">{{"exit" | translate}}</span>
+        <span *ngIf="!isClosed">{{ "exit" | translate }}</span>
       </li>
     </ul>
   </div>

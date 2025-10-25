@@ -2,6 +2,7 @@ import { ViewDentalHistoryDetailsComponent } from './components/user/patients/vi
 import { Routes } from '@angular/router';
 import { guestGuard } from './components/core/guards/guest/guest.guard';
 import { authGuard } from './components/core/guards/auth/auth.guard';
+import { FeatureGuard } from './components/core/guards/feature/feature-guard.guard';
 
 export const routes: Routes = [
   // Public layout
@@ -256,6 +257,8 @@ export const routes: Routes = [
                       import(
                         './components/user/clinics/clinic-home/clinic-home-sections/add-material/add-material.component'
                       ).then((m) => m.AddMaterialComponent),
+                      canActivate: [FeatureGuard],
+                      data: { feature: 'add_material' }
                   },
                 ],
               },
@@ -265,6 +268,8 @@ export const routes: Routes = [
                   import(
                     './components/user/patients/assigned-cases/assigned-cases.component'
                   ).then((m) => m.AssignedCasesComponent),
+                  canActivate: [FeatureGuard],
+                  data: { feature: 'assigned_cases' }
               },
             ],
           },
