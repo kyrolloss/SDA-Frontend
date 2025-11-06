@@ -487,5 +487,7 @@
   "Check-up Price": "سعر الكشف",
   "Enter Check-up Price": "أدخل سعر الكشف",
   "Enter a valid check-up price": "أدخل سعر كشف صحيح",
-  "Join as a owner": "انضم كمالك"
+  "Join as a owner": "انضم كمالك",
+  "Select Package Type" :"اختر نوع الباقة",
+  "All Types":"كل الأنواع"
 }

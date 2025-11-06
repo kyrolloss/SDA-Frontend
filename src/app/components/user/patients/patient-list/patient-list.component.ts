@@ -1,4 +1,3 @@
-import { throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Component, computed, OnInit, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
