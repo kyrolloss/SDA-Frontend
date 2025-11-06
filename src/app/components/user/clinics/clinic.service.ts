@@ -44,4 +44,8 @@ getAllAppointments(date?: string): Observable<any> {
  joinClinic(id: string, payload: any): Observable<any> {
     return this.api.post<any>(`clinics/${id}/join-request`, payload);
   }
+
+  getPackages(params: any) {
+  return firstValueFrom(this.api.get<any>('packages', params));
+}
 }
