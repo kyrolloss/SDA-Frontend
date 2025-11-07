@@ -25,13 +25,17 @@ export class StartCaseStateService {
   }
   setClinicId(id: string) {
     this.clinicId = id;
+    localStorage.setItem('clinicId', id);
   }
 
   getClinicId(): string | null {
-    return this.clinicId;
+    if (this.clinicId) return this.clinicId;
+    const stored = localStorage.getItem('clinicId');
+    return stored ? stored : null;
   }
 
   clearClinicId() {
     this.clinicId = null;
+    localStorage.removeItem('clinicId');
   }
 }

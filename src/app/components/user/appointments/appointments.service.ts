@@ -28,5 +28,8 @@ showAvailableTimeSlots(
 
   return this.api.get<any>('doctors/available-slots', params);
 }
+bookAppointment(params: any): Observable<any> {
+  return this.api.post<any>('appointments', params);
+}
 
 }
