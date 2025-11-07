@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,7 +37,7 @@ import { CaseStateService } from '../assign-case/case-state.service';
   templateUrl: './manual-diagnosis.component.html',
   styleUrl: './manual-diagnosis.component.scss',
 })
-export class ManualDiagnosisComponent implements OnInit {
+export class ManualDiagnosisComponent implements OnInit , OnDestroy{
   diagnosisName = '';
   treatmentPlan = '';
   instructionBetweenVisits = '';
@@ -292,5 +292,9 @@ isSelectedSlot(slot: any, dateKey: unknown): boolean {
     this.selectedDate === String(dateKey)
   );
 }
-
+  ngOnDestroy() {
+    this.startCaseState.clearStartCaseData();
+    this.startCaseState.clearClinicId();
+    this.assignCaseState.clearCase();
+  }
 }
