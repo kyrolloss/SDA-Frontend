@@ -36,18 +36,18 @@ export class PatientService {
   getPatients(params:any): Promise<any> {
     return firstValueFrom(this._ApiServiceService.get('users/me/patients', params));
   }
- 
-  getPatientAppointmentHistory(patientId:any,params?:any): Observable<any> {
-    return this._ApiServiceService.get<any>(`patients/${patientId}/appointments/history`, params);
+
+  getPatientAppointmentHistory(patientId:any,params?:any) {
+    return firstValueFrom(this._ApiServiceService.get<any>(`patients/${patientId}/appointments/history`, params));
   }
 
-  getPatientDentalHistory(patientId:any,params?:any): Observable<any> {
-    return this._ApiServiceService.get<any>(`patients/${patientId}/cases`, params);
+  getPatientDentalHistory(patientId:any,params?:any){
+    return firstValueFrom(this._ApiServiceService.get<any>(`patients/${patientId}/cases`, params));
   }
 
-  // getAssignedCases(): Observable<any>{
-  //   return this._ApiServiceService.get<any>(`clinics/assigned-cases`, params);
-  // }
+  getAllAssignedCases(params:any){
+    return firstValueFrom(this._ApiServiceService.get<any>(`patients/assigned-cases`, params));
+  }
 
 
 

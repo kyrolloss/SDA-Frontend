@@ -9,6 +9,7 @@
 .history-details {
   display: flex;
   align-items: center;
+  justify-content: center;
   background: var(--bg-light-gray);
   color: var(--text-gray) !important;
   border-radius: 6px;
@@ -17,7 +18,7 @@
   font-size: 1.1rem;
   font-weight: 500;
   width: fit-content;
-  min-width: 80px;
+  min-width: 200px;
   margin: 0px 4px;
 }
 .card {

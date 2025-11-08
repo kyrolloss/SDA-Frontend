@@ -31,8 +31,21 @@ getAllAppointments(date?: string): Observable<any> {
   return this.api.get<any>(`users/me/appointments`, params);
 }
   
-
-  getAssignedCasesForEachClinic(clinicId:any,params: any): Observable<any> {
-    return this.api.get<any>(`clinics/${clinicId}/assigned-cases`, params);
+  getAssignedCasesForEachClinic(clinicId:any,params: any) {
+    return firstValueFrom(this.api.get<any>(`clinics/${clinicId}/assigned-cases`, params));
   }
+
+  createClinic(params:any): Observable<any>{
+    return this.api.post<any>('clinics', params);
+  }
+  getAvailableClinics(params: any): Observable<any> {
+  return this.api.get<any>('clinics/available-clinics', params);
+}
+ joinClinic(id: string, payload: any): Observable<any> {
+    return this.api.post<any>(`clinics/${id}/join-request`, payload);
+  }
+
+  getPackages(params: any) {
+  return firstValueFrom(this.api.get<any>('packages', params));
+}
 }

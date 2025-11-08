@@ -18,6 +18,7 @@
     </div>
   </div>
   <app-search
+  [(model)]="searchNameValue"
   [placeholder]="'search_patient_name_phone' | translate"
   (search)="onSearch()">
   </app-search>
@@ -63,8 +64,8 @@
     </div>
     <app-pagination
       [totalItems]="totalData"
-      [pageSize]="limit"
-      [currentPage]="CurrentPage"
+      [pageSize]="limit()"
+      [currentPage]="CurrentPage()"
       (pageChange)="onPageChange($event)"
     >
     </app-pagination>

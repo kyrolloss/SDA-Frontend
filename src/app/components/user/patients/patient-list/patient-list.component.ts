@@ -1,4 +1,3 @@
-import { throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Component, computed, OnInit, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -90,33 +89,6 @@ export class PatientListComponent {
     return this.patientsQuery.data()?.total || 0;
   }
 
-//   getPatients() {
-//   const params: any = {
-//     page: this.CurrentPage,
-//     limit: this.limit,
-//   };
-
-//   // ✅ Only add search if it's not empty
-//   if (this.searchName && this.searchName.trim() !== '') {
-//     params.search = this.searchName.trim();
-//   }
-
-//   this._PatientService.getPatients(params).subscribe({
-//     next: (response) => {
-//       console.log('Patients response', response);
-//       this.patientData = response.data || [];
-//       this.totalData = response.total || 0;
-//     },
-//     error: (err) => {
-//       this._MatSnackBar.open(err.error.message || 'Failed to fetch', 'Close', {
-//       duration: 3000,
-//       panelClass: ['snackbar-error']
-//     });
-//     }
-//   });
-// }
-
-
   onSearch(){
     this.CurrentPage.set(1);
     this.searchName.set(this.searchNameValue);
@@ -128,7 +100,6 @@ export class PatientListComponent {
   }
 
   goToDetails(patient:any) {
-  // this._PatientService.setSelectedPatient(patient); // store full patient data
   this._Router.navigate([`/dashboard/patients/${patient.id}`]);
   }
 
