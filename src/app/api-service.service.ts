@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, last } from 'rxjs/operators';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class ApiServiceService {
   
 
   constructor(private http: HttpClient, private router: Router) {}
-
+ 
   
   get<T>(endpoint: string, params: any = {}): Observable<T> {
     let headers = new HttpHeaders().set('Accept', 'application/json');
