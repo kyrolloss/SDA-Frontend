@@ -3,18 +3,18 @@
   border-radius: 10px;
   // box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
- .route {
-    color: #8f8f8f;
-    font-weight: 400;
-    font-family: "IBM Plex Sans";
-    font-size: 27px;
-  }
-  .clinicActive {
-    color: var(--text-gray-head-table);
-    font-family: "IBM Plex Sans";
-    font-size: 30px;
-    font-weight: 500;
-  }
+.route {
+  color: #8f8f8f;
+  font-weight: 400;
+  font-family: "IBM Plex Sans";
+  font-size: 27px;
+}
+.clinicActive {
+  color: var(--text-gray-head-table);
+  font-family: "IBM Plex Sans";
+  font-size: 30px;
+  font-weight: 500;
+}
 .date-btn {
   border: none;
   background: transparent;
@@ -194,7 +194,6 @@
   z-index: 200;
   animation: slideIn 0.3s ease forwards;
   overflow-y: auto;
-  
 }
 
 @keyframes slideIn {
@@ -212,31 +211,31 @@
 }
 
 .details-body {
-  margin-top: 20px;;
+  margin-top: 20px;
 }
 
-.patientDetails{
+.patientDetails {
   padding-bottom: 10px;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #BFBFBF;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #bfbfbf;
   .patientName {
-  color: var( --text-gray-head-table);
-  font-size: 23px;
-  font-weight: 400;
-}
-.patientInfo{
-  color: var(--text-gray-sidebar);
-font-size: 19px;
-font-weight: 400;
-}
-.patientId{
-  color:var(--brown-dark);
-   display: inline-block;
-  max-width: 100%; /* ما يطلعش برا */
-  white-space: normal !important; /* ينزل سطر جديد */
-  word-break: break-all; /* يكسر الكلمة الطويلة */
-  line-break: anywhere;
-}
+    color: var(--text-gray-head-table);
+    font-size: 23px;
+    font-weight: 400;
+  }
+  .patientInfo {
+    color: var(--text-gray-sidebar);
+    font-size: 19px;
+    font-weight: 400;
+  }
+  .patientId {
+    color: var(--brown-dark);
+    display: inline-block;
+    max-width: 100%; /* ما يطلعش برا */
+    white-space: normal !important; /* ينزل سطر جديد */
+    word-break: break-all; /* يكسر الكلمة الطويلة */
+    line-break: anywhere;
+  }
 }
 
 .actions {
@@ -254,7 +253,7 @@ font-weight: 400;
   }
 
   .btn-filled {
-    background: #B19E7F;
+    background: #b19e7f;
     color: white;
     padding: 8px 16px;
     border: none;
@@ -282,7 +281,7 @@ font-weight: 400;
     border-radius: 6px;
     transition: 0.3s ease;
   }
-.btn-outline {
+  .btn-outline {
     border: 1px solid #b19e7f;
     background: transparent;
     color: #b19e7f;
@@ -292,7 +291,7 @@ font-weight: 400;
   }
 
   .btn-filled {
-    background: #B19E7F;
+    background: #b19e7f;
     color: white;
     padding: 8px 16px;
     border: none;
@@ -304,7 +303,6 @@ font-weight: 400;
   .btn-filled:hover {
     opacity: 0.9;
   }
-
 }
 
 .close-btn {
@@ -315,6 +313,256 @@ font-weight: 400;
   cursor: pointer;
   border-radius: 50%;
 }
-.first-section-tap{
-      min-height: calc(100vh - 260px);
+.first-section-tap {
+  min-height: calc(100vh - 260px);
+}
+.responsive {
+  display: contents;
+}
+/* 📱 Responsive styles for mobile view */
+
+@media (max-width: 992px) {
+  .appointment-details-sidebar {
+    width: 100%;
+    top: 120px;
+    height: 100vh;
+    border-left: none;
+    
+  }
+  .week-days{
+    justify-content: space-between;
+  }
+      .d-flex.justify-content-between.align-items-center.mb-3{
+        align-items: center !important;
+      }
+      
+      .calendar {
+    display: flex;
+    flex-direction: row;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .time-column {
+    display: block;
+    width: 80px;
+    border-right: 1px solid var(--border-appointment-two);
+    background: var(--appointment-calendar);
+  }
+
+  .time-slot {
+    display: block;
+    height: 60px;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 12px;
+    border-bottom: 1px solid var(--border-appointment);
+  }
+
+  /* ✅ خلى الكروت تظهر كـ list مش absolute */
+  .appointments-area {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    overflow-y: auto;
+  }
+
+  .appointment-card {
+    position: relative !important; /* عشان ما تبقاش فوق بعض */
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    min-width: unset !important;
+    height: auto !important;
+    margin: 0 !important;
+  }
+
+  .grid-lines {
+    display: none; /* شيل خطوط الشبكة عشان متبوظ الشكل */
+  }
+}
+@media (max-width: 575px) {
+  .appointments-container {
+    padding: 12px !important;
+  }
+  .responsive {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .d-flex.justify-content-between.align-items-center.mb-3 {
+    flex-direction: column;
+    align-items: center !important;
+    gap: 10px;
+  }
+  .date-btn {
+    margin-right: 0px !important;
+  }
+  .signin-button {
+    font-weight: 500;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .route,
+  .clinicActive {
+    font-size: 22px !important;
+  }
+
+  .week-days {
+    gap: 0px;
+    padding-bottom: 0;
+  }
+
+  .day-box {
+    width: 45px;
+    min-width: 45px;
+    padding: 6px;
+    border-radius: 6px;
+  }
+
+  .day-label {
+    font-size: 11px;
+  }
+
+  .day-date {
+    font-size: 14px;
+  }
+
+     .calendar {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    overflow-x: auto; /* scroll أفقي */
+    overflow-y: hidden;
+    background: var(--bg-primary);
+    white-space: nowrap;
+  }
+
+  /* ✅ شريط الساعات يبقى أفقي */
+  .time-column {
+            display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        background: var(--appointment-calendar);
+        border-right: none;
+        border-bottom: 1px solid var(--border-appointment-two);
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 6px 8px;
+        width: 100%;
+  }
+
+  .time-slot {
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    border-bottom: none;
+    font-size: 11px;
+    color: #777;
+  }
+
+  /* ✅ الكروت (المواعيد) تظهر تحت الساعات وتتمدد طبيعي */
+  .appointments-area {
+    display: block;
+    position: relative;
+    overflow-x: auto;
+    overflow-y: visible;
+    min-height: 420px;
+    padding: 10px 0;
+    white-space: nowrap;
+  }
+
+  .appointment-card {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 85%;
+    min-width: 220px;
+    margin: 10px;
+    left: auto !important;
+    top: auto !important;
+    height: auto !important;
+  }
+
+  /* ✅ لو الأيام كتيرة تبقى scroll أفقي */
+  .week-days {
+    overflow-x: auto;
+  }
+
+  .week-days::-webkit-scrollbar {
+    height: 5px;
+  }
+  .week-days::-webkit-scrollbar-thumb {
+    background: #b19e7f;
+    border-radius: 3px;
+  }
+
+  .time-slot {
+    border-bottom: 0;
+    height: fit-content;
+  }
+  .appointments-area {
+    min-height: 400px;
+  }
+
+  .appointment-details-sidebar {
+    width: 100%;
+    top: 60px;
+    height: 100vh;
+    border-left: none;
+    
+  }
+  .responsive-actions {
+      height: 20px !important;
+      .actions button{
+        padding: 7px;
+      }
+    }
+        .calendar {
+    display: flex;
+    flex-direction: row;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .time-column {
+    display: block;
+    width: 80px;
+    border-right: 1px solid var(--border-appointment-two);
+    background: var(--appointment-calendar);
+  }
+
+  .time-slot {
+    display: block;
+    height: 60px;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 12px;
+    border-bottom: 1px solid var(--border-appointment);
+  }
+
+  /* ✅ خلى الكروت تظهر كـ list مش absolute */
+  .appointments-area {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    overflow-y: auto;
+  }
+
+  .appointment-card {
+    position: relative !important; /* عشان ما تبقاش فوق بعض */
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    min-width: unset !important;
+    height: auto !important;
+    margin: 0 !important;
+  }
 }

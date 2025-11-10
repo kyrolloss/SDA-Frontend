@@ -53,6 +53,10 @@
   cursor: pointer;
   margin: 0px 10px;
 }
+.title{
+  color:  var(--text-gray-head-table);
+
+}
 @media (max-width: 768px) {
   .modal-window {
     width: 100%;
