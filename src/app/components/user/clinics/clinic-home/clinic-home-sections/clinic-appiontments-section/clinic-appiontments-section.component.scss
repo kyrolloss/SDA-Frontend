@@ -368,18 +368,77 @@
     font-size: 14px;
   }
 
-  .calendar {
-    flex-direction: column;
+     .calendar {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    overflow-x: auto; /* scroll أفقي */
+    overflow-y: hidden;
+    background: var(--bg-primary);
+    white-space: nowrap;
   }
 
+  /* ✅ شريط الساعات يبقى أفقي */
   .time-column {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 10px;
-    border-right: none;
-    border-bottom: 1px solid var(--border-appointment-two);
+            display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        background: var(--appointment-calendar);
+        border-right: none;
+        border-bottom: 1px solid var(--border-appointment-two);
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 6px 8px;
+        width: 100%;
   }
+
+  .time-slot {
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    border-bottom: none;
+    font-size: 11px;
+    color: #777;
+  }
+
+  /* ✅ الكروت (المواعيد) تظهر تحت الساعات وتتمدد طبيعي */
+  .appointments-area {
+    display: block;
+    position: relative;
+    overflow-x: auto;
+    overflow-y: visible;
+    min-height: 420px;
+    padding: 10px 0;
+    white-space: nowrap;
+  }
+
+  .appointment-card {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 85%;
+    min-width: 220px;
+    margin: 10px;
+    left: auto !important;
+    top: auto !important;
+    height: auto !important;
+  }
+
+  /* ✅ لو الأيام كتيرة تبقى scroll أفقي */
+  .week-days {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+
+  .week-days::-webkit-scrollbar {
+    height: 5px;
+  }
+  .week-days::-webkit-scrollbar-thumb {
+    background: #b19e7f;
+    border-radius: 3px;
+  }
+
   .time-slot {
     border-bottom: 0;
     height: fit-content;
