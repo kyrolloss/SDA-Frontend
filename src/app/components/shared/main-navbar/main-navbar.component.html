@@ -16,44 +16,58 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item itemsLinks" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" aria-current="page" [routerLink]="['/dashboard/homeDashboard']"
-   >{{
-            "HOME" | translate
-          }}</a>
-        </li>
-        <li class="nav-item itemsLinks" routerLinkActive="active" [routerLink]="['/dashboard/appointments']">
-          <a class="nav-link">{{ "Appointments" | translate }}</a>
+        <li
+          class="nav-item itemsLinks"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a
+            class="nav-link"
+            aria-current="page"
+            [routerLink]="['/dashboard/homeDashboard']"
+            >{{ "HOME" | translate }}</a
+          >
         </li>
         <li
-  class="nav-item dropdown"
-  [class.active]="isPatientsActive"
->
-  <a
-    class="nav-link dropdown-toggle"
-    role="button"
-    data-bs-toggle="dropdown"
-    aria-expanded="false"
-  >
-    {{ "Patients" | translate }}
-  </a>
-  <ul class="dropdown-menu">
-    <li>
-      <a class="dropdown-item" [routerLink]="['/dashboard/patients/list']">
-        {{ "patient_list" | translate }}
-      </a>
-    </li>
-    <li>
-      <a class="dropdown-item" [routerLink]="['/dashboard/patients/assigned-cases']">
-        {{ "assigned_cases" | translate }}
-      </a>
-    </li>
-  </ul>
-</li>
+          class="nav-item itemsLinks"
+          routerLinkActive="active"
+          [routerLink]="['/dashboard/appointments']"
+        >
+          <a class="nav-link">{{ "Appointments" | translate }}</a>
+        </li>
+        <li class="nav-item dropdown" [class.active]="isPatientsActive">
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ "Patients" | translate }}
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                [routerLink]="['/dashboard/patients/list']"
+              >
+                {{ "patient_list" | translate }}
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                [routerLink]="['/dashboard/patients/assigned-cases']"
+              >
+                {{ "assigned_cases" | translate }}
+              </a>
+            </li>
+          </ul>
+        </li>
 
-        
         <li class="nav-item itemsLinks" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/dashboard/clinics']">{{ "Clinics" | translate }}</a>
+          <a class="nav-link" [routerLink]="['/dashboard/clinics']">{{
+            "Clinics" | translate
+          }}</a>
         </li>
         <li class="nav-item itemsLinks" routerLinkActive="active">
           <a class="nav-link">{{ "Laboratory" | translate }}</a>
@@ -132,8 +146,7 @@
               >
                 <path
                   d="M21.64 13a1 1 0 00-1.05-.14 8.05 8.05 0 01-3.37.73 8.15 8.15 0 01-8.14-8.1 8.59 8.59 0 01.25-2A1 1 0 008 2.36a10.14 10.14 0 1014 11.69 1 1 0 00-.36-1.05z"
-                />
-              </svg
+                /></svg
             ></a>
           </li>
           <li class="nav-item right-section-nav">
@@ -162,10 +175,21 @@
             ></a>
           </li>
           <li class="nav-item right-section-nav">
-              <a class="nav-link" style="width: 70px; height: 70px; cursor: pointer; border-radius: 50%;"
-                ><img class="w-100" src="../../../../assets/media/pic-not-found.png" alt="">
-              </a>
-            </li>
+            <a
+              class="nav-link"
+              style="
+                width: 70px;
+                height: 70px;
+                cursor: pointer;
+                border-radius: 50%;
+              "
+              ><img
+                class="w-100"
+                src="../../../../assets/media/pic-not-found.png"
+                alt=""
+              />
+            </a>
+          </li>
         </ul>
       </span>
     </div>

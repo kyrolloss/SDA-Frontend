@@ -85,4 +85,13 @@
       height: fit-content !important;
       padding: 0px !important;
     }
+    @media (max-width: 780px){
+      .dropdown{
+        padding-left: 30px;
+        .dropdown-item{
+          padding-left: 60px;
+        }
+      }
+    }
   }
+  

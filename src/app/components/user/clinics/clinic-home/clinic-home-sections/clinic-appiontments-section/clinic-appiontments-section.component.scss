@@ -338,9 +338,9 @@
     margin-right: 0px !important;
   }
   .signin-button {
-    padding: 9px;
-    font-size: 14px;
     font-weight: 500;
+    padding: 10px;
+    font-size: 13px;
   }
 
   .route,
@@ -354,8 +354,8 @@
   }
 
   .day-box {
-    width: 48px;
-    min-width: 48px;
+    width: 45px;
+    min-width: 45px;
     padding: 6px;
     border-radius: 6px;
   }
@@ -428,7 +428,6 @@
   .week-days {
     justify-content: flex-start;
     overflow-x: auto;
-    padding-bottom: 5px;
   }
 
   .week-days::-webkit-scrollbar {
