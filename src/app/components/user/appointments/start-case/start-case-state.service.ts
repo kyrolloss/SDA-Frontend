@@ -18,12 +18,19 @@ export class StartCaseStateService {
     }
   }
 
-  getStartCaseData(): any {
+   getStartCaseData(): any {
     if (this.startCaseData) return this.startCaseData;
     if (!this.isBrowser()) return null;
 
     const stored = localStorage.getItem('startCaseData');
-    return stored ? JSON.parse(stored) : null;
+    if (!stored) return null;
+
+    try {
+      this.startCaseData = JSON.parse(stored);
+      return this.startCaseData;
+    } catch {
+      return null;
+    }
   }
 
   clearStartCaseData() {

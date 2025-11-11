@@ -569,6 +569,7 @@ export class StartCaseComponent implements OnInit, OnDestroy {
   private timerRef?: any;
   private seconds = 0;
   private currentSection: string | null = null;
+  caseId:any;
 
   audioBlob: Blob | null = null;
   audioUrl: string | null = null;
@@ -583,6 +584,8 @@ export class StartCaseComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    const savedData = this.startCaseState.getStartCaseData();
+    console.log('💾 From LocalStorage at init:', savedData);
     this.fromPage = this.route.snapshot.queryParamMap.get('from');
     this.appointmentDate = this.route.snapshot.queryParamMap.get('date');
     const id = this.route.snapshot.paramMap.get('id');
@@ -601,13 +604,68 @@ export class StartCaseComponent implements OnInit, OnDestroy {
       'patientId:',
       this.patientId
     );
-
+    this.caseId=this.caseState.getCaseData()?.caseId;
+    
     const caseData = this.caseState.getCaseData();
     if (caseData) {
       this.chiefComplaint = caseData.chiefComplaint;
       console.log('📦 Loaded from Assign Case:', caseData);
     }
+     if (savedData) {
+    console.log('♻️ Restoring Start Case Data:', savedData);
+    this.restoreStartCase(savedData);
   }
+  }
+private restoreStartCase(savedData: any) {
+  this.chiefComplaint = savedData.chiefComplaint || '';
+
+  if (savedData.images) {
+    this.uploadedFiles = savedData.images.map((name: string) => ({
+      name,
+      preview: '',
+      file: null,
+    }));
+  }
+
+  const restoreSelection = (
+    options: { label: string; selected: boolean }[],
+    selectedLabels: string[]
+  ) => {
+    options.forEach((opt) => {
+      opt.selected = selectedLabels.includes(opt.label);
+    });
+  };
+
+  const ci = savedData.clinicalInvestigation;
+  if (!ci) return;
+
+  restoreSelection(this.chiefComplaintOptions, ci['Chief Complaint'] || []);
+  restoreSelection(this.natureOfComplaintOptions, ci['Nature of Complaint'] || []);
+  restoreSelection(this.aggravatingFactorsOptions, ci['Aggravating Factors'] || []);
+  restoreSelection(this.medicalHistoryOptions, ci['Medical History'] || []);
+  restoreSelection(this.medicationsOfConcernOptions, ci['Medications of Concern'] || []);
+  restoreSelection(this.facialSymmetryOptions, ci['Facial Symmetry'] || []);
+  restoreSelection(this.facialProfileOptions, ci['Facial Profile'] || []);
+  restoreSelection(this.lymphNodesOptions, ci['Lymph Nodes'] || []);
+  restoreSelection(this.tmjSoundsOptions, ci['TMJ Sounds'] || []);
+  restoreSelection(this.tmjOpeningOptions, ci['TMJ Opening'] || []);
+  restoreSelection(this.softTissueOptions, ci['Soft Tissue Examination'] || []);
+  restoreSelection(this.gingivalColorOptions, ci['Gingival Color & Texture'] || []);
+  restoreSelection(this.gingivalEnlargementOptions, ci['Gingival Enlargement'] || []);
+  restoreSelection(this.bleedingOnProbingOptions, ci['Bleeding on Probing'] || []);
+  restoreSelection(this.pocketDepthOptions, ci['Pocket Depth'] || []);
+  restoreSelection(this.occlusionClassOptions, ci['Occlusion Class'] || []);
+  restoreSelection(this.verticalOverlapOptions, ci['Vertical Overlap'] || []);
+  restoreSelection(this.toothMobilityOptions, ci['Tooth Mobility'] || []);
+  restoreSelection(this.cariesOptions, ci['Caries (ICDAS)'] || []);
+  restoreSelection(this.existingRestorationsOptions, ci['Existing Restorations'] || []);
+  restoreSelection(this.pulpVitalityOptions, ci['Pulp Vitality'] || []);
+  restoreSelection(this.toothDiagnosisOptions, ci['Tooth Diagnosis'] || []);
+  restoreSelection(this.periodontalDiagnosisOptions, ci['Periodontal Diagnosis'] || []);
+  restoreSelection(this.cariesRiskOptions, ci['Caries Risk'] || []);
+  restoreSelection(this.prognosisOptions, ci['Prognosis'] || []);
+  restoreSelection(this.treatmentPlanOptions, ci['Treatment Plan'] || []);
+}
 
   get formattedTime(): string {
     const m = Math.floor(this.seconds / 60)
