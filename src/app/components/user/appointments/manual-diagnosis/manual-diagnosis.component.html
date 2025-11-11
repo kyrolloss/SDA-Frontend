@@ -235,15 +235,15 @@
   (close)="closeNextVisitModal()"
 >
   <div modal-body class="modal-body next-visit-modal">
-    <h4 class="fw-bold mb-3 text-center text-brown">Set Days Range</h4>
+    <h4 class="fw-bold mb-3 text-center text-brown">{{"Set Days Range" | translate}}</h4>
     <p class="text-center small mb-4 desc-range">
-      Please enter the number of days for recovery and search window.
+     {{"Please enter the number of days for recovery and search window" | translate}}.
     </p>
 
     <!-- Inputs -->
     <div class="row mb-4">
       <div class="col-md-6">
-        <label class="form-label fw-bold">From (Recovery Period in Days)</label>
+        <label class="form-label fw-bold">{{"From (Recovery Period in Days)" | translate}}</label>
         <input
           type="number"
           min="0"
@@ -254,7 +254,7 @@
         />
       </div>
       <div class="col-md-6">
-        <label class="form-label fw-bold">To (Search Window in Days)</label>
+        <label class="form-label fw-bold">{{"To (Search Window in Days)" | translate}}</label>
         <input
           type="number"
           min="0"
@@ -268,15 +268,15 @@
 
     <!-- Buttons -->
     <div class="next-visit-btns mt-3 mb-3">
-  <button class="btn cancel-btn" (click)="closeNextVisitModal()">Cancel</button>
-  <button class="btn brown-btn" (click)="completeNextVisit()">Complete</button>
-  <button class="btn main-btn" (click)="showAvailableSlots()">Show Slots</button>
+  <button class="btn cancel-btn" (click)="closeNextVisitModal()">{{"Cancel" | translate}}</button>
+  <button class="btn brown-btn" (click)="completeNextVisit()">{{"Complete" | translate}}</button>
+  <button class="btn main-btn" (click)="showAvailableSlots()">{{"Show Slots" | translate}}</button>
 </div>
 
 
     <!-- Available Slots -->
     <div *ngIf="hasSlots" class="available-slots-container mt-4">
-      <h5 class="fw-bold text-center text-brown mb-3">Available Time Slots</h5>
+      <h5 class="fw-bold text-center text-brown mb-3">{{"Available Time Slots" | translate}}</h5>
 
       <div
         *ngFor="let date of availableSlots | keyvalue"
@@ -288,7 +288,7 @@
           </h6>
 
           <span class="badge bg-secondary">
-            {{ castToArray(date.value).length }} slots
+            {{ castToArray(date.value).length }} {{"slots" | translate}}
           </span>
         </div>
 
@@ -310,7 +310,7 @@
       *ngIf="hasSlots && (availableSlots | keyvalue).length === 0"
       class="text-center text-muted"
     >
-      No available slots found.
+      {{"No available slots found" | translate}}.
     </div>
   </div>
 </app-modal>

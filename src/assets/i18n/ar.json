@@ -489,5 +489,18 @@
   "Enter a valid check-up price": "أدخل سعر كشف صحيح",
   "Join as a owner": "انضم كمالك",
   "Select Package Type" :"اختر نوع الباقة",
-  "All Types":"كل الأنواع"
+  "All Types":"كل الأنواع",
+  "View Case": "عرض الحالة",
+  "Set Next Visit": "تحديد الزيارة القادمة",
+  "Set Days Range": "تحديد نطاق الأيام",
+  "Please enter the number of days for recovery and search window": "من فضلك أدخل عدد الأيام لفترة التعافي وفترة البحث",
+  "From (Recovery Period in Days)": "من (فترة التعافي بالأيام)",
+  "To (Search Window in Days)": "إلى (فترة البحث بالأيام)",
+  "Enter recovery days": "أدخل عدد أيام التعافي",
+  "Enter search window days": "أدخل عدد أيام البحث",
+  "Complete": "إكمال",
+  "Show Slots": "عرض المواعيد المتاحة",
+  "Available Time Slots": "المواعيد المتاحة",
+  "slots": "مواعيد",
+  "No available slots found": "لم يتم العثور على مواعيد متاحة"
 }
