@@ -86,7 +86,7 @@
     border-top: 1px solid var(--border-light);
     border-bottom: 1px solid var(--border-light);
     padding: 20px 30px;
-    text-align: left;
+    // text-align: left;
 
     ul.navbar-nav {
       display: flex;
@@ -166,3 +166,38 @@
     }
   }
   
+  /* ✅ إصلاح الاتجاه في العربي */
+html[dir="rtl"] {
+  .navbar-collapse {
+    text-align: right !important;
+
+    ul.navbar-nav {
+      align-items: flex-end !important;
+    }
+
+    .responsive {
+      flex-direction: row-reverse !important;
+      justify-content: space-between !important;
+    }
+
+    .dropdown {
+      padding-right: 30px !important;
+      padding-left: 0 !important;
+
+      .dropdown-item {
+        padding-right: 60px !important;
+        padding-left: 0 !important;
+      }
+    }
+  }
+
+  .navbar-toggler {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+
+  .navbar-brand {
+    margin-right: 0 !important;
+    margin-left: auto !important;
+  }
+}
