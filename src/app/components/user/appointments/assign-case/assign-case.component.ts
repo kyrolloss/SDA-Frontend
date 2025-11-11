@@ -77,6 +77,11 @@ this.patientName = query.get('patientName') || '';
     this.pageTitle = 'Edit Case'
     this.loadCaseData();
   }
+  const storedCase = this.caseState.getCaseData();
+  if (storedCase && storedCase.appointmentId === this.appointmentId) {
+    console.log('♻️ Restored case from state:', storedCase);
+    this.chiefComplaint = storedCase.chiefComplaint || '';
+  }
   if (typeof document !== 'undefined') {
     document.addEventListener('click', this.handleClickOutside.bind(this));
   }

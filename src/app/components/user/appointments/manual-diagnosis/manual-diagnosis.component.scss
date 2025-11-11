@@ -33,12 +33,7 @@
   .form-select::placeholder {
     color: var(--text-light-gray-placeholder) !important;
   }
-  .form-label {
-    color: var(--text-gray-head-table) !important;
-    font-size: 20px !important;
-    font-weight: 600 !important;
-    margin-bottom: 0px !important;
-  }
+  
   .medications-dropdown {
     background: var(--bg-primary);
     border-radius: 12px;
@@ -336,6 +331,12 @@
   }
 }
 
+@media (max-width: 920px) {
+  .route,
+  .clinicActive {
+    font-size: 21px !important;
+  }
+}
 @media (max-width: 576px) {
   .route,
   .clinicActive {
@@ -416,19 +417,23 @@
   }
 }
 .next-visit-modal {
+  .form-control{
+    background: transparent;
+    color: var(--text-light-gray-placeholder) !important;
+  }
   .slot-day-card {
-    background: #fafafa;
+    background: transparent;
     border-left: 4px solid #a1743b;
     transition: all 0.3s ease;
     &:hover {
-      background: #fff8f1;
+      background: var(--hover-bg);
       transform: translateY(-2px);
     }
   }
 
   .slot-pill {
     background: transparent;
-    color: #89612e;
+    color: #aa9679;;
     cursor: pointer;
     border: 1px solid;
     font-size: 0.85rem;
@@ -515,3 +520,7 @@
     }
   }
 }
+.form-control::placeholder,
+  .form-select::placeholder {
+    color: var(--text-light-gray-placeholder) !important;
+  }

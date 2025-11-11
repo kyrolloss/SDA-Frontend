@@ -37,7 +37,7 @@ import { CaseStateService } from '../assign-case/case-state.service';
   templateUrl: './manual-diagnosis.component.html',
   styleUrl: './manual-diagnosis.component.scss',
 })
-export class ManualDiagnosisComponent implements OnInit , OnDestroy{
+export class ManualDiagnosisComponent implements OnInit{
   diagnosisName = '';
   treatmentPlan = '';
   instructionBetweenVisits = '';
@@ -175,6 +175,9 @@ appointmentDate:any
     this.progressOffset = offset.toString();
   }
   cancelHandler() {
+     this.startCaseState.clearStartCaseData();
+      this.startCaseState.clearClinicId();
+      this.assignCaseState.clearCase();
     if (this.fromPage === 'appointments') {
        this.router.navigate(['/dashboard/appointments'], {
       queryParams: { date: this.appointmentDate }  
@@ -242,6 +245,9 @@ castToDate(value: any): Date | null {
   this._AppointmentsService.bookAppointment(payload).subscribe({
     next: (res) => {
       this.closeNextVisitModal();
+       this.startCaseState.clearStartCaseData();
+      this.startCaseState.clearClinicId();
+      this.assignCaseState.clearCase();
 
       if (this.fromPage === 'appointments') {
         this.router.navigate(['/dashboard/appointments']);
@@ -272,6 +278,9 @@ selectSlot(slot: any, dateKey: unknown) {
   this._AppointmentsService.bookAppointment(payload).subscribe({
     next: (res) => {
       this.closeNextVisitModal();
+       this.startCaseState.clearStartCaseData();
+      this.startCaseState.clearClinicId();
+      this.assignCaseState.clearCase();
         this.router.navigate(['/dashboard/appointments'],{
           queryParams: {date: this.appointmentDate}
         });
@@ -291,9 +300,9 @@ isSelectedSlot(slot: any, dateKey: unknown): boolean {
     this.selectedDate === String(dateKey)
   );
 }
-  ngOnDestroy() {
-    this.startCaseState.clearStartCaseData();
-    this.startCaseState.clearClinicId();
-    this.assignCaseState.clearCase();
-  }
+  // ngOnDestroy() {
+  //   this.startCaseState.clearStartCaseData();
+  //   this.startCaseState.clearClinicId();
+  //   this.assignCaseState.clearCase();
+  // }
 }

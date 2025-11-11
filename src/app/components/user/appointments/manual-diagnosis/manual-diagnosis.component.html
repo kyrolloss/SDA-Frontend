@@ -15,7 +15,10 @@
     <div class="d-flex align-items-center mb-2">
       <p
         [routerLink]="['/dashboard/appointments/start-case', appointmentId]"
-        [queryParams]="{ from: fromPage }"
+        [queryParams]="{ from: fromPage ,
+        date: appointmentDate
+
+        }"
         class="mb-0 route"
       >
         {{ "Start Case" | translate }}
@@ -25,7 +28,7 @@
       class="m-0 p-0 text-black mt-1 mx-1 clinicActive arrow-color"
       style="cursor: pointer"
       [routerLink]="['/dashboard/appointments/start-case', appointmentId]"
-      [queryParams]="{ from: fromPage }"
+      [queryParams]="{ from: fromPage ,date: appointmentDate}"
     >
       <mat-icon>keyboard_arrow_left</mat-icon>
     </a>

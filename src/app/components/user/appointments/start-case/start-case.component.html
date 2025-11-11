@@ -9,6 +9,23 @@
       class="m-0 p-0 text-black mt-1 mx-1 clinicActive arrow-color"
       style="cursor: pointer"
       [routerLink]="['/dashboard/appointments']"
+      [queryParams]="{
+        date: appointmentDate
+      }"
+    >
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </a>
+    <div class="d-flex align-items-center mb-2">
+      <p class="mb-0 clinicActive">{{ "Assign Case" | translate }}</p>
+    </div>
+    <a
+      class="m-0 p-0 text-black mt-1 mx-1 clinicActive arrow-color"
+      style="cursor: pointer"
+      [routerLink]="['/dashboard/appointments/assign-case' , caseId]"
+      [queryParams]="{
+        date: appointmentDate,
+        from:'appointmentsEditAssignCase'
+      }"
     >
       <mat-icon>keyboard_arrow_left</mat-icon>
     </a>
@@ -558,10 +575,13 @@
       </div>
       <div class="checkbox-grid">
         <label *ngFor="let item of toothDiagnosisOptions">
-  <input type="checkbox" [(ngModel)]="item.selected" class="form-check-input" />
-  {{ item.label }}
-</label>
-
+          <input
+            type="checkbox"
+            [(ngModel)]="item.selected"
+            class="form-check-input"
+          />
+          {{ item.label }}
+        </label>
       </div>
     </div>
 
@@ -580,10 +600,13 @@
       </div>
       <div class="checkbox-grid">
         <label *ngFor="let item of periodontalDiagnosisOptions">
-  <input type="checkbox" [(ngModel)]="item.selected" class="form-check-input" />
-  {{ item.label }}
-</label>
-
+          <input
+            type="checkbox"
+            [(ngModel)]="item.selected"
+            class="form-check-input"
+          />
+          {{ item.label }}
+        </label>
       </div>
     </div>
 
@@ -602,10 +625,13 @@
       </div>
       <div class="checkbox-grid">
         <label *ngFor="let item of cariesRiskOptions">
-  <input type="checkbox" [(ngModel)]="item.selected" class="form-check-input" />
-  {{ item.label }}
-</label>
-
+          <input
+            type="checkbox"
+            [(ngModel)]="item.selected"
+            class="form-check-input"
+          />
+          {{ item.label }}
+        </label>
       </div>
     </div>
 
@@ -624,10 +650,13 @@
       </div>
       <div class="checkbox-grid">
         <label *ngFor="let item of prognosisOptions">
-  <input type="checkbox" [(ngModel)]="item.selected" class="form-check-input" />
-  {{ item.label }}
-</label>
-
+          <input
+            type="checkbox"
+            [(ngModel)]="item.selected"
+            class="form-check-input"
+          />
+          {{ item.label }}
+        </label>
       </div>
     </div>
     <div class="section">
@@ -645,10 +674,13 @@
       </div>
       <div class="checkbox-grid">
         <label *ngFor="let item of treatmentPlanOptions">
-  <input type="checkbox" [(ngModel)]="item.selected" class="form-check-input" />
-  {{ item.label }}
-</label>
-
+          <input
+            type="checkbox"
+            [(ngModel)]="item.selected"
+            class="form-check-input"
+          />
+          {{ item.label }}
+        </label>
       </div>
     </div>
   </div>
@@ -776,10 +808,7 @@
       {{ "Generate AI" | translate }}
     </button>
 
-    <button
-      class="manual-btn"
-      (click)="onManualDiagnosisClick()"
-    >
+    <button class="manual-btn" (click)="onManualDiagnosisClick()">
       {{ "Manual Diagnosis" | translate }}
     </button>
   </div>
