@@ -575,6 +575,9 @@
 
 // Mobile First (max-width: 600px)
 @media (max-width: 600px) {
+  // .left-side-lab-child{
+  //   inset-inline-start: 20% !important;
+  // }
   .home-container {
     padding: 0 8px;
     ul {
@@ -782,7 +785,7 @@
             width: 100%;
           }
           .appInfoChild {
-            left: 0;
+            inset-inline-start: 3%;
             top: 28%;
             br {
               display: none;
@@ -1019,3 +1022,25 @@
     }
   }
 }
+.home-container{
+  overflow:hidden;
+}
+
+  .bg-body-tertiary {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    background: var(--bg-primary) !important;
+    box-shadow: var(--shadow-md);
+    border-bottom: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+    padding: 10px 45px;
+    font-family: "IBM Plex Sans";
+    
+    // Fix for RTL (Arabic)
+    .container-fluid {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }

@@ -81,7 +81,7 @@
         class="appointment-card d-flex flex-column justify-content-center"
         *ngFor="let appt of appointments; let i = index"
         [style.top.px]="getAppointmentTop(appt)"
-        [style.left.px]="20 + i * 30"
+        [style.inset-inline-start.px]="20 + i * 30"
         [style.height.px]="getAppointmentHeight(appt)"
         (click)="openDetails(appt)"
         style="min-height: 50px !important"
