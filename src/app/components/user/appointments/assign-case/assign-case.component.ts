@@ -45,7 +45,8 @@ export class AssignCaseComponent implements OnInit , OnDestroy{
   selectedMedications: string[] = [];
   selectedDiseases: string[] = [];
 searchDiseaseTerm = ''; // للسيرش في الأمراض
-
+clinicId: string | null = null; // ضيفي ده في بداية الكلاس
+from: string | null = null;
   // dropdown control
   pageTitle = '';
 
@@ -62,18 +63,18 @@ endTime = '';
  ngOnInit(): void {
   const query = this.route.snapshot.queryParamMap;
   this.appointmentId = this.route.snapshot.paramMap.get('id');
-  const from = query.get('from');
+  this.from = query.get('from');
   this.appointmentDate = query.get('date');
 this.patientName = query.get('patientName') || '';
   this.gender = query.get('gender') || '';
   this.age = query.get('age') || '';
   this.startTime = query.get('startTime') || '';
   this.endTime = query.get('endTime') || '';
-  if (from === 'appointmentsStartCase') {
+  if (this.from === 'appointmentsStartCase') {
     this.pageTitle = 'Start Case';
-  } else if (from === 'appointmentsAssignCase') {
+  } else if (this.from === 'appointmentsAssignCase') {
     this.pageTitle = 'Assign Case';
-  }else if(from === 'appointmentsEditAssignCase'){
+  }else if(this.from === 'appointmentsEditAssignCase' || this.from === 'appointmentsEditAssignCaseClinic'){
     this.pageTitle = 'Edit Case'
     this.loadCaseData();
   }
@@ -215,11 +216,38 @@ if (typeof document !== 'undefined') {
       this.selectedMedications = res?.medications || [];
       this.selectedDiseases = res?.diseases || [];
       this.selectedInvestigations = res?.clinicalInvestigations || [];
+       const appointment = res?.appointments[0];
+       this.clinicId = appointment.doctorClinic?.clinic?.id || null;
+      if (appointment) {
+        const patient = appointment.patient?.user;
+        this.patientName = patient?.fullName || '-';
+        this.gender = patient?.gender || ''; // لو متوفّر
+        this.age = patient?.age || '';       // لو متوفّر
+        this.appointmentDate = appointment?.date || '';
+        this.startTime = appointment?.startTime || '';
+        this.endTime = appointment?.endTime || '';
+      }
     },
     error: (err) => {
       console.error('❌ Error loading case data', err);
     }
   });
+}
+cancelAction() {
+  if (this.from === 'appointmentsEditAssignCaseClinic') {
+    // ✅ لو جاي من كلينيك → روح على assigned-cases مع الـ clinicId
+    this.router.navigate([
+      '/dashboard/clinics',
+      this.clinicId,
+      'assigned-cases'
+    ]);
+  } else {
+    // ✅ الافتراضي: يرجع على المواعيد
+    this.router.navigate(
+      ['/dashboard/appointments'],
+      { queryParams: { date: this.appointmentDate, from: 'appointments' } }
+    );
+  }
 }
 
 
