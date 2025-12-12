@@ -83,6 +83,9 @@ import {
 import { persistQueryClient } from '@tanstack/query-persist-client-core';
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
 import { credentialsInterceptor } from './app/components/core/interceptors/credentials.interceptor';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideMessaging, getMessaging } from '@angular/fire/messaging';
+import { environment } from './environments/environment';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -129,5 +132,7 @@ bootstrapApplication(AppComponent, {
     provideAnimationsAsync(),
     provideCharts(withDefaultRegisterables()),
     provideTanStackQuery(queryClient),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideMessaging(() => getMessaging()),
   ]
 }).catch(err => console.error(err));

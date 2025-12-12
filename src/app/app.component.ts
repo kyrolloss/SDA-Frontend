@@ -6,6 +6,8 @@ import { ForgetPassComponent } from "./components/auth/forget-pass/forget-pass.c
 import { LoaderService } from './components/core/services/loader.service';
 import { CommonModule } from '@angular/common';
 import { environment } from '../environments/environment';
+import { FirebaseMessagingService } from './components/core/services/firebase-messaging.service';
+import { ApiServiceService } from './api-service.service';
 console.log('Environment:', environment);
 
 @Component({
@@ -17,5 +19,28 @@ console.log('Environment:', environment);
 })
 export class AppComponent {
   title = 'SDA';
-  constructor(public loader: LoaderService) {}
+  constructor(
+    public loader: LoaderService,
+    private firebaseMsg: FirebaseMessagingService,
+    private api: ApiServiceService
+  ) {}
+
+  ngOnInit(): void {
+    // 🚀 1) اطلب إذن النوتيفيكيشن
+    this.firebaseMsg.requestPermission().then(token => {
+      if (token) {
+        console.log("FCM Token:", token);
+
+        // 🚀 2) أبعت التوكين للباك
+        this.api.post('save-fcm-token', { token }).subscribe({
+          next: () => console.log("Token sent to backend successfully"),
+          error: (err) => console.error("Error sending token:", err)
+        });
+      }
+    });
+
+    // 🚀 3) استلم أي نوتيفيكيشن جديدة
+    this.firebaseMsg.listen();
+  }
+
 }
