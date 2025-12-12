@@ -329,6 +329,13 @@ export const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'notifications',
+        loadComponent: () =>
+          import('./components/user/notifications/notifications.component').then(
+            (m) => m.NotificationsComponent
+          ),
+      },
     ],
   },
 
