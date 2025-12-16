@@ -1,1 +1,83 @@
-<p>clinic-doctors works!</p>
+<div class="doctor-clinics">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex align-items-center mb-3 route-container">
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 route">{{ "Clinic" | translate }}</p>
+        <a
+          [routerLink]="['/dashboard/clinics']"
+          class="m-0 p-0 text-black mt-1 mx-1 clinicActive arrow-color"
+          style="cursor: pointer"
+        >
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </a>
+        <p class="mb-0 clinicActive">{{ "Doctors" | translate }}</p>
+      </div>
+    </div>
+
+    <div class="responsive">
+      <div class="d-flex align-items-center">
+        <button
+          class="signin-button w-auto d-flex align-items-center justify-content-center"
+        >
+          <mat-icon>add</mat-icon>
+          {{ "Add Doctor" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <app-search
+    [placeholder]="'Search the doctor' | translate"
+    (search)="onSearch()"
+  >
+  </app-search>
+
+  <!-- Doctor Cards Grid -->
+  <div class="doctor-cards-grid mt-4">
+    <div class="doctor-card" *ngFor="let doctor of doctors">
+      <!-- Header -->
+      <div class="card-header">
+        <div class="doctor-info">
+          @if(doctor.user !== undefined && doctor.user !== null){
+          <h3 class="doctor-name">{{ doctor.user.fullName }}</h3>}
+          @if(doctor.specialization !== undefined && doctor.specialization !== null){
+          <p class="specialization">{{ doctor.specialization }}</p>}
+          @if(doctor.consultationFee !== undefined && doctor.consultationFee !== null){
+            <p class="price">{{ doctor.consultationFee }} EGP</p>
+          }
+        </div>
+        @if(doctor.stockType !== undefined && doctor.stockType !== null){
+        <span class="badge" [ngClass]="doctor.stockType ? 'stock-based' : 'non-stock-based'">
+          {{ doctor.stockType }}
+        </span>}
+      </div>
+
+      <!-- Schedule Days -->
+      <div class="schedule-days">
+        <ng-container *ngFor="let day of getScheduleDays(doctor.schedule)">
+          <div class="day-badge">
+            <span class="day-name">{{ getDayName(day.dayNumber) }}</span>
+            <span class="day-time">{{ day.startTime }} - {{ day.endTime }}</span>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- Actions -->
+      <div class="card-actions">
+        <button class="action-btn">
+          <mat-icon>event</mat-icon>
+          {{ "Set Schedule" | translate }}
+        </button>
+        <button class="action-btn">
+          <mat-icon>edit</mat-icon>
+          {{ "Edit" | translate }}
+        </button>
+        <button class="action-btn delete-btn">
+          <mat-icon>delete</mat-icon>
+          
+          {{ "Delete" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
