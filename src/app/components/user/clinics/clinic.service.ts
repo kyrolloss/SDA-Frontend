@@ -49,7 +49,20 @@ export class ClinicService {
   getPackages(params: any) {
     return firstValueFrom(this.api.get<any>('packages', params));
   }
-  
+  getDoctorsForClinic(
+    clinicId: string,
+    page: number,
+    limit: number
+  ): Observable<any> {
+    const params = {
+      page: page,
+      limit: limit,
+    };
+    return this.api.get<any>(`clinics/${clinicId}/doctors`, params);
+  }
+  setSchedule(payload: any): Observable<any> {
+    return this.api.post<any>('schedule', payload);
+  }
   getClinicById(id: string): Observable<any> {
     return this.api.get<any>(`clinics/${id}`);
   }
