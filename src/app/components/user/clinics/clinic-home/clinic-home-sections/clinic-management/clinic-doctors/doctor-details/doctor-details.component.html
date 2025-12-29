@@ -1,20 +1,115 @@
 <div class="profile-detaild container py-3">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-    <div class="d-flex align-items-center mb-3 route-container">
-      <div class="d-flex align-items-center mb-2">
-        <p class="mb-0 route">{{ "Clinic" | translate }}</p>
-        <a [routerLink]="['/dashboard/clinics']" class="m-0 p-0 text-black mt-1 mx-1 clinicActive arrow-color"
-          style="cursor: pointer">
-          <mat-icon>keyboard_arrow_left</mat-icon>
-        </a>
-        <p class="mb-0 clinicActive">{{ "Doctors" | translate }}</p>
-        <a [routerLink]="['/dashboard/clinics', clinicId, 'management', 'clinic-doctors']"
-          class="m-0 p-0 text-black mt-1 mx-1 clinicActive arrow-color"
-          style="cursor: pointer">
-          <mat-icon>keyboard_arrow_left</mat-icon>
-        </a>
-        <p class="mb-0 clinicActive">{{ "Details" | translate }}</p>
+  <div class="bg-profile">
+
+    <div class="d-flex justify-content-between align-items-center first-section">
+      <div class="d-flex align-items-center route-container">
+        <div class="d-flex align-items-center">
+          <p class="mb-0 route">{{ "Clinic" | translate }}</p>
+          <a [routerLink]="['/dashboard/clinics']" class="m-0 p-0 text-white mt-1 mx-1 clinicActive arrow-color"
+            style="cursor: pointer">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </a>
+          <p class="mb-0 route">{{ "Doctors" | translate }}</p>
+          <a [routerLink]="['/dashboard/clinics', clinicId, 'management', 'clinic-doctors']"
+            class="m-0 p-0 text-white mt-1 mx-1 clinicActive arrow-color" style="cursor: pointer">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </a>
+          <p class="mb-0 clinicActive">{{ "Details" | translate }}</p>
+        </div>
       </div>
     </div>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <img class="pic-profile" src="../../../../../../../../../assets/media/pic-not-found.png" alt="user picture"
+        srcset="">
+        <p class="my-0 py-0 fs-5 fw-bold text-white">Ali omar</p>
+        <p class="my-0 py-0 fs-5 fw-bold text-white">Dental implant and prosthetic specialist</p>
+    </div>
+      <div class="d-flex justify-content-center align-items-center mt-3">
+        <div class="d-flex align-items-center flex-column">
+        <img class="icon-bg" src="../../../../../../../../../assets/media/phone-rounded-svgrepo-com (3) 1.svg" alt="">
+        <p class="my-0 py-0 fs-5 text-white">+20123456789</p>
+      </div>
+      <div class="d-flex align-items-center flex-column ms-4">
+        <img class="icon-bg" src="../../../../../../../../../assets/media/email-svgrepo-com (15) 1.svg" alt="">
+        <p class="my-0 py-0 fs-5 text-white">aliomarGmail.com</p>
+      </div>
+      </div>
+
   </div>
+  <!-- <div class="wave-container">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    
+    <path
+      d="
+        M0,120
+        L0,40
+        Q360,-20 720,40
+        L720,120
+        Z
+      "
+      fill="#fff"
+    />
+
+    <path
+      d="
+        M720,40
+        Q1080,-20 1440,40
+        L1440,120
+        L720,120
+        Z
+      "
+      fill="#fff"
+    />
+
+  </svg>
+</div> -->
+<!-- <svg width="0" height="0" viewBox="0 0 1440 200" preserveAspectRatio="none">
+  <defs>
+    <clipPath id="header-wave" clipPathUnits="objectBoundingBox">
+      <path
+        d="
+          M0,0.7
+          C0.15,0.6 0.35,0.55 0.5,0.6
+          C0.65,0.65 0.85,0.7 1,0.6
+          L1,0
+          L0,0
+          Z
+        "
+      />
+    </clipPath>
+  </defs>
+</svg> -->
+
+<div class="wave-container">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+
+    <path
+      d="
+        M0,80
+        C360,-40 360,-40 720,80
+        L720,100
+        L0,100
+        Z
+      "
+      fill="#faf9f7"
+    />
+
+    <path
+      d="
+        M720,80
+        C1080,-40 1080,-40 1440,80
+        L1440,100
+        L720,100
+        Z
+      "
+      fill="#faf9f7"
+    />
+
+  </svg>
+</div>
+
+
+
+
+
 </div>
