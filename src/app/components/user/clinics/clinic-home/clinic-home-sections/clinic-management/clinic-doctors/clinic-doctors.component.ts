@@ -268,8 +268,9 @@ saveEditDoctor() {
     });
 }
 goToProfileDetails(doctorId: string) {
-
-  this.router.navigate([`dashboard/doctor/${doctorId}`]);
+  this.router.navigate([`dashboard/doctor/${doctorId}`], {
+    queryParams: { clinicId: this.clinicId }
+  });
 }
 
 }
