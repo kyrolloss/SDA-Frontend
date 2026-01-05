@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center mb-3 route-container">
       <div class="d-flex align-items-center mb-2">
         <p class="mb-0 route">{{ "Clinic" | translate }}</p>
-        <a [routerLink]="['/dashboard/clinics']" class="m-0 p-0 text-black mt-1 mx-1 clinicActive arrow-color"
+        <a [routerLink]="['/dashboard/clinics']" class="m-0 p-0  mt-1 mx-1 clinicActive arrow-color"
           style="cursor: pointer">
           <mat-icon>keyboard_arrow_left</mat-icon>
         </a>
@@ -28,7 +28,7 @@
           <p class="specialization">{{ doctor.specialization }}</p>
           } @if(doctor.consultationFee !== undefined && doctor.consultationFee
           !== null){
-          <p class="price">{{ doctor.consultationFee }} EGP</p>
+          <p class="price">{{ doctor.consultationFee }} <span class="currency">EGP</span></p>
           }
         </div>
         @if(doctor.stockType !== undefined && doctor.stockType !== null && isOwner){
