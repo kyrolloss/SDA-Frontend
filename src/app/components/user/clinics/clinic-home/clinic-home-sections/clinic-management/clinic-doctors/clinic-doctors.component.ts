@@ -269,7 +269,9 @@ saveEditDoctor() {
 }
 goToProfileDetails(doctorId: string) {
   this.router.navigate([`dashboard/doctor/${doctorId}`], {
-    queryParams: { clinicId: this.clinicId }
+    queryParams: { clinicId: this.clinicId ,
+      isOwner: this.isOwner
+    }
   });
 }
 

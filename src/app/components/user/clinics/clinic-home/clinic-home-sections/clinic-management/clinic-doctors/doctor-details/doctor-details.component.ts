@@ -46,7 +46,7 @@ days = [
 
 // نفس الفورم
 scheduleForm: { [key: number]: any[] } = {};
-
+isOwner: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private clinicService: ClinicService,
@@ -60,8 +60,10 @@ scheduleForm: { [key: number]: any[] } = {};
     });
     this.doctorId = this.route.snapshot.paramMap.get('id');
     this.clinicId = this.route.snapshot.queryParamMap.get('clinicId');
+    this.isOwner = this.route.snapshot.queryParamMap.get('isOwner') === 'true';
     console.log('Doctor ID:', this.doctorId);
     console.log('Clinic ID:', this.clinicId);
+    console.log('isOwner:', this.isOwner);
 
     if (this.doctorId) {
       this.getDoctorDetails(this.doctorId);

@@ -19,7 +19,7 @@
               '/dashboard/clinics',
               clinicId,
               'management',
-              'clinic-doctors'
+              'schedule'
             ]"
             class="m-0 p-0 text-white mt-1 mx-1 clinicActive arrow-color"
             style="cursor: pointer"
@@ -105,9 +105,12 @@
       />
     </svg>
     <p class="fs-2 ms-2 fw-bold mt-3">
-      {{ "Infor" | translate }}
-      <span class="highlight rounded-0">{{ "mation" | translate }}</span>
-    </p>
+  {{ "Information_Part1" | translate }}
+  <span class="highlight rounded-0">
+    {{ "Information_Part2" | translate }}
+  </span>
+</p>
+
   </div>
   <div class="container my-4">
     <div class="specialization-card p-4">
@@ -118,7 +121,7 @@
             {{ doctorDetails?.specialization }}
           </p>
           <p class="price mb-0">
-            {{ doctorDetails?.consultationFee }} <span>EGP</span>
+            {{ doctorDetails?.consultationFee }} <span class="currency">{{ 'Currency_EGP' | translate }}</span>
           </p>
         </div>
         <span
@@ -129,11 +132,10 @@
               : 'non-stock-based'
           "
         >
-          {{
-            doctorDetails.stockType === "clinic"
-              ? "Stock Based"
-              : "Non Stock Based"
-          }}
+          {{ (doctorDetails.stockType === 'clinic'
+    ? 'Stock_Based'
+    : 'Non_Stock_Based') | translate }}
+
         </span>
       </div>
       <hr />
@@ -141,7 +143,7 @@
       <div class="day-block">
         <div class="d-flex justify-content-between align-items-center mb-2">
           <p class="day-name mb-0">{{ day.dayName }}</p>
-          @if($index === 0){
+          @if($index === 0 && isOwner){
           <mat-icon class="edit-icon" (click)="openScheduleFromDetails()">edit</mat-icon>}
         </div>
 
@@ -181,7 +183,7 @@
             [class.input-error]="slot.hasError" />
 
           <div class="time-error" *ngIf="slot.hasError">
-            End time should be after start time
+            {{ 'End_Time_Error' | translate }}
           </div>
         </div>
 
@@ -190,7 +192,7 @@
         </mat-icon>
       </div>
 
-      <p class="add-time" (click)="addTime(day.id)">+ Add Time</p>
+      <p class="add-time" (click)="addTime(day.id)">+ {{ 'Add_Time' | translate }}</p>
     </div>
   </div>
   <div class="page-footer-btns" modal-footer>

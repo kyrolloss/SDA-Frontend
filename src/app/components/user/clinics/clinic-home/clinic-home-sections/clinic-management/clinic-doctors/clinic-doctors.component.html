@@ -28,12 +28,16 @@
           <p class="specialization">{{ doctor.specialization }}</p>
           } @if(doctor.consultationFee !== undefined && doctor.consultationFee
           !== null){
-          <p class="price">{{ doctor.consultationFee }} <span class="currency">EGP</span></p>
+          <p class="price">{{ doctor.consultationFee }} <span class="currency">{{ 'Currency_EGP' | translate }}</span></p>
           }
-        </div>
+        </div> 
         @if(doctor.stockType !== undefined && doctor.stockType !== null && isOwner){
         <span class="badge" [ngClass]="doctor.stockType === 'clinic' ? 'stock-based' : 'non-stock-based'">
-          {{ doctor.stockType === 'clinic' ? 'Stock Based' : 'Non Stock Based' }} </span>}
+          {{ (doctor.stockType === 'clinic'
+    ? 'Stock_Based'
+    : 'Non_Stock_Based') | translate }}
+
+        </span>}
       </div>
 
       <!-- Schedule Days -->
@@ -120,7 +124,7 @@
             [class.input-error]="slot.hasError" />
 
           <div class="time-error" *ngIf="slot.hasError">
-            End time should be after start time
+            {{ 'End_Time_Error' | translate }}
           </div>
         </div>
 
@@ -129,7 +133,7 @@
         </mat-icon>
       </div>
 
-      <p class="add-time" (click)="addTime(day.id)">+ Add Time</p>
+      <p class="add-time" (click)="addTime(day.id)">+ {{ 'Add_Time' | translate }}</p>
     </div>
   </div>
   <div class="page-footer-btns" modal-footer>
@@ -148,7 +152,7 @@
   <!-- Stock Type -->
   <!-- Stock Type -->
 <div class="form-group mb-3">
-  <label class="fw-bold d-block">
+  <label class="fw-bold d-block color-gray">
     {{ 'Stock Type' | translate }}
   </label>
 
@@ -160,17 +164,17 @@
         [(ngModel)]="editDoctorForm.stockType"
         value="clinic"
       />
-      <span>{{ 'Stock Based' | translate }}</span>
+      <span class="color-gray">{{ 'Stock_Based' | translate }}</span>
     </label>
 
     <label class="d-flex align-items-center gap-1">
       <input
-        type="radio"
+        type="radio" 
         name="stockType"
         [(ngModel)]="editDoctorForm.stockType"
         value="self"
       />
-      <span>{{ 'Non Stock Based' | translate }}</span>
+      <span class="color-gray">{{ 'Non_Stock_Based' | translate }}</span>
     </label>
   </div>
 </div>
@@ -178,23 +182,23 @@
 
   <!-- Consultation Fee -->
   <div class="form-group mb-3">
-    <label>{{ 'Consultation Fee' | translate }}</label>
+    <label class="fw-bold d-block color-gray">{{ 'Consultation Fee' | translate }}</label>
     <input
       type="number"
       class="form-input"
       [(ngModel)]="editDoctorForm.consultationFee"
-      placeholder="Consultation Fee "
+      placeholder="{{'Consultation Fee' | translate}}"
     />
   </div>
 
   <!-- Doctor Share -->
   <div class="form-group mb-3">
-    <label>{{ 'Doctor Share (%)' | translate }}</label>
+    <label class="fw-bold d-block color-gray">{{ 'Doctor Share' | translate }}</label>
     <input
       type="number"
       class="form-input"
       [(ngModel)]="editDoctorForm.doctorShare"
-      placeholder="Doctor Share (%)"
+      placeholder="{{'Doctor Share' | translate}}"
       min="0"
       max="100"
     />

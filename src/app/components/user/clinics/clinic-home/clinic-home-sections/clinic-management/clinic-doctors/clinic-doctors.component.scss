@@ -15,7 +15,13 @@
   font-size: 30px;
   font-weight: 500;
 }
-
+.color-gray{
+  color: var(--text-gray-head-table);
+}
+.form-group input{
+  background: transparent !important;
+  color: var(--text-gray-head-table) !important;
+}
 .new-appointment-btn {
   background: var(--bg-brown-gradient);
   color: #fff;
@@ -109,7 +115,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3px 11px;
+  padding: 1px 9px;
   border: 2px solid var(--bg-brown-medium);
   border-radius: 22px;
 

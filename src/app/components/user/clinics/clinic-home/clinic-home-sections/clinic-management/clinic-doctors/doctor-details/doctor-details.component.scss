@@ -20,6 +20,7 @@
   background-repeat: no-repeat;
   width: 100%;
   padding-bottom: 125px;
+
   .first-section {
     padding: 0px 26px;
 
@@ -31,25 +32,30 @@
     height: 125px;
     margin-bottom: 10px;
   }
-  .icon-bg{
+
+  .icon-bg {
     padding: 8px;
     border-radius: 50%;
     background-color: #fff;
   }
 
 }
+
 .wave-container {
   margin-top: -138px;
 }
-.DoctorInformation{
+
+.DoctorInformation {
   margin-top: -25px;
-.highlight {
-  background-color: var(--brown-dark);
-  border-radius: 45px;
-  padding: 2px 8px;
-  color: white;
+
+  .highlight {
+    background-color: var(--brown-dark);
+    border-radius: 45px;
+    padding: 2px 8px;
+    color: white;
+  }
 }
-}
+
 .specialization-card {
   border: 1px solid #e6e6e6;
   border-radius: 12px;
@@ -72,6 +78,7 @@
     color: #777;
   }
 }
+
 .day-block {
   margin-top: 20px;
 }
@@ -79,7 +86,7 @@
 .day-name {
   font-size: 16px;
   font-weight: 600;
-  color: #444;
+  color: var(--text-gray-head-table);
 }
 
 .edit-icon {
@@ -89,14 +96,15 @@
 }
 
 .time-chip {
-  border: 1px solid #7c7a7a;
+  border: 1px solid var(--text-gray-sidebar);
   border-radius: 25px;
   padding: 6px 14px;
   font-size: 20px;
   font-weight: bold;
-  color: #7c7a7a;
+  color: var(--text-gray-sidebar);
   white-space: nowrap;
 }
+
 .badge {
   padding: 12px;
   border-radius: 7px;
@@ -114,6 +122,10 @@
     color: #C26E07;
   }
 }
+.currency{
+    color: var(--text-light-gray);
+  }
+
 .days-container {
   display: flex;
   gap: 8px;
@@ -121,7 +133,7 @@
   flex-wrap: wrap;
 }
 
-.day-pill{
+.day-pill {
   border: 2px solid #b19e7f;
   background-color: transparent;
   border-radius: 16px;
@@ -142,6 +154,7 @@
   border-color: #b19e7f;
   color: #fff;
 }
+
 // time
 .day-times {
   margin-bottom: 18px;
@@ -168,6 +181,7 @@
 .delete-time:hover {
   color: #d9534f;
 }
+
 .time-input-wrapper {
   display: flex;
   flex-direction: column;
@@ -183,7 +197,7 @@
   border: 1px solid #d32f2f;
 }
 
-.time-row input[type="time"]{
+.time-row input[type="time"] {
   border: 1px solid #cfcfcf;
   border-radius: 11px;
   font-size: 21px;
@@ -203,6 +217,7 @@
 .add-time:hover {
   text-decoration: underline;
 }
+
 // footer
 .schedule-footer {
   display: flex;
@@ -232,11 +247,13 @@
   font-size: 14px;
   cursor: pointer;
 }
+
 .page-footer-btns {
   display: flex;
   align-items: center;
   gap: 20px;
   width: 100%;
+
   button {
     border: none;
     border-radius: 6px;
@@ -266,5 +283,67 @@
     &:hover {
       transform: translateY(-2px);
     }
+  }
+}
+
+@media (max-width: 567px) {
+  .bg-profile {
+    padding-bottom: 55px;
+
+    .first-section {
+      padding: 0px 10px;
+    }
+  }
+
+  .route {
+    font-size: 22px;
+  }
+
+  .wave-container {
+    margin-top: -35px;
+  }
+
+  .DoctorInformation {
+    margin-top: -15px;
+  }
+
+  .doctor-card {
+    padding: 10px;
+  }
+
+  .time-chip {
+    padding: 6px 9px;
+    font-size: 17px;
+  }
+
+  .doctor-info {
+    .doctor-name {
+      font-size: 17px;
+    }
+
+    .specialization {
+      font-size: 18px;
+    }
+
+    .price {
+      font-size: 18px;
+    }
+  }
+
+  .badge {
+    padding: 5px;
+    font-size: 15px;
+  }
+
+  .day-badge {
+    padding: 0px 8px;
+  }
+
+  .time-row input[type="time"] {
+    font-size: 15px;
+  }
+
+  .add-time {
+    font-size: 18px;
   }
 }
