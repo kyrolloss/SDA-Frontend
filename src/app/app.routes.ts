@@ -144,6 +144,13 @@ export const routes: Routes = [
               },
             ],
           },
+          {
+            path: 'lab-details/:labId',
+            loadComponent: () =>
+              import(
+                './components/user/laboratory/labs-system/tabs/laboratory/lab-details/lab-details.component'
+              ).then((m) => m.LabDetailsComponent),
+          },
         ],
       },
       {
@@ -367,13 +374,13 @@ export const routes: Routes = [
                     redirectTo: 'schedule',
                     pathMatch: 'full',
                   },
-                  {
-                    path: 'schedule',
-                    loadComponent: () =>
-                      import(
-                        './components/user/clinics/clinic-home/clinic-home-sections/clinic-management/schedule/schedule.component'
-                      ).then((m) => m.ScheduleComponent),
-                  },
+                  // {
+                  //   path: 'schedule',
+                  //   loadComponent: () =>
+                  //     import(
+                  //       './components/user/clinics/clinic-home/clinic-home-sections/clinic-management/schedule/schedule.component'
+                  //     ).then((m) => m.ScheduleComponent),
+                  // },
                   {
                     path: 'clinic-doctors',
                     loadComponent: () =>
