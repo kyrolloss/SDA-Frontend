@@ -553,5 +553,10 @@
   "Set_Schedule": "Set Schedule",
   "Add_Time": "Add Time",
   "End_Time_Error": "End time should be after start time",
-  "Currency_EGP": "EGP"
+  "Currency_EGP": "EGP",
+  "laboratory_details" : "Laboratory Details",
+  "request_lab_order" : "Request Lab Order",
+  "orderName" : "Order Name",
+  "order_deadline" : "Order Deadline",
+  "orderNote" : "Order Note"
 }

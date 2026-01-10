@@ -4,6 +4,7 @@ import { LabService } from '../../../lab.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { PaginationComponent } from '../../../../../shared/pagination/pagination.component';
 import { MatIcon } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-laboratory',
@@ -28,7 +29,7 @@ export class LaboratoryComponent implements OnInit {
   searchNameValue = '';
   search = signal('');
 
-  constructor(private _LabService: LabService) {}
+  constructor(private _LabService: LabService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadLabs();
@@ -56,7 +57,8 @@ export class LaboratoryComponent implements OnInit {
     this.loadLabs();
   }
 
-  goToDetails(lab: any) {
-    // this._Router.navigate([`/dashboard/patients/${patient.id}`]);
-  }
+  goToDetails(labId: string) {
+  console.log('Clicked labId:', labId);
+  this.router.navigate(['/dashboard/labs/lab-details', labId]);
+}
 }
