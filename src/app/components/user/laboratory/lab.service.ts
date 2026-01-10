@@ -37,10 +37,23 @@ export class LabService {
       this._ApiServiceService.get<any>(`doctors/me/labs/orders`, params)
     );
   }
-  
+
   getExpenses() {
     return firstValueFrom(
       this._ApiServiceService.get<any>(`doctors/me/labs/total-expenses`)
+    );
+  }
+
+  getOrderDetails(orderId:number){
+    return firstValueFrom(
+      this._ApiServiceService.get<any>(`labs/orders/${orderId}`)
+    );
+  }
+
+  updateOrderStatus(orderId: number, body: { status: string }) {
+    return this._ApiServiceService.patch(
+      `labs/orders/${orderId}/status`,
+      body
     );
   }
 }

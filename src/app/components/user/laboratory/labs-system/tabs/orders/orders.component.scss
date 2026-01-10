@@ -72,6 +72,12 @@
   }
 }
 
+.signin-button.cancel {
+  background: transparent !important;
+  border: 1px solid var(--bg-brown-medium);
+  color: var(--bg-brown-medium);
+}
+
 .modal-body {
   padding: 15px;
   border-radius: 8px;
@@ -87,15 +93,53 @@
     color: var(--text-black-biege);
   }
 }
+.title {
+  color: var(--text-gray-head-table);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 12px 0px;
+}
+.card {
+  background-color: var(--bg-white-secondary);
+  padding: 8px;
+  border-radius: 12px;
+  color: var(--text-gray);
+  h4{
+    color: var(--text-gray-head-table);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0px;
+  }
+  p{
+    color: var(--bg-brown-dark);
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0px;
+    span{
+      font-weight: 500;
+      margin: 0px;
+    }
+  }
+}
+.edit-modal {
+  padding: 15px;
+  h4 {
+    color: var(--text-gray-head-table);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  mat-icon {
+    color: var(--bg-brown-medium);
+  }
+}
 
 @media (max-width: 768px) {
-  .table thead th{
+  .table thead th {
     font-size: 13px;
   }
   .table tbody td {
     font-size: 12px;
   }
-
   .modal-body {
     padding: 5px;
     h4 {
@@ -103,6 +147,12 @@
     }
     span {
       font-size: 0.8rem;
+    }
+  }
+  .edit-modal {
+    padding: 5px;
+    h4 {
+      font-size: 0.9rem;
     }
   }
 }

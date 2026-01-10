@@ -16,7 +16,7 @@ import { ModalComponent } from '../../../../../shared/modal/modal.component';
     PaginationComponent,
     MatIcon,
     MatMenuModule,
-    ModalComponent
+    ModalComponent,
   ],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss',
@@ -42,6 +42,9 @@ export class OrdersComponent implements OnInit {
   // =====================
   isOpenViewOrder = false;
   selectedOrder:any;
+  isOpenEditOrder = false;
+  originalStatus = signal<string>('');
+  editedStatus = signal<string>('');
 
   constructor(private _LabService: LabService) {}
 
@@ -97,15 +100,57 @@ export class OrdersComponent implements OnInit {
     }
   }
 
-  openViewModal(order:any) {
-    this.isOpenViewOrder = true
-    this.selectedOrder = order;
-  }
-  closeViewModal() {
-    this.isOpenViewOrder = false
+  getOrderDetails(orderId: number) {
+    this._LabService
+      .getOrderDetails(orderId)
+      .then((res) => {
+        this.selectedOrder = res;
+      })
+      .finally(() => this.loading.set(false));
   }
 
-  openEditModal() {}
+  openViewModal(orderId: number) {
+    this.isOpenViewOrder = true;
+    this.getOrderDetails(orderId);
+  }
+  closeViewModal() {
+    this.isOpenViewOrder = false;
+  }
+
+  openEditModal(order: any) {
+    this.selectedOrder = order;
+    this.originalStatus.set(order.status); // status الأصلي
+    this.editedStatus.set(order.status); // المختار حاليًا
+    this.isOpenEditOrder = true;
+  }
+  closeEditModal() {
+    this.isOpenEditOrder = false;
+    this.originalStatus.set('');
+    this.editedStatus.set('');
+  }
+
+  updateOrder() {
+    if (this.editedStatus() === this.originalStatus()) return;
+
+    const orderId = this.selectedOrder.id;
+
+    const body = {
+      status: this.editedStatus(),
+    };
+
+    this._LabService.updateOrderStatus(orderId, body).subscribe({
+      next: () => {
+        // Update UI locally
+        this.selectedOrder.status = this.editedStatus();
+
+        this.closeEditModal();
+        this.loadOrders(); // refresh table
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
 
   openDeleteModal() {}
 }
