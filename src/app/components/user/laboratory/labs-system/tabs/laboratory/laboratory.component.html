@@ -12,7 +12,7 @@
           <p class="detail">{{ lab.location }}</p>
           <hr />
           <div
-            (click)="goToDetails(lab)"
+            (click)="goToDetails(lab.id)"
             class="view-details d-flex align-items-center justify-content-end"
           >
             <h3>{{ "view_details" | translate }}</h3>

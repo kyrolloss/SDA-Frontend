@@ -144,6 +144,13 @@ export const routes: Routes = [
               },
             ],
           },
+          {
+            path: 'lab-details/:labId',
+            loadComponent: () =>
+              import(
+                './components/user/laboratory/labs-system/tabs/laboratory/lab-details/lab-details.component'
+              ).then((m) => m.LabDetailsComponent),
+          },
         ],
       },
       {
