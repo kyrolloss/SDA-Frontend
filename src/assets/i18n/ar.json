@@ -32,8 +32,8 @@
   "We are a comprehensive digital system that provides doctors with": "نحن نظام رقمي متكامل يوفر للأطباء",
   "professional tools to manage patients, tests, diagnoses": "أدوات احترافية لإدارة المرضى، والفحوصات، والتشخيصات",
   "appointments, and expenses with ease and accuracy": "والمواعيد والمصروفات بسهولة ودقة" , 
-  "Service": "وصف",
-  "Description": "الخدمه",
+  "Service": " الخدمة",
+  "Description": "الوصف",
 
   "Appointment_management": "إدارة المواعيد",
   "Organize_appointments_by_day_and_status": "تنظيم المواعيد حسب اليوم والحالة",
@@ -584,8 +584,16 @@
   "no_lab_requests_found": "لا توجد طلبات معامل",
   "order_details" : "تفاصيل الطلب",
   "total_expenses": "إجمالي المصروفات",
+  "pricePerUse": "السعر لكل استخدام",
+  "monthlyPrice": "السعر الشهري",
   "NearbyLaboratory": "معمل قريب",
   "no_laboratories_nearby": "لا توجد معامل قريبة",
   "link_request": "طلب معمل",
-  "SearchNearbyLabs": "ابحث عن معامل قريبة"
+  "SearchNearbyLabs": "ابحث عن معامل قريبة",
+  "Calculating": "جاري الحساب...",
+  "Creating": "جاري الإنشاء...",
+  "CalculatePrice": "احسب السعر",
+  "Feature": "ميزة",
+  "Features": "ميزات",
+  "Selected": "مختارة"
 }
