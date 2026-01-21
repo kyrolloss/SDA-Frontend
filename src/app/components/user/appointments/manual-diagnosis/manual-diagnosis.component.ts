@@ -41,11 +41,11 @@ export class ManualDiagnosisComponent implements OnInit{
   diagnosisName = '';
   treatmentPlan = '';
   instructionBetweenVisits = '';
-  treatmentProgress = 50;
+  treatmentProgress = 0;
   progressOffset: string = '';
   isDropdownOpen = false;
   openIndex: number | null = null;
-  selectedMedication = '';
+  selectedMedication = ''; 
   clinicId: string | null = null;
   availableSlots: any = {}; 
 hasSlots: boolean = false; 

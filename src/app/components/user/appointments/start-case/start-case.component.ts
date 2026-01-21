@@ -7,6 +7,7 @@ import { WebSpeechService } from './web-speech.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { StartCaseStateService } from './start-case-state.service';
 import { CaseStateService } from '../assign-case/case-state.service';
+import { AppointmentsService } from '../appointments.service';
 
 @Component({
   selector: 'app-start-case',
@@ -703,7 +704,8 @@ export class StartCaseComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private _Router: Router,
     private startCaseState: StartCaseStateService,
-    private caseState: CaseStateService
+    private caseState: CaseStateService,
+    private _AppointmentsService: AppointmentsService
   ) { }
 
   ngOnInit(): void {
@@ -736,7 +738,278 @@ export class StartCaseComponent implements OnInit, OnDestroy {
       this.chiefComplaint = caseData.chiefComplaint;
       console.log('📦 Loaded from Assign Case:', caseData);
     }
+
+  // 1️⃣ لو عندي case في ال state (navigation سريع)
+  const cachedCase = this.caseState.getCaseData();
+
+  if (cachedCase?.caseId) {
+    this.patchFromApiModel(cachedCase);
   }
+
+  // 2️⃣ دايمًا اعمل GET
+  this.loadCaseFromApi();
+  }
+  loadCaseFromApi() {
+  this._AppointmentsService.getCaseById(this.appointmentId)
+    .subscribe(res => {
+      this.patchFromApiModel(res);
+      this.caseState.setCaseData(res); // optional cache
+    });
+}
+patchFromApiModel(caseData: any) {
+  if (!caseData) return;
+
+  // ===============================
+  // 🟢 Initial Chief Complaint (page 1)
+  // ===============================
+  this.chiefComplaintNotes.chiefComplaintNote =
+    caseData.initialChiefComplaint ?? '';
+
+  // ===============================
+  // 🟢 Chief Complaint Section
+  // ===============================
+  const cc = caseData.chiefComplaint || {};
+
+  this.restoreSelected(
+    this.chiefComplaintOptions,
+    cc.chiefComplaint
+  );
+
+  this.restoreSelected(
+    this.natureOfComplaintOptions,
+    cc.natureOfComplaint
+  );
+
+  this.restoreSelected(
+    this.aggravatingFactorsOptions,
+    cc.aggravatingFactors
+  );
+
+  this.restoreSelected(
+    this.medicalHistoryOptions,
+    cc.relevantMedicalHistory
+  );
+
+  this.restoreSelected(
+    this.medicationsOfConcernOptions,
+    cc.medicationsOfConcern
+  );
+
+  this.chiefComplaintNotes.chiefComplaintNote =
+    cc.chiefComplaintNote || '';
+
+  this.chiefComplaintNotes.natureOfComplaintNote =
+    cc.natureOfComplaintNote || '';
+
+  this.chiefComplaintNotes.aggravatingFactorsNote =
+    cc.aggravatingFactorsNote || '';
+
+  this.chiefComplaintNotes.relevantMedicalHistoryNote =
+    cc.relevantMedicalHistoryNote || '';
+
+  this.chiefComplaintNotes.medicationsOfConcernNote =
+    cc.medicationsOfConcernNote || '';
+
+  // ===============================
+  // 🟢 Extraoral Examination
+  // ===============================
+  const extra = caseData.extraoralExamination || {};
+
+  this.restoreSelected(
+    this.facialSymmetryOptions,
+    extra.facialSymmetry
+  );
+
+  this.restoreSelected(
+    this.facialProfileOptions,
+    extra.facialProfile
+  );
+
+  this.restoreSelected(
+    this.lymphNodesOptions,
+    extra.lymphNodes
+  );
+
+  this.restoreSelected(
+    this.tmjSoundsOptions,
+    extra.tmjSounds
+  );
+
+  this.restoreSelected(
+    this.tmjOpeningOptions,
+    extra.tmjOpening
+  );
+
+  this.extraoralNotes.facialSymmetryNote =
+    extra.facialSymmetryNote || '';
+
+  this.extraoralNotes.facialProfileNote =
+    extra.facialProfileNote || '';
+
+  this.extraoralNotes.lymphNodesNote =
+    extra.lymphNodesNote || '';
+
+  this.extraoralNotes.tmjSoundsNote =
+    extra.tmjSoundsNote || '';
+
+  this.extraoralNotes.tmjOpeningNote =
+    extra.tmjOpeningNote || '';
+
+  // ===============================
+  // 🟢 Periodontal Examination
+  // ===============================
+  const perio = caseData.periodontalExamination || {};
+
+  this.restoreSelected(
+    this.softTissueOptions,
+    perio.tongueSoftTissues
+  );
+
+  this.restoreSelected(
+    this.gingivalColorOptions,
+    perio.gingivalColor
+  );
+
+  this.restoreSelected(
+    this.gingivalEnlargementOptions,
+    perio.gingivalEnlargement
+  );
+
+  this.restoreSelected(
+    this.bleedingOnProbingOptions,
+    perio.bleedingOnProbing
+  );
+
+  this.restoreSelected(
+    this.pocketDepthOptions,
+    perio.pocketDepth
+  );
+
+  this.periodontalExaminationNotes.tongueSoftTissuesNote =
+    perio.tongueSoftTissuesNote || '';
+
+  this.periodontalExaminationNotes.gingivalColorNote =
+    perio.gingivalColorNote || '';
+
+  this.periodontalExaminationNotes.gingivalEnlargementNote =
+    perio.gingivalEnlargementNote || '';
+
+  this.periodontalExaminationNotes.bleedingOnProbingNote =
+    perio.bleedingOnProbingNote || '';
+
+  this.periodontalExaminationNotes.pocketDepthNote =
+    perio.pocketDepthNote || '';
+
+  // ===============================
+  // 🟢 Dental Occlusion
+  // ===============================
+  const occlusion = caseData.dentalOcclusion || {};
+
+  this.restoreSelected(
+    this.occlusionClassOptions,
+    occlusion.occlusion
+  );
+
+  this.restoreSelected(
+    this.verticalOverlapOptions,
+    occlusion.overbite
+  );
+
+  this.restoreSelected(
+    this.toothMobilityOptions,
+    occlusion.mobility
+  );
+
+  this.restoreSelected(
+    this.cariesOptions,
+    occlusion.caries
+  );
+
+  this.restoreSelected(
+    this.existingRestorationsOptions,
+    occlusion.restorations
+  );
+
+  this.restoreSelected(
+    this.pulpVitalityOptions,
+    occlusion.pulpVitality
+  );
+
+  this.dentalOcclusionNotes.occlusionNote =
+    occlusion.occlusionNote || '';
+
+  this.dentalOcclusionNotes.overbiteNote =
+    occlusion.overbiteNote || '';
+
+  this.dentalOcclusionNotes.mobilityNote =
+    occlusion.mobilityNote || '';
+
+  this.dentalOcclusionNotes.cariesNote =
+    occlusion.cariesNote || '';
+
+  this.dentalOcclusionNotes.restorationsNote =
+    occlusion.restorationsNote || '';
+
+  this.dentalOcclusionNotes.pulpVitalityNote =
+    occlusion.pulpVitalityNote || '';
+
+  // ===============================
+  // 🟢 Diagnosis & Risk
+  // ===============================
+  const risk = caseData.diagnosisRisk || {};
+
+  this.restoreSelected(
+    this.toothDiagnosisOptions,
+    risk.toothDiagnosis
+  );
+
+  this.restoreSelected(
+    this.periodontalDiagnosisOptions,
+    risk.periodontalDiagnosis
+  );
+
+  this.restoreSelected(
+    this.cariesRiskOptions,
+    risk.cariesRisk
+  );
+
+  this.restoreSelected(
+    this.prognosisOptions,
+    risk.prognosis
+  );
+
+  this.restoreSelected(
+    this.treatmentPlanOptions,
+    risk.treatmentPlan
+  );
+
+  this.diagnosisRiskNotes.toothDiagnosisNote =
+    risk.toothDiagnosisNote || '';
+
+  this.diagnosisRiskNotes.periodontalDiagnosisNote =
+    risk.periodontalDiagnosisNote || '';
+
+  this.diagnosisRiskNotes.cariesRiskNote =
+    risk.cariesRiskNote || '';
+
+  this.diagnosisRiskNotes.prognosisNote =
+    risk.prognosisNote || '';
+
+  this.diagnosisRiskNotes.treatmentPlanNote =
+    risk.treatmentPlanNote || '';
+
+  // ===============================
+  // 🟢 Progress / Status
+  // ===============================
+  this.caseId = caseData.id;
+}
+
+restoreSelected(options: any[], values: string[] = []) {
+  options.forEach(o => {
+    o.selected = values.includes(o.label);
+  });
+}
+
   private restoreStartCase(savedData: any) {
     this.chiefComplaint = savedData.chiefComplaint || '';
 

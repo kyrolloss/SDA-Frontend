@@ -143,11 +143,17 @@ this.patientName = query.get('patientName') || '';
     // diseases: this.selectedDiseases,
     // clinicalInvestigations: this.selectedInvestigations
   };
+  const editCaseData = {
+    // appointmentId: this.appointmentId,
+    initialChiefComplaint: this.chiefComplaint,
+    // medications: this.selectedMedications,
+    // diseases: this.selectedDiseases,
+    // clinicalInvestigations: this.selectedInvestigations
+  };
   
 
-  // 🟢 لو صفحة عرض حالة قديمة (تعديل)
   if (this.pageTitle === 'Edit Case') {
-    this._AppointmentsService.editCase(this.appointmentId!, caseData).subscribe({
+    this._AppointmentsService.editCase(this.appointmentId!, editCaseData).subscribe({
       next: (res) => {
           this.caseState.setCaseData({
           chiefComplaint: this.chiefComplaint
@@ -160,7 +166,6 @@ this.patientName = query.get('patientName') || '';
       error: (err) => console.error('❌ Error updating case', err)
     });
   }
-  // 🟢 لو صفحة جديدة (إنشاء)
   else {
     this._AppointmentsService.assignCase(caseData).subscribe({
       next: (res) => {
