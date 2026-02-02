@@ -244,7 +244,7 @@
               <label>Shade</label>
               <select
                 class="select"
-                [value]="segments[segment]?.['Shade'] || ''"
+                [value]="segments[segment]['Shade'] || ''"
                 (change)="
                   setSegment(segment, 'Shade', $any($event.target).value)
                 "
@@ -260,7 +260,7 @@
               <label>Translucency</label>
               <select
                 class="select"
-                [value]="segments[segment]?.['Translucency'] || ''"
+                [value]="segments[segment]['Translucency'] || ''"
                 (change)="
                   setSegment(segment, 'Translucency', $any($event.target).value)
                 "
