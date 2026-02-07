@@ -21,8 +21,6 @@ import {
 import { persistQueryClient } from '@tanstack/query-persist-client-core';
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
 import { credentialsInterceptor } from './app/components/core/interceptors/credentials.interceptor';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { provideMessaging, getMessaging } from '@angular/fire/messaging';
 import { environment } from './environments/environment';
 import { AuthService } from './app/components/core/services/auth.service';
 
@@ -61,9 +59,8 @@ bootstrapApplication(AppComponent, {
       provide: APP_INITIALIZER,
       useFactory: authInitializer,
       deps: [AuthService],
-      multi: true
+      multi: true,
     },
-    // ✅ Single provideHttpClient with BOTH interceptors
     provideHttpClient(
       withFetch(),
       withInterceptors([credentialsInterceptor, loaderInterceptor]),
@@ -80,10 +77,9 @@ bootstrapApplication(AppComponent, {
     ),
     provideAnimationsAsync(),
     provideTanStackQuery(queryClient),
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideMessaging(() => getMessaging()),
   ],
-}).catch((err) => console.error(err));
+}).catch(console.error);
+
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
