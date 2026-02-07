@@ -61,10 +61,6 @@ export class NotificationsComponent {
       next: (res: any) => {
         this.notifications = res.data || [];
         this.total = res.total || 0;
-        const unread = this.notifications.filter(
-          (n) => n?.isRead === false,
-        ).length;
-        this.notificationState.setUnread(unread);
         this.loading = false;
       },
       error: (err: any) => {
