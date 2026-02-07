@@ -24,6 +24,7 @@ import { credentialsInterceptor } from './app/components/core/interceptors/crede
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideMessaging, getMessaging } from '@angular/fire/messaging';
 import { environment } from './environments/environment';
+import { AuthService } from './app/components/core/services/auth.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
