@@ -1,0 +1,288 @@
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: calc(100vh - 158px);
+  flex: 1;
+}
+
+// ─── Header ───────────────────────────────────────────────
+
+.window-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  background: var(--bg-brown-gradient);
+  border-bottom: 1px solid var(--border-appointment-two);
+
+  .header-avatar-wrapper {
+    position: relative;
+
+    .header-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg-brown-dark);
+      color: var(--text-on-brown);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .online-dot {
+      position: absolute;
+      bottom: 1px;
+      left: 1px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid var(--border-appointment-two);
+      background: var(--bg-brown-dark);
+
+      &.online {
+        background: #22c55e;
+      }
+    }
+  }
+
+  .header-info {
+    display: flex;
+    flex-direction: column;
+
+    .header-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-on-brown);
+    }
+
+    .header-status {
+      font-size: 0.75rem;
+      color: var(--text-on-brown);
+    }
+  }
+}
+
+// ─── Empty / Loading States ───────────────────────────────
+
+.no-conversation,
+.loading-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  gap: 0.75rem;
+
+  i {
+    font-size: 2.5rem;
+    opacity: 0.4;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}
+
+// ─── Messages Container ───────────────────────────────────
+
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-appointment-two);
+    border-radius: 4px;
+  }
+}
+
+// ─── Message Group ────────────────────────────────────────
+
+.message-group {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+
+  &.my-group {
+    flex-direction: row-reverse;
+  }
+
+  .group-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary-200, #93c5fd);
+    color: var(--primary-900, #1e3a5f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .group-bubbles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    max-width: 65%;
+  }
+}
+
+// ─── Message Bubble ───────────────────────────────────────
+
+.message-bubble {
+  padding: 0.6rem 0.85rem;
+  border-radius: 16px;
+  position: relative;
+  word-break: break-word;
+
+  &.my-bubble {
+    background: var(--bg-brown-light);
+    color: var(--text-secondary);
+    border-bottom-right-radius: 4px;
+    align-self: flex-end;
+  }
+
+  &.other-bubble {
+    background: var(--bg-brown-dark);
+    color: var(--text-on-brown);
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+}
+
+// ─── Text ─────────────────────────────────────────────────
+
+.msg-text {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+// ─── Image ────────────────────────────────────────────────
+
+.msg-image {
+  max-width: 220px;
+  max-height: 220px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+}
+
+// ─── File / DICOM ─────────────────────────────────────────
+
+.msg-file,
+.msg-dicom {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 200px;
+
+  .file-icon,
+  .dicom-icon {
+    font-size: 1.6rem;
+    opacity: 0.85;
+  }
+
+  .file-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .file-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 140px;
+    }
+
+    .file-meta {
+      font-size: 0.72rem;
+      opacity: 0.75;
+    }
+  }
+
+  .download-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    color: inherit;
+    opacity: 0.8;
+    border-radius: 50%;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    i {
+      font-size: 1rem;
+    }
+  }
+}
+
+// ─── Voice ────────────────────────────────────────────────
+
+.msg-voice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .voice-icon {
+    font-size: 1.2rem;
+  }
+
+  .voice-player {
+    height: 32px;
+    max-width: 180px;
+  }
+
+  .voice-duration {
+    font-size: 0.75rem;
+    opacity: 0.8;
+  }
+}
+
+// ─── Meta (time + status) ─────────────────────────────────
+
+.msg-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  margin-top: 0.25rem;
+
+  .msg-time {
+    font-size: 0.68rem;
+    opacity: 0.7;
+  }
+
+  .msg-status {
+    font-size: 0.7rem;
+    opacity: 0.8;
+
+    &.status-read {
+      color: #60a5fa;
+    }
+
+    &.status-failed {
+      color: #f87171;
+    }
+  }
+}

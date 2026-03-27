@@ -1,0 +1,31 @@
+<div class="chat-page">
+
+  <!-- Sidebar -->
+  <app-chat-sidebar
+    (conversationSelected)="onConversationSelected($event)"
+  ></app-chat-sidebar>
+
+  <!-- Main Area -->
+  <div class="chat-main">
+
+    <!-- No conversation selected -->
+    <div class="empty-state" *ngIf="!selectedConversationId">
+      <i class="pi pi-comments empty-icon"></i>
+      <h3>Welcome to Chat</h3>
+      <p>Choose a conversation to start</p>
+    </div>
+
+    <!-- Conversation View -->
+    <ng-container *ngIf="selectedConversationId">
+      <app-chat-window
+        [conversationId]="selectedConversationId"
+        [conversation]="selectedConversation"
+      ></app-chat-window>
+
+      <app-chat-composer
+        [conversationId]="selectedConversationId"
+      ></app-chat-composer>
+    </ng-container>
+
+  </div>
+</div>

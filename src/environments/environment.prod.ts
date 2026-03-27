@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://backend-staging-47c6.up.railway.app/api',
+  apiUrl: 'http://localhost:3000/api',
 
   firebaseConfig: {
     apiKey: 'AIzaSyDMWzVkMlmgNft4pKNvCpuC_y383M21mRk',

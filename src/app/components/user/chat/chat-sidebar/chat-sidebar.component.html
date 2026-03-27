@@ -1,0 +1,82 @@
+<div class="chat-sidebar">
+
+  <!-- Header -->
+  <div class="sidebar-header">
+    <h3 class="sidebar-title">Chats</h3>
+  </div>
+
+  <!-- Search -->
+  <div class="sidebar-search">
+    <div class="search-input-wrapper">
+      <i class="pi pi-search search-icon"></i>
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search in chats..."
+        [formControl]="searchControl"
+      />
+      <i
+        *ngIf="searchControl.value"
+        class="pi pi-times clear-icon"
+        (click)="searchControl.setValue('')"
+      ></i>
+    </div>
+  </div>
+
+  <!-- Conversations List -->
+  <div class="conversations-list">
+
+    <!-- Empty State -->
+    <div *ngIf="filteredConversations.length === 0" class="empty-state">
+      <i class="pi pi-comments empty-icon"></i>
+      <p>No chats found</p>
+    </div>
+
+    <!-- Conversation Item -->
+    <div
+      *ngFor="let conv of filteredConversations"
+      class="conversation-item"
+      [class.selected]="conv.id === selectedConversationId"
+      (click)="selectConversation(conv.id)"
+    >
+      <!-- Avatar -->
+      <div class="avatar-wrapper">
+        <img
+          *ngIf="getOtherParticipantAvatar(conv); else initialsAvatar"
+          [src]="getOtherParticipantAvatar(conv)"
+          [alt]="getOtherParticipantName(conv)"
+          class="avatar-img"
+        />
+        <ng-template #initialsAvatar>
+          <div class="avatar-initials">
+            {{ getOtherParticipantName(conv).charAt(0) }}
+          </div>
+        </ng-template>
+
+        <!-- Online Indicator -->
+        <span
+          class="online-indicator"
+          [class.online]="isOtherParticipantOnline(conv)"
+        ></span>
+      </div>
+
+      <!-- Info -->
+      <div class="conversation-info">
+        <div class="info-top">
+          <span class="participant-name">{{ getOtherParticipantName(conv) }}</span>
+          <span class="last-time">{{ formatTime(conv.lastMessage?.sentAt) }}</span>
+        </div>
+        <div class="info-bottom">
+          <span class="last-message" [class.unread]="conv.unreadCount > 0">
+            {{ getLastMessagePreview(conv) }}
+          </span>
+          <span *ngIf="conv.unreadCount > 0" class="unread-badge">
+            {{ conv.unreadCount > 99 ? '99+' : conv.unreadCount }}
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

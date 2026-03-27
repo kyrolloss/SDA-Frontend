@@ -34,7 +34,7 @@ export const routes: Routes = [
           import('./components/auth/login/login.component').then(
             (m) => m.LoginComponent
           ),
-        canActivate: [guestGuard],
+        // canActivate: [guestGuard],
       },
       {
         path: 'register',
@@ -42,7 +42,7 @@ export const routes: Routes = [
           import('./components/auth/register/register.component').then(
             (m) => m.RegisterComponent
           ),
-        canActivate: [guestGuard],
+          // canActivate: [guestGuard],
       },
       {
         path: 'forget-password',
@@ -50,7 +50,7 @@ export const routes: Routes = [
           import('./components/auth/forget-pass/forget-pass.component').then(
             (m) => m.ForgetPassComponent
           ),
-        canActivate: [guestGuard],
+        // canActivate: [guestGuard],
       },
     ],
   },
@@ -60,7 +60,7 @@ export const routes: Routes = [
       import('./components/layouts/user-layout/user-layout.component').then(
         (m) => m.UserLayoutComponent
       ),
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       { path: '', redirectTo: 'homeDashboard', pathMatch: 'full' },
       {
@@ -68,6 +68,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./components/user/dashboard/dashboard.component').then(
             (m) => m.DashboardComponent
+          ),
+      },
+      {
+        path: 'chat',
+        loadComponent: () =>
+          import('./components/user/chat/chat-page/chat-page.component').then(
+            (m) => m.ChatPageComponent
           ),
       },
       {

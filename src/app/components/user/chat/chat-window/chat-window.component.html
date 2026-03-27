@@ -1,0 +1,146 @@
+<div class="chat-window">
+
+  <!-- ─── Header ─────────────────────────────────────────── -->
+  <div class="window-header" *ngIf="conversation">
+    <div class="header-avatar-wrapper">
+      <div class="header-avatar">
+        {{ conversation.participants[0].name.charAt(0) }}
+      </div>
+      <span
+        class="online-dot"
+        [class.online]="conversation.participants[0].isOnline"
+      ></span>
+    </div>
+    <div class="header-info">
+      <span class="header-name">
+        {{ conversation.participants[0].name }}
+      </span>
+      <span class="header-status">
+        {{ conversation.participants[0].isOnline ? 'Online' : 'Offline' }}
+      </span>
+    </div>
+  </div>
+
+  <!-- ─── No Conversation Selected ──────────────────────── -->
+  <div *ngIf="!conversationId" class="no-conversation">
+    <i class="pi pi-comments"></i>
+    <p>Choose a conversation to start</p>
+  </div>
+
+  <!-- ─── Loading ───────────────────────────────────────── -->
+  <div *ngIf="isLoading" class="loading-state">
+    <i class="pi pi-spin pi-spinner"></i>
+  </div>
+
+  <!-- ─── Messages ──────────────────────────────────────── -->
+  <div
+    *ngIf="conversationId && !isLoading"
+    class="messages-container"
+    #messagesContainer
+  >
+    <ng-container *ngFor="let group of getMessageGroups()">
+      <div
+        class="message-group"
+        [class.my-group]="group.senderId === currentUserId"
+      >
+        <!-- Avatar للطرف التاني بس -->
+        <div
+          class="group-avatar"
+          *ngIf="group.senderId !== currentUserId"
+        >
+          {{ group.messages[0].senderName.charAt(0) }}
+        </div>
+
+        <div class="group-bubbles">
+          <div
+            *ngFor="let msg of group.messages; let last = last"
+            class="message-bubble"
+            [class.my-bubble]="isMyMessage(msg)"
+            [class.other-bubble]="!isMyMessage(msg)"
+          >
+
+            <!-- Text -->
+            <ng-container *ngIf="msg.type === 'text'">
+              <p class="msg-text">{{ msg.content }}</p>
+            </ng-container>
+
+            <!-- Image -->
+            <ng-container *ngIf="msg.type === 'image'">
+              <img
+                [src]="msg.attachment?.url"
+                [alt]="msg.attachment?.name"
+                class="msg-image"
+              />
+            </ng-container>
+
+            <!-- File / PDF -->
+            <ng-container *ngIf="msg.type === 'file'">
+              <div class="msg-file">
+                <i class="pi pi-file-pdf file-icon"></i>
+                <div class="file-info">
+                  <span class="file-name">{{ msg.attachment?.name }}</span>
+                  <span class="file-meta">
+                    {{ formatFileSize(msg.attachment?.size) }}
+                    <span *ngIf="msg.attachment?.pageCount">
+                      · {{ msg.attachment?.pageCount }} صفحات
+                    </span>
+                  </span>
+                </div>
+                <button
+                  class="download-btn"
+                  (click)="downloadAttachment(msg.attachment!.url, msg.attachment!.name)"
+                >
+                  <i class="pi pi-download"></i>
+                </button>
+              </div>
+            </ng-container>
+
+            <!-- DICOM -->
+            <ng-container *ngIf="msg.type === 'dicom'">
+              <div class="msg-dicom">
+                <i class="pi pi-image dicom-icon"></i>
+                <div class="file-info">
+                  <span class="file-name">{{ msg.attachment?.name }}</span>
+                  <span class="file-meta">DICOM · {{ formatFileSize(msg.attachment?.size) }}</span>
+                </div>
+                <button
+                  class="download-btn"
+                  (click)="downloadAttachment(msg.attachment!.url, msg.attachment!.name)"
+                >
+                  <i class="pi pi-download"></i>
+                </button>
+              </div>
+            </ng-container>
+
+            <!-- Voice -->
+            <ng-container *ngIf="msg.type === 'voice'">
+              <div class="msg-voice">
+                <i class="pi pi-volume-up voice-icon"></i>
+                <audio
+                  controls
+                  [src]="msg.attachment?.url"
+                  class="voice-player"
+                ></audio>
+                <span class="voice-duration" *ngIf="msg.attachment?.duration">
+                  {{ msg.attachment?.duration }}s
+                </span>
+              </div>
+            </ng-container>
+
+            <!-- Time + Status (آخر رسالة في الـ group بس) -->
+            <div class="msg-meta" *ngIf="last">
+              <span class="msg-time">{{ formatTime(msg.sentAt) }}</span>
+              <i
+                *ngIf="isMyMessage(msg)"
+                [class]="getStatusIcon(msg)"
+                class="msg-status"
+              ></i>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+</div>
