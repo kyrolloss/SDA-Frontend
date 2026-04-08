@@ -635,5 +635,14 @@
   "whitening": "Whitening",
   "remove-visible-caries": "Remove Visible Caries",
   "generate-ai": "Generate After with AI ✨",
-  "generating": "Generating..."
+  "generating": "Generating...",
+  "dental-analysis-report": "Dental Analysis Report",
+  "left-side-view": "Left Side View",
+  "front-view": "Front View",
+  "right-side-view": "Right Side View",
+  "optional": "Optional",
+  "required": "Required",
+  "tap-to-upload": "Tap to upload image",
+  "analyze-teeth": "Analyze Teeth",
+  "analyzing": "Analyzing..."
 }

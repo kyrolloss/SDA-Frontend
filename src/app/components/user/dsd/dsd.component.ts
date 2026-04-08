@@ -15,6 +15,7 @@ import {
 } from './landmarks';
 import { Router } from '@angular/router';
 import { SmileDesignerComponent } from './smile-designer/smile-designer.component';
+import { DentalAnalysisComponent } from './dental-analysis/dental-analysis.component';
 
 // ── One profile card's state ──────────────────────────────────────────────────
 interface ProfileState {
@@ -27,7 +28,7 @@ interface ProfileState {
 @Component({
   selector: 'app-dsd',
   standalone: true,
-  imports: [CommonModule, TranslateModule, SmileDesignerComponent],
+  imports: [CommonModule, TranslateModule, SmileDesignerComponent,DentalAnalysisComponent],
   templateUrl: './dsd.component.html',
   styleUrl: './dsd.component.scss',
 })
