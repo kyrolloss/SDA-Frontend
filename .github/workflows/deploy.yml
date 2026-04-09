@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Inject secrets safely
+      - name: Inject secrets
         run: |
           python3 - <<EOF
           import os
@@ -46,8 +46,6 @@ jobs:
 
             with open(file, "w") as f:
               f.write(content)
-
-          print("Secrets injected successfully!")
           EOF
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -65,5 +63,5 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./dist/sda/browser
+          working-directory: ./dist/sda
           vercel-args: '--prod'
